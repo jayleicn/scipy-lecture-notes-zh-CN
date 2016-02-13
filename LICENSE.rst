@@ -1,4 +1,4 @@
-License
+版权
 ========
 
 All code and material is licensed under a 

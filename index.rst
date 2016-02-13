@@ -3,8 +3,7 @@ Scipy Lecture Notes
 
 .. only:: html
 
-   One document to learn numerics, science, and data with Python
-   一份文档，学习Python的科学计算，数据处理环境
+   一份文档，帮助你熟悉Python的数值，科学以及数据处理生态。
    --------------------------------------------------------------
 
 .. raw html to center the title
@@ -68,7 +67,7 @@ Scipy Lecture Notes
 
 .. only:: html
 
-    .. sidebar::  Download 
+    .. sidebar::  下载 
        
        * |pdf| `PDF, 双页 <./_downloads/ScipyLectures.pdf>`_
 
@@ -79,10 +78,8 @@ Scipy Lecture Notes
        * |github| `源码 (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
 
-    Tutorials on the scientific Python ecosystem: a quick introduction to
-    central tools and techniques. The different chapters each correspond
-    to a 1 to 2 hours course with increasing level of expertise, from
-    beginner to expert.
+    这是一份Python数据处理的指南。它包括，但不仅限于Python科学计算，数据处理相关的核心工具和技巧。
+    它由易到难，每一个章节都对应着1~2个小时的课程。我们相信不同水平的读者都可以从这份指南中获益。
 
     .. rst-class:: preface
 

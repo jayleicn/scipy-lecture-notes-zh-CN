@@ -1,4 +1,4 @@
-What's new
+新鲜事
 ==========
 
 Release 2015.3 (November 2015)

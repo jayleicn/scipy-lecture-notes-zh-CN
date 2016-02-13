@@ -1,4 +1,4 @@
-Contributing
+帮助我们
 =============
 
 Building instructions
