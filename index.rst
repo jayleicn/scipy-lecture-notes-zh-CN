@@ -73,9 +73,9 @@ Scipy Lecture Notes
 
        * |pdf| `PDF, 单页 <./_downloads/ScipyLectures-simple.pdf>`_
    
-       * |archive| `HTML格式 <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
+       * |archive| `HTML格式 <https://github.com/jayleicn/www.scipy-lectures.cn/archive/master.zip>`_
      
-       * |github| `源码 (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
+       * |github| `源码 (github) <https://github.com/jayleicn/scipy-lecture-notes-zh-CN/edit/master/index.rst>`_
 
 
     这是一份Python数据处理的指南。它包括，但不仅限于Python科学计算，数据处理相关的核心工具和技巧。
