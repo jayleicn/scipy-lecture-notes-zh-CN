@@ -8,28 +8,26 @@
 Scipy-Lecture-Notes
 ===================
 
-This repository gathers some lecture notes on the scientific Python
-ecosystem that can be used for a full course of scientific computing with
-Python.
+这是来自http://scipy-lectures.org的Python科学计算环境教程的中文版
 
-These documents are written with the rest markup language (``.rst``
-extension) and built using Sphinx: http://sphinx.pocoo.org/.
+这些文件使用rest markup语言写作 (``.rst``
+extension) 并使用Sphinx编译: http://sphinx.pocoo.org/.
 
-You can view the online version at: http://scipy-lectures.org
+在线地址: http://scipy-lectures.cn
 
-Reusing and distributing
+使用 && 分发
 -------------------------
 
-As stated in the ``LICENSE.txt`` file, this material comes with no strings
-attached. Feel free to reuse and modify for your own teaching purposes.
+如``LICENSE.txt``文件指出,这份材料无任何附加条款。基于教学目的，您可以自由使用和更改。
+this material comes with no strings attached. Feel free to reuse and modify for your own teaching purposes.
 
+但是，为了使这份材料能够不断的改进，我们鼓励大家将自己所做的更改反馈到此处，以期原作者，编辑以及译者能够更方便地优化此文档。
 However, we would like this reference material to be improved over time,
 thus we encourage people to contribute back changes. These will be
 reviewed and edited by the original authors and the editors.
 
-Building and contributing 
+编译 && 贡献 
 --------------------------
 
-The file `CONTRIBUTING.rst` contains instructions to build from source
-and to contribute.
+`CONTRIBUTING.rst`文件包含一些使用源码进行编译的指导，同时也给出了对本教程进行贡献的方法。
 
