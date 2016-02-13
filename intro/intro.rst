@@ -3,7 +3,8 @@
 
 **作者**: *Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux,
 Valentin Haenel*
-**译者**： *JayLei*
+
+**译者**： *雷杰*
 
 ..
     .. image:: phd053104s.png
@@ -58,7 +59,7 @@ Valentin Haenel*
 * 缺点:
 
   * 编程复杂: 没有交互式的开发环境,
-    强制的编译步骤, 冗杂的公式 (&, ::, }}, ; etc.),
+    强制的编译步骤, 冗杂的公式 (&, ::, }}, 等.),
     需要人为进行内存管理 (在C中尤其困难). 对于非计算机专业的人来说，这些语言都很难
 
 **脚本语言: Matlab**
@@ -132,7 +133,7 @@ Python科学计算基石
         :align: right
         :scale: 40
 
-* **IPython**, 高级**Python shell** http://ipython.org/
+* **IPython**, 高级 **Python shell** http://ipython.org/
 
 * **Numpy** : 提供强大的 **numerical arrays** 对象, 和一系列对其进行操作的方法. 
    http://www.numpy.org/
@@ -322,10 +323,10 @@ IPython 支持通过在命令前添加``%``字符使用 *magic* 函数. 前述``
 
     * IPython内置的速查表可通过 ``%quickref`` 获取。
 
-    * 查看所有的magic functions，键入 ``%magic``.
+    * 查看所有的magic functions，键入 ``%magic`` .
 
-IPython有许多的类似UNIX的*aliases*(别名，命令)，如列出当前文件夹所有文件的 ``ls``命令, 复制文件的``cp``命令以及
-删除文件的``rm``命令. 所有的命令可通过键入 ``alias`` 速查:
+IPython有许多的类似UNIX的 *aliases* (别名，命令)，如列出当前文件夹所有文件的 ``ls`` 命令, 复制文件的 ``cp`` 命令以及
+删除文件的 ``rm`` 命令. 所有的命令可通过键入 ``alias`` 速查:
 
 .. sourcecode:: ipython
 
