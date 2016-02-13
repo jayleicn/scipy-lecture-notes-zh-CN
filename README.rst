@@ -8,12 +8,14 @@
 Scipy-Lecture-Notes
 ===================
 
-这是来自http://scipy-lectures.org的Python科学计算环境教程的中文版
+这是来自 http://scipy-lectures.org 的Python科学计算环境教程的中文版
 
-这些文件使用rest markup语言写作 (``.rst``
-extension) 并使用Sphinx编译: http://sphinx.pocoo.org/.
+这些文件使用rest markup语言写作 (后缀名为``.rst``
+) 并使用Sphinx编译: http://sphinx.pocoo.org/.
 
 在线地址: http://scipy-lectures.cn
+
+临时地址: http://115.28.54.204
 
 使用 && 分发
 -------------------------
