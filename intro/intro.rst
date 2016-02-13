@@ -1,175 +1,154 @@
-Scientific computing with tools and workflow
+科学计算工具和流程
 =============================================
 
-**Authors**: *Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux,
+**作者**: *Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux,
 Valentin Haenel*
+**译者**： *JayLei*
 
 ..
     .. image:: phd053104s.png
       :align: center
 
-Why Python?
+为什么选择Python?
 ------------
 
-The scientist's needs
+它能满足科学家们的需求
 .......................
 
-* Get data (simulation, experiment control),
+* 获取数据 (模拟，控制实验),
 
-* Manipulate and process data,
+* 操作、处理数据,
 
-* Visualize results (to understand what we are doing!),
+* 结果的可视化 (便于理解我们所做的事!),
 
-* Communicate results: produce figures for reports or publications,
-  write presentations.
+* 将结果用于交流: 助力报告，演讲以及发表.
 
-Specifications
+说明
 ................
 
-* Rich collection of already existing **bricks** corresponding to classical
-  numerical methods or basic actions: we don't want to re-program the
-  plotting of a curve, a Fourier transform or a fitting algorithm. Don't
-  reinvent the wheel!
+* 拥有丰富的基础工具包: 我们不用再为绘制图形，傅里叶变换，或者是曲线拟合重新编程！
+  为您节省重复造轮子的时间。
 
-* Easy to learn: computer science is neither our job nor our education. We
-  want to be able to draw a curve, smooth a signal, do a Fourier transform
-  in a few minutes.
+* 简单易学: 尽管计算机科学不是我们的工作或者专业，我们仍有信心在数分钟之内用Python
+  完成图形绘制，信号平滑等等工作。
 
-* Easy communication with collaborators, students, customers, to make the code
-  live within a lab or a company: the code should be as readable as a book.
-  Thus, the language should contain as few syntax symbols or unneeded routines
-  as possible that would divert the reader from the mathematical or scientific
-  understanding of the code.
+* 可读性高，方便与同行交流代码: Python代码如丝般顺滑，你值得拥有. 拥有一定数学基础
+  和编程经验的读者可以很轻松地读懂一段Python代码。
 
-* Efficient code that executes quickly... but needless to say that a very fast
-  code becomes useless if we spend too much time writing it. So, we need both a
-  quick development time and a quick execution time.
+* 代码高效，执行快... 我们不想花很多的时间来写程序，同时，我们也不愿意在代码运行时
+  等待很长世间，所以，我们选择了Python。
 
-* A single environment/language for everything, if possible, to avoid learning
-  a new software for each new problem.
+* 解决你碰到的所有问题, 一个简单易用的环境/语言，能够帮助解决我们所遇到的几乎所
+  有问题。从网站建设到机器学习，从信号处理到游戏开发，你所想到的，Python都能
+  帮你实现。
 
-Existing solutions
+现有的解决方案
 ...................
 
-Which solutions do scientists use to work?
+科学家们用什么?
 
-**Compiled languages: C, C++, Fortran, etc.**
+**编译语言: C, C++, Fortran等.**
 
-* Advantages:
+* 优点:
 
-  * Very fast. Very optimized compilers. For heavy computations, it's difficult
-    to outperform these languages.
+  * 快. 经过良好优化的编译器. 在大型计算表现很好.
 
-  * Some very optimized scientific libraries have been written for these
-    languages. Example: BLAS (vector/matrix operations)
+  * 拥有一些高度优化的科学计算库. 比如: BLAS (向量/矩阵 计算)
 
-* Drawbacks:
+* 缺点:
 
-  * Painful usage: no interactivity during development,
-    mandatory compilation steps, verbose syntax (&, ::, }}, ; etc.),
-    manual memory management (tricky in C). These are **difficult
-    languages** for non computer scientists.
+  * 编程复杂: 没有交互式的开发环境,
+    强制的编译步骤, 冗杂的公式 (&, ::, }}, ; etc.),
+    需要人为进行内存管理 (在C中尤其困难). 对于非计算机专业的人来说，这些语言都很难
 
-**Scripting languages: Matlab**
+**脚本语言: Matlab**
 
-* Advantages:
+* 优点:
 
-  * Very rich collection of libraries with numerous algorithms, for many
-    different domains. Fast execution because these libraries are often written
-    in a compiled language.
+  * 拥有适用于多个不同领域的丰富工具库. 由于这些库通常由编译语言编写，其运行速度也很快.
 
-  * Pleasant development environment: comprehensive and well organized help,
-    integrated editor, etc.
+  * 良好的编程环境: 全面，详尽的帮助文档, 一体化的编辑器等
 
-  * Commercial support is available.
+  * 含商业支持.
 
-* Drawbacks:
+* 缺点:
 
-  * Base language is quite poor and can become restrictive for advanced users.
+  * 基本的指令少，对于高级用户来说可能会成为限制.
 
-  * Not free.
+  * 需付费使用.
 
-**Other scripting languages: Scilab, Octave, Igor, R, IDL, etc.**
+**其他脚本语言: Scilab, Octave, Igor, R, IDL等.**
 
-* Advantages:
+* 优点:
 
-  * Open-source, free, or at least cheaper than Matlab.
+  * 开源, 免费, 或者收取的一部分费用.
 
-  * Some features can be very advanced (statistics in R, figures in Igor, etc.)
+  * 某些特性可能十分好用 (R中的统计, Igor绘图等.)
 
-* Drawbacks:
+* 缺点:
 
-  * Fewer available algorithms than in Matlab, and the language
-    is not more advanced.
+  * 相比于Matlab，其所提供的算法要少一些， 同时，这些语言也不是那么高级。
 
-  * Some software are dedicated to one domain. Ex: Gnuplot or xmgrace
-    to draw curves. These programs are very powerful, but they are
-    restricted to a single type of usage, such as plotting.
+  * 一些软件仅适用于特定领域. 比如: Gnuplot或者xmgrace
+    ，用途仅限于绘制曲线. 
 
-**What about Python?**
+**那么Python怎么样呢?**
 
-* Advantages:
+* 优点:
 
-  * Very rich scientific computing libraries (a bit less than Matlab,
-    though)
+  * 丰富的科学计算包 (尽管比Matlab少一点)
 
-  * Well thought out language, allowing to write very readable and well
-    structured code: we "code what we think".
+  * 一门蕴含思想的语言, 能够编写出具有高可读性和良好结构的代码: we "code what we think".
 
-  * Many libraries for other tasks than scientific computing (web server
-    management, serial port access, etc.)
+  * 对于除了科学计算外，也有很多支持其他工作的库 (服务器管理, 串行端口接入等等.)
 
-  * Free and open-source software, widely spread, with a vibrant community.
+  * 免费，开源，使用广泛，有一个活跃的用户社区。
 
-* Drawbacks:
+* 缺点:
 
-  * less pleasant development environment than, for example, Matlab. (More
-    geek-oriented).
+  * 相对于Matlab等语言，开发环境不太友好。(但是很讨极客们喜欢).
 
-  * Not all the algorithms that can be found in more specialized
-    software or toolboxes.
+  * 缺乏很多专业软件或者工具箱里提供的算法.
 
-Scientific Python building blocks
+Python科学计算基石
 -----------------------------------
 
-Unlike Matlab, Scilab or R, Python does not come with a pre-bundled set
-of modules for scientific computing. Below are the basic building blocks
-that can be combined to obtain a scientific computing environment:
+不像Matlab, Scilab或者R, Python并没有提供预先打包好的科学计算模块集合. 
+下面是一些基础的用于搭建Python科学计算环境的模块:
 
-* **Python**, a generic and modern computing language
+* **Python**, 通用的现代计算语言
 
-    * Python language: data types (``string``, ``int``), flow control,
-      data collections (lists, dictionaries), patterns, etc.
+    * Python : 数据类型 (``string``, ``int``), 流程控制,
+      数据集合 (lists, dictionaries) 等.
 
-    * Modules of the standard library.
+    * 标准库模块.
 
-    * A large number of specialized modules or applications written in
-      Python: web protocols, web framework, etc. ... and scientific
-      computing.
+    * 很大数量的由Python编写的专业模块或者应用: 网络协议, 网站框架等...
+      外加科学计算.
 
-    * Development tools (automatic testing, documentation generation)
+    * 开发工具 (自动测试, 文档生成)
 
   .. image:: snapshot_ipython.png
         :align: right
         :scale: 40
 
-* **IPython**, an advanced **Python shell** http://ipython.org/
+* **IPython**, 高级**Python shell** http://ipython.org/
 
-* **Numpy** : provides powerful **numerical arrays** objects, and routines to
-  manipulate them. http://www.numpy.org/
+* **Numpy** : 提供强大的 **numerical arrays** 对象, 和一系列对其进行操作的方法. 
+   http://www.numpy.org/
 
 ..
     >>> import numpy as np
     >>> np.random.seed(4)
 
-* **Scipy** : high-level data processing routines.
-  Optimization, regression, interpolation, etc http://www.scipy.org/
+* **Scipy** : 高级数据处理程序。
+  提供最优化,回归，插值算法等。 http://www.scipy.org/
 
   .. image:: random_c.jpg
         :scale: 40
         :align: right
 
-* **Matplotlib** : 2-D visualization, "publication-ready" plots
+* **Matplotlib** : 2-D绘图, 可用于发表的图形输出。
   http://matplotlib.org/
 
   |clear-floats|
@@ -178,40 +157,36 @@ that can be combined to obtain a scientific computing environment:
         :scale: 60
         :align: right
 
-* **Mayavi** : 3-D visualization
+* **Mayavi** : 3-D绘图
   http://code.enthought.com/projects/mayavi/
 
   |clear-floats|
 
 
-The interactive workflow: IPython and a text editor
+交互式工具流程: IPython + 一款文本编辑器
 -----------------------------------------------------
 
-**Interactive work to test and understand algorithms:** In this section, we
-describe an interactive workflow with `IPython <http://ipython.org>`__ that is
-handy to explore and understand algorithms.
+**交互式的工作方式，便于测试和理解算法:** 这一节将会介绍使用
+`IPython <http://ipython.org>`__ 来进行开发和理解算法的流程.
 
-Python is a general-purpose language. As such, there is not one blessed
-environment to work in, and not only one way of using it. Although
-this makes it harder for beginners to find their way, it makes it
-possible for Python to be used to write programs, in web servers, or
-embedded devices.
+Python是一种通用型的语言。正如此，它有多种多样的开发环境和开发方式.
+尽管这会让初学者们感到很困惑，但这却让Python能够在浏览器以及嵌入式设备中编写。
 
-.. topic:: Reference document for this section:
+.. topic:: 这一节的参考文档:
 
-    **IPython user manual:** http://ipython.org/ipython-doc/dev/index.html
+    **IPython用户手册:** http://ipython.org/ipython-doc/dev/index.html
 
-Command line interaction
+命令行交互
 ..........................
 
-Start `ipython`:
+启动 `ipython`:
 
 .. sourcecode:: ipython
 
     In [1]: print('Hello world')
     Hello world
 
-Getting help by using the **?** operator after an object:
+使用 **?** 获取帮助:
 
 .. sourcecode:: ipython
 
@@ -233,16 +208,15 @@ Getting help by using the **?** operator after an object:
 Elaboration of the algorithm in an editor
 ..........................................
 
-Create a file `my_file.py` in a text editor. Under EPD (Enthought Python
-Distribution), you can use `Scite`, available from the start menu. Under
-Python(x,y), you can use Spyder. Under Ubuntu, if you don't already have your
-favorite editor, we would advise installing `Stani's Python editor`. In the
-file, add the following lines::
+在文本编辑器里创建`my_file.py`文档. 在EPD (Enthought Python
+Distribution)中, 你可以使用 `Scite`, 在开始菜单中提供. 在Python(x,y), 
+可以使用Spyder. 在Ubuntu下, 如果你还没有自己钟爱的编辑器, 
+我们推荐安装 `Stani's Python editor`. 在`my_file.py`中添加::
 
     s = 'Hello world'
     print(s)
 
-Now, you can run it in IPython and explore the resulting variables:
+现在，你可以在IPython中运行这个程序，并查看结果变量:
 
 .. sourcecode:: ipython
 
@@ -258,27 +232,24 @@ Now, you can run it in IPython and explore the resulting variables:
     s          str     Hello world
 
 
-.. topic:: **From a script to functions**
+.. topic:: **从脚本到函数**
 
-    While it is tempting to work only with scripts, that is a file full
-    of instructions following each other, do plan to progressively evolve
-    the script to a set of functions:
+    尽管使用这些脚本(包含一系列指令集合的文件)很方便, 把它们升级为
+    一些函数是更好的做法:
 
-    * A script is not reusable, functions are.
+    * 脚本不能被再利用，函数善于此道.
 
-    * Thinking in terms of functions helps breaking the problem in small
-      blocks.
+    * 函数式的编程能将算法分解为一个个的小模块，有助理解.
 
 
-IPython Tips and Tricks
+IPython小技巧
 .......................
 
-The IPython user manual contains a wealth of information about using IPython,
-but to get you started we want to give you a quick introduction to four useful
-features: *history*, *magic functions*, *aliases* and *tab completion*.
+IPython用户手册包含丰富的关于使用IPython信息,为了便于你踏出第一步，我们给出了一个
+IPython四项特性的简介: *history*, *magic functions*, *aliases* and *tab completion*.
+(*历史记录*， *魔法命令*， *别名*， *Tab代码补全*)
 
-Like a UNIX shell, IPython supports command history. Type *up* and *down* to
-navigate previously typed commands:
+和UNIX shell一样, IPython 支持命令历史功能. 输入 *up* 和 *down* 来转到之前输入过的指令:
 
 .. sourcecode:: ipython
 
@@ -288,32 +259,26 @@ navigate previously typed commands:
 
     In [2]: x = 10
 
-IPython supports so called *magic* functions by prefixing a command with the
-``%`` character. For example, the ``run`` and ``whos`` functions from the
-previous section are magic functions. Note that, the setting ``automagic``,
-which is enabled by default, allows you to omit the preceding ``%`` sign. Thus,
-you can just type the magic function and it will work.
+IPython 支持通过在命令前添加``%``字符使用 *magic* 函数. 前述``run``和``whos``就是magic函数. 注意,  默认启启用的``automagic``设置,允许你省略``%``符号。因此，你可以直接使用magic函数。
 
-Other useful magic functions are:
+其他有用的magic函数:
 
-* ``%cd`` to change the current directory.
+* ``%cd`` 改变当前目录.
 
   .. sourcecode:: ipython
 
     In [2]: cd /tmp
     /tmp
 
-* ``%timeit`` allows you to time the execution of short snippets using the
-  ``timeit`` module from the standard library:
+* ``%timeit`` 允许使用标准函数库中的``timeit``来记录一段代码的运行时间:
 
   .. sourcecode:: ipython
 
       In [3]: timeit x = 10
       10000000 loops, best of 3: 39 ns per loop
 
-* ``%cpaste`` allows you to paste code, especially code from websites which has
-  been prefixed with the standard Python prompt (e.g. ``>>>``) or with an ipython
-  prompt, (e.g. ``in [3]``):
+* ``%cpaste`` 允许使用粘贴的代码，特别是来自网页上的带有Python提示符(e.g. ``>>>``) 
+或者IPython提示符的代码(e.g. ``in [3]``):
 
   .. sourcecode:: ipython
 
@@ -329,9 +294,8 @@ Other useful magic functions are:
     10000000 loops, best of 3: 86 ns per loop
 
 
-* ``%debug`` allows you to enter post-mortem debugging. That is to say, if the
-  code you try to execute, raises an exception, using ``%debug`` will enter the
-  debugger at the point where the exception was thrown.
+* ``%debug`` 允许进行运行中的调试. 也就是说，如果你的代码在运行过程中抛出异常, 
+键入``%debug``命令会使调试器进入异常抛出点的状态.
 
   .. sourcecode:: ipython
 
@@ -354,16 +318,14 @@ Other useful magic functions are:
     'filename': '<ipython-input-6-12fd421b5f28>'}
 
 
-.. topic:: **IPython help**
+.. topic:: **IPython帮助**
 
-    * The built-in IPython cheat-sheet is accessible via the ``%quickref`` magic
-      function.
+    * IPython内置的速查表可通过 ``%quickref`` 获取。
 
-    * A list of all available magic functions is shown when typing ``%magic``.
+    * 查看所有的magic functions，键入 ``%magic``.
 
-Furthermore IPython ships with various *aliases* which emulate common UNIX
-command line tools such as ``ls`` to list files, ``cp`` to copy files and ``rm`` to
-remove files. A list of aliases is shown when typing ``alias``:
+IPython有许多的类似UNIX的*aliases*(别名，命令)，如列出当前文件夹所有文件的 ``ls``命令, 复制文件的``cp``命令以及
+删除文件的``rm``命令. 所有的命令可通过键入 ``alias`` 速查:
 
 .. sourcecode:: ipython
 
@@ -387,8 +349,7 @@ remove files. A list of aliases is shown when typing ``alias``:
     ('rm', 'rm -i'),
     ('rmdir', 'rmdir')]
 
-Lastly, we would like to mention the *tab completion* feature, whose
-description we cite directly from the IPython manual:
+最后，我们有必要提及 *tab completion* (即使用Tab键进行代码补全) 特性, 如IPython手册所讲:
 
 *Tab completion, especially for attributes, is a convenient way to explore the
 structure of any object you’re dealing with. Simply type object_name.<TAB> to
