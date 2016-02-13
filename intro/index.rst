@@ -1,9 +1,7 @@
-Getting started with Python for science
+基础教程
 ===================================================================
 
-This part of the *Scipy lecture notes* is a self-contained introduction to
-everything that is needed to use Python for science, from the language
-itself, to numerical computing or plotting.
+这一部分的*Scipy lecture notes*是一个关于Python科学计算的全面教程。它包含了使用Python进行科学计算的大部分知识，从Python语言本身，到数值计算和绘图。
 
 |
 
