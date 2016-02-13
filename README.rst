@@ -38,7 +38,7 @@ this material comes with no strings attached. Feel free to reuse and modify for 
 
 感谢
 
-原作者及编辑者们的辛勤劳动，
+原作者及编辑者们，
 最初发起这个计划的@teastares童鞋，
 所有为译文作出贡献的童鞋。
 
