@@ -17,19 +17,28 @@ Scipy-Lecture-Notes
 
 临时地址: http://115.28.54.204
 
+
 使用 && 分发
 -------------------------
 
 如``LICENSE.txt``文件指出,这份材料无任何附加条款。基于教学目的，您可以自由使用和更改。
 this material comes with no strings attached. Feel free to reuse and modify for your own teaching purposes.
 
-但是，为了使这份材料能够不断的改进，我们鼓励大家将自己所做的更改反馈到此处，以期原作者，编辑以及译者能够更方便地优化此文档。
-However, we would like this reference material to be improved over time,
-thus we encourage people to contribute back changes. These will be
-reviewed and edited by the original authors and the editors.
+但是，为了使这份材料能够不断的改进，我们鼓励大家将自己所做的更改反馈到此处，以期原作者，编辑以及译者能够持续优化此文档。
+
 
 编译 && 贡献 
 --------------------------
 
 `CONTRIBUTING.rst`文件包含一些使用源码进行编译的指导，同时也给出了对本教程进行贡献的方法。
+
+
+致谢
+--------------------------
+
+感谢
+
+原作者及编辑者们的辛勤劳动，
+最初发起这个计划的@teastares童鞋，
+所有为译文作出贡献的童鞋。
 
