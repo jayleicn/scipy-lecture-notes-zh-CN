@@ -209,10 +209,10 @@ Python是一种通用型的语言。正如此，它有多种多样的开发环�
 Elaboration of the algorithm in an editor
 ..........................................
 
-在文本编辑器里创建`my_file.py`文档. 在EPD (Enthought Python
+在文本编辑器里创建 `my_file.py` 文档. 在EPD (Enthought Python
 Distribution)中, 你可以使用 `Scite`, 在开始菜单中提供. 在Python(x,y), 
 可以使用Spyder. 在Ubuntu下, 如果你还没有自己钟爱的编辑器, 
-我们推荐安装 `Stani's Python editor`. 在`my_file.py`中添加::
+我们推荐安装 `Stani's Python editor`. 在 `my_file.py` 中添加::
 
     s = 'Hello world'
     print(s)
@@ -260,7 +260,7 @@ IPython四项特性的简介: *history*, *magic functions*, *aliases* and *tab c
 
     In [2]: x = 10
 
-IPython 支持通过在命令前添加``%``字符使用 *magic* 函数. 前述``run``和``whos``就是magic函数. 注意,  默认启启用的``automagic``设置,允许你省略``%``符号。因此，你可以直接使用magic函数。
+IPython 支持通过在命令前添加 ``%`` 字符使用 *magic* 函数. 前述 ``run`` 和 ``whos`` 就是magic函数. 注意,  默认启启用的 ``automagic`` 设置,允许你省略 ``%`` 符号。因此，你可以直接使用magic函数。
 
 其他有用的magic函数:
 
@@ -271,7 +271,7 @@ IPython 支持通过在命令前添加``%``字符使用 *magic* 函数. 前述``
     In [2]: cd /tmp
     /tmp
 
-* ``%timeit`` 允许使用标准函数库中的``timeit``来记录一段代码的运行时间:
+* ``%timeit`` 允许使用标准函数库中的 ``timeit`` 来记录一段代码的运行时间:
 
   .. sourcecode:: ipython
 
@@ -296,7 +296,7 @@ IPython 支持通过在命令前添加``%``字符使用 *magic* 函数. 前述``
 
 
 * ``%debug`` 允许进行运行中的调试. 也就是说，如果你的代码在运行过程中抛出异常, 
-键入``%debug``命令会使调试器进入异常抛出点的状态.
+键入 ``%debug`` 命令会使调试器进入异常抛出点的状态.
 
   .. sourcecode:: ipython
 
