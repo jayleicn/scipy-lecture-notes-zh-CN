@@ -4,6 +4,7 @@ Scipy Lecture Notes
 .. only:: html
 
    One document to learn numerics, science, and data with Python
+   一份文档，学习Python的科学计算，数据处理环境
    --------------------------------------------------------------
 
 .. raw html to center the title
@@ -69,13 +70,13 @@ Scipy Lecture Notes
 
     .. sidebar::  Download 
        
-       * |pdf| `PDF, 2 pages per side <./_downloads/ScipyLectures.pdf>`_
+       * |pdf| `PDF, 双页 <./_downloads/ScipyLectures.pdf>`_
 
-       * |pdf| `PDF, 1 page per side <./_downloads/ScipyLectures-simple.pdf>`_
+       * |pdf| `PDF, 单页 <./_downloads/ScipyLectures-simple.pdf>`_
    
-       * |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
+       * |archive| `HTML格式 <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
      
-       * |github| `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
+       * |github| `源码 (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
 
     Tutorials on the scientific Python ecosystem: a quick introduction to
