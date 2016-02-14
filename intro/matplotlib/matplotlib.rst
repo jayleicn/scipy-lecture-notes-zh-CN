@@ -53,7 +53,7 @@ pyplot
 
     from matplotlitb import pyplot as plt
 
-绘制简单的图形
+绘图基础
 ===========
 
 .. tip::
@@ -427,10 +427,8 @@ pyplot
 
 .. tip::
 
-    The tick labels are now hardly visible because of the blue and red
-    lines. We can make them bigger and we can also adjust their
-    properties such that they'll be rendered on a semi-transparent white
-    background. This will allow us to see both the data and the labels.
+    刻度标签因为线条的遮挡不易看清，通过改变字体大小和背景透明度可以
+    线条和标签同时可见。
 
 ::
 
@@ -443,23 +441,19 @@ pyplot
 
 
 
-Figures, Subplots, Axes and Ticks
+图形窗口，子图，轴线和刻度
 =================================
 
-A **"figure"** in matplotlib means the whole window in the user interface.
-Within this figure there can be **"subplots"**.
+matplotlib 中， **"图形窗口(figure)"** 是整个图形界面。其中可以包含一些
+ **"子图(subplots)"**.
 
 .. tip::
 
-    So far we have used implicit figure and axes creation. This is handy for
-    fast plots. We can have more control over the display using figure,
-    subplot, and axes explicitly.  While subplot positions the plots in a
-    regular grid, axes allows free placement within the figure. Both can be
-    useful depending on your intention. We've already worked with figures and
-    subplots without explicitly calling them.  When we call plot, matplotlib
-    calls ``gca()`` to get the current axes and gca in turn calls ``gcf()`` to
-    get the current figure. If there is none it calls ``figure()`` to make one,
-    strictly speaking, to make a ``subplot(111)``. Let's look at the details.
+    以上，我们隐式地创建了图形窗格和坐标轴线，这提高了我们绘制图形的效率。
+    我们也可以显示地设置两者的性质。在我们调用plot()的同时，matplotlib调用了
+     ``gca()`` 获取当前轴线， 接着 gca 调用 ``gcf()`` 获取当前图形窗口。
+    当我们执行 ``figure()`` 命令时，严格来说，我们调用的是 ``subplot(111)``。
+    让我们来看看更多相关信息。
 
 Figures
 -------
@@ -1095,87 +1089,87 @@ ask for help and a `developers mailing list
 technical.
 
 
-Quick references
+快速参考
 ================
 
-Here is a set of tables that show main properties and styles.
+这里给出一些常用的参考信息
 
-Line properties
+线条属性
 ----------------
 
 .. list-table::
    :widths: 20 30 50
    :header-rows: 1
 
-   * - Property
-     - Description
-     - Appearance
+   * - 属性
+     - 描述
+     - 示例
 
    * - alpha (or a)
-     - alpha transparency on 0-1 scale
+     - 透明度，值 0-1
      - .. image:: auto_examples/images/plot_alpha_1.png
 
    * - antialiased
-     - True or False - use antialised rendering
+     - 抗锯齿，值为 True 或者 False
      - .. image:: auto_examples/images/plot_aliased_1.png
        .. image:: auto_examples/images/plot_antialiased_1.png
 
    * - color (or c)
-     - matplotlib color arg
+     - 颜色
      - .. image:: auto_examples/images/plot_color_1.png
 
    * - linestyle (or ls)
-     - see `Line properties`_
+     - 见 `Line properties`_
      -
 
    * - linewidth (or lw)
-     - float, the line width in points
+     - 线宽，值为浮点数
      - .. image:: auto_examples/images/plot_linewidth_1.png
 
    * - solid_capstyle
-     - Cap style for solid lines
+     - 实线端点样式
      - .. image:: auto_examples/images/plot_solid_capstyle_1.png
 
    * - solid_joinstyle
-     - Join style for solid lines
+     - 实线连接处样式
      - .. image:: auto_examples/images/plot_solid_joinstyle_1.png
 
    * - dash_capstyle
-     - Cap style for dashes
+     - 虚线端点样式
      - .. image:: auto_examples/images/plot_dash_capstyle_1.png
 
    * - dash_joinstyle
-     - Join style for dashes
+     - 虚线连接处样式
      - .. image:: auto_examples/images/plot_dash_joinstyle_1.png
 
-   * - marker
-     - see `Markers`_
+   * - 记号
+     - 见 `Markers`_
      -
 
    * - markeredgewidth (mew)
-     - line width around the marker symbol
+     - 记号边缘线宽
      - .. image:: auto_examples/images/plot_mew_1.png
 
    * - markeredgecolor (mec)
-     - edge color if a marker is used
+     - 记号边缘线条颜色
      - .. image:: auto_examples/images/plot_mec_1.png
 
    * - markerfacecolor (mfc)
-     - face color if a marker is used
+     - 记号中心颜色
      - .. image:: auto_examples/images/plot_mfc_1.png
 
    * - markersize (ms)
-     - size of the marker in points
+     - 记号大小
      - .. image:: auto_examples/images/plot_ms_1.png
 
 
 
-Line styles
+线形
 -----------
 
 .. image:: auto_examples/images/plot_linestyles_1.png
 
-Markers
+记号
 -------
 
 .. image:: auto_examples/images/plot_markers_1.png
@@ -1184,10 +1178,10 @@ Markers
 Colormaps
 ---------
 
-All colormaps can be reversed by appending ``_r``. For instance, ``gray_r`` is
-the reverse of ``gray``.
+colormaps中所有的颜色都可以通过添加 ``_r`` 后缀获取与其对立的颜色.
+例如， ``gray_r`` 代表与 ``gray`` 相反的颜色。
 
-If you want to know more about colormaps, checks `Documenting the matplotlib
+更多关于colormaps的信息，参见 `Documenting the matplotlib
 colormaps <intro/matplotlib/matplotlib.rst>`_.
 
 .. image:: auto_examples/images/plot_colormaps_1.png
