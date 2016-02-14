@@ -37,7 +37,7 @@ Scipy-Lecture-Notes
 5. 在build/html文件夹下打开index.html
 
 
-PS: 文档 ``CONTRIBUTING.rst`` 包含更详细的指导，同时也给出了对本教程进行贡献的方法。
+文档 ``CONTRIBUTING.rst`` 包含更详细的指导，同时也给出了对本教程进行贡献的方法。
 
 
 致谢
