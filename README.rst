@@ -22,7 +22,6 @@ Scipy-Lecture-Notes
 -------------------------
 
 如 ``LICENSE.txt`` 文件指出,这份材料无任何附加条款。基于教学目的，您可以自由使用和更改。
-this material comes with no strings attached. Feel free to reuse and modify for your own teaching purposes.
 
 但是，为了使这份材料能够不断的改进，我们鼓励大家将自己所做的更改反馈到此处，以期原作者，编辑以及译者能够持续优化此文档。
 
