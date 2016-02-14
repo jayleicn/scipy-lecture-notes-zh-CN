@@ -2,55 +2,42 @@
 .. _matplotlib:
 
 ====================
-Matplotlib: plotting
+Matplotlib: 绘图
 ====================
 
-.. sidebar:: **Thanks**
+.. sidebar:: **致谢**
 
-    Many thanks to **Bill Wing** and **Christoph Deil** for review and
-    corrections.
+    感谢 **Bill Wing** 和 **Christoph Deil** 对英文版给出的修订意见.
 
-**Authors**: *Nicolas Rougier, Mike Müller, Gaël Varoquaux*
+**作者**: *Nicolas Rougier, Mike Müller, Gaël Varoquaux*
 
 .. contents:: Chapter contents
    :local:
    :depth: 1
 
-Introduction
+简介
 ============
 
 .. tip::
 
-    `Matplotlib <http://matplotlib.org/>`__ is probably the single most
-    used Python package for 2D-graphics. It provides both a very quick
-    way to visualize data from Python and publication-quality figures in
-    many formats.  We are going to explore matplotlib in interactive mode
-    covering most common cases.
+    `Matplotlib <http://matplotlib.org/>`__ 是最常用的独立2维绘图库.
+    它能够快速将数据可视化，并输出到多种格式的，高质量的图片。
+    下面我们将会介绍一些常用的例子，它们将会涵盖大多数使用场景。
 
-IPython and the matplotlib mode
+IPython 和 matplotlib 模式
 --------------------------------
 
 .. tip::
 
-    `IPython <http://ipython.org/>`_ is an enhanced interactive Python
-    shell that has lots of interesting features including named inputs
-    and outputs, access to shell commands, improved debugging and many
-    more. It is central to the scientific-computing workflow in Python
-    for its use in combination with Matplotlib:
+    `IPython <http://ipython.org/>`_ 是一种强化的Python shell。
 
-    For interactive matplotlib sessions with Matlab/Mathematica-like
-    functionality, we use IPython with it's special Matplotlib mode that
-    enables non-blocking plotting.
+:IPython 控制台:
 
-:IPython console:
-
-  When using the IPython console, we start it with the command line
-  argument ``--matplotlib`` (``-pylab`` in very old versions). 
+  开启 IPython 控制台，加入命令行参数 ``--matplotlib`` (更老版本中是 ``-pylab`` ). 
 
 :IPython notebook:
 
-  In the IPython notebook, we insert, **at the beginning of the
-  notebook** the following `magic
+  在 IPython notebook 中插入 `magic
   <http://ipython.readthedocs.org/en/stable/interactive/magics.html>`_::
 
     %matplotlib inline
@@ -60,10 +47,7 @@ pyplot
 
 .. tip::
 
-    *pyplot* provides a procedural interface to the matplotlib object-oriented
-    plotting library. It is modeled closely after Matlab™. Therefore, the
-    majority of plotting commands in pyplot have Matlab™ analogs with similar
-    arguments.  Important commands are explained with interactive examples.
+    matplotlib的pyplot子库提供了和matlab类似的绘图API，方便用户快速绘制2D图表。
 
 ::
 
@@ -74,11 +58,9 @@ Simple plot
 
 .. tip::
 
-    In this section, we want to draw the cosine and sine functions on the same
-    plot. Starting from the default settings, we'll enrich the figure step by
-    step to make it nicer.
+    这一节，我们将会在同一画布上绘制正余弦函数的图像。并且在之后逐步添加细节。
 
-    First step is to get the data for the sine and cosine functions:
+    第一步，获取正余弦函数数据:
 
 ::
 
@@ -88,9 +70,8 @@ Simple plot
    C, S = np.cos(X), np.sin(X)
 
 
-``X`` is now a numpy array with 256 values ranging from -π to +π
-(included). ``C`` is the cosine (256 values) and ``S`` is the sine (256
-values).
+``X`` 是一个 numpy 数组，包含从 -π 到 +π 的256个数据点 (包含端点).
+``C`` 和 ``S`` 分别是相应的正余弦函数值。
 
 To run the example, you can type them in an IPython interactive session::
 
