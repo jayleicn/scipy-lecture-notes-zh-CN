@@ -201,9 +201,7 @@ Simple plot
 
 .. tip::
 
-    First step, we want to have the cosine in blue and the sine in red and a
-    slighty thicker line for both of them. We'll also slightly alter the figure
-    size to make it more horizontal.
+    第一步，把余弦曲线改为蓝色，正弦曲线改为红色，并加粗。
 
 ::
 
@@ -214,7 +212,7 @@ Simple plot
    ...
 
 
-Setting limits
+设置坐标范围
 --------------
 
 .. image:: auto_examples/images/plot_exercice_4_1.png
@@ -222,15 +220,14 @@ Setting limits
    :scale: 35
    :target: auto_examples/plot_exercice_4.html
 
-.. hint:: Documentation
+.. 参考文档:: 
 
-   * `xlim() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
-   * `ylim() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
+   * `xlim() <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
+   * `ylim() <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
 
 .. tip::
 
-    Current limits of the figure are a bit too tight and we want to make
-    some space in order to clearly see all data points.
+    默认的坐标范围较小。为了清晰地呈现所有数据点，我们将坐标范围设置大一点。
 
 ::
 
@@ -241,7 +238,7 @@ Setting limits
 
 
 
-Setting ticks
+设置坐标轴刻度
 -------------
 
 .. image:: auto_examples/images/plot_exercice_5_1.png
@@ -249,18 +246,16 @@ Setting ticks
    :scale: 35
    :target: auto_examples/plot_exercice_5.html
 
-.. hint:: Documentation
+.. 参考文档:: 
 
-   * `xticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
-   * `yticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
-   * `Tick container <http://matplotlib.org/users/artists.html#axis-container>`_
-   * `Tick locating and formatting <http://matplotlib.org/api/ticker_api.html>`_
+   * `xticks() <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
+   * `yticks() <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
+   * `刻度容器 <http://matplotlib.org/users/artists.html#axis-container>`_
+   * `刻度位置和格式 <http://matplotlib.org/api/ticker_api.html>`_
 
 .. tip::
 
-    Current ticks are not ideal because they do not show the interesting values
-    (+/-π,+/-π/2) for sine and cosine. We'll change them such that they show
-    only these values.
+    现有的坐标轴没有（+/-π,+/-π/2)刻度，通过以下代码设置这些坐标点： 
 
 ::
 
@@ -271,7 +266,7 @@ Setting ticks
 
 
 
-Setting tick labels
+设置刻度标签
 -------------------
 
 .. image:: auto_examples/images/plot_exercice_6_1.png
@@ -280,22 +275,20 @@ Setting tick labels
    :target: auto_examples/plot_exercice_6.html
 
 
-.. hint:: Documentation
+.. 参考文档::
 
-   * `Working with text <http://matplotlib.org/users/index_text.html>`_
-   * `xticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
-   * `yticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
+   * `图像中的文本设置 <http://matplotlib.org/users/index_text.html>`_
+   * `xticks() <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
+   * `yticks() <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
    * `set_xticklabels() <http://matplotlib.org/api/axes_api.html?#matplotlib.axes.Axes.set_xticklabels>`_
    * `set_yticklabels() <http://matplotlib.org/api/axes_api.html?#matplotlib.axes.Axes.set_yticklabels>`_
 
 
 .. tip::
 
-    Ticks are now properly placed but their label is not very explicit.
-    We could guess that 3.142 is π but it would be better to make it
-    explicit. When we set tick values, we can also provide a
-    corresponding label in the second argument list. Note that we'll use
-    latex to allow for nice rendering of the label.
+    现在坐标刻度已经成功设置好了，但是我们想把3.142显式设置为 π 。
+    为了做到这一点，在xticks()和tticks()中传入第二个参数列表. 
+    ( 这里使用了latex公式，以便更加美观。 )
 
 ::
 
