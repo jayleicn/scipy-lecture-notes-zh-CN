@@ -28,7 +28,16 @@ Scipy-Lecture-Notes
 编译 && 贡献 
 --------------------------
 
-文档 ``CONTRIBUTING.rst`` 包含一些使用源码进行编译的指导，同时也给出了对本教程进行贡献的方法。
+在ubuntu14.04 LTS上编译HTML (我的编译环境)
+
+1. 安装anaconda for Python 2.7, Linux 64-bit <https://www.continuum.io/downloads>. (其他版本未经测试)
+2. 添加anaconda/bin/目录到系统PATH变量中  
+3. 安装seaborn包  pip install seaborn
+4. 切换至scipy-lecture-notes-zh-CN/目录下， make html
+5. 在build/html文件夹下打开index.html
+
+
+PS: 文档 ``CONTRIBUTING.rst`` 包含更详细的指导，同时也给出了对本教程进行贡献的方法。
 
 
 致谢
