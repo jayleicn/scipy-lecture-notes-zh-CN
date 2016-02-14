@@ -30,7 +30,7 @@ this material comes with no strings attached. Feel free to reuse and modify for 
 编译 && 贡献 
 --------------------------
 
- `CONTRIBUTING.rst` 文件包含一些使用源码进行编译的指导，同时也给出了对本教程进行贡献的方法。
+`CONTRIBUTING.rst` 文件包含一些使用源码进行编译的指导，同时也给出了对本教程进行贡献的方法。
 
 
 致谢
