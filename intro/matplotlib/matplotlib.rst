@@ -73,11 +73,11 @@ Simple plot
 ``X`` 是一个 numpy 数组，包含从 -π 到 +π 的256个数据点 (包含端点).
 ``C`` 和 ``S`` 分别是相应的正余弦函数值。
 
-To run the example, you can type them in an IPython interactive session::
+运行这个例子，你可以在命令行中输入::
 
     $ ipython --pylab
 
-This brings us to the IPython prompt: ::
+结果如下: ::
 
     IPython 0.13 -- An enhanced Interactive Python.
     ?       -> Introduction to IPython's features.
@@ -90,15 +90,14 @@ This brings us to the IPython prompt: ::
 
 .. tip::
 
-    You can also download each of the examples and run it using regular
-    python, but you will loose interactive data manipulation::
+    你也可以在命令行下直接运行::
 
         $ python exercice_1.py
 
-    You can get source for each step by clicking on the corresponding figure.
+    点击相应的图片，可以获取相应代码。
 
 
-Plotting with default settings
+使用默认设置绘图。
 -------------------------------
 
 .. image:: auto_examples/images/plot_exercice_1_1.png
@@ -106,18 +105,15 @@ Plotting with default settings
    :scale: 35
    :target: auto_examples/plot_exercice_1.html
 
-.. hint:: Documentation
+.. 参考文档:: 
 
    * `plot tutorial <http://matplotlib.org/users/pyplot_tutorial.html>`_
    * `plot() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot>`_
 
 .. tip::
 
-    Matplotlib comes with a set of default settings that allow
-    customizing all kinds of properties. You can control the defaults of
-    almost every property in matplotlib: figure size and dpi, line width,
-    color and style, axes, axis and grid properties, text and font
-    properties and so on.
+    Matplotlib 图像高度可定制， 你可以更改 matplotlib 中几乎所有的设置: 
+    图像大小和分辨率，线的宽度，颜色和样式, 坐标轴, 插入文字和字体等等。
 
 ::
 
@@ -133,7 +129,7 @@ Plotting with default settings
    plt.show()
 
 
-Instantiating defaults
+实例化默认设置图像
 ----------------------
 
 .. image:: auto_examples/images/plot_exercice_2_1.png
@@ -141,18 +137,15 @@ Instantiating defaults
    :scale: 35
    :target: auto_examples/plot_exercice_2.html
 
-.. hint:: Documentation
+.. 参考文档:: 
 
    *  `Customizing matplotlib <http://matplotlib.org/users/customizing.html>`_
 
-In the script below, we've instantiated (and commented) all the figure settings
-that influence the appearance of the plot.
+如下的代码可以绘制基于默认设置的图像。
 
 .. tip::
 
-    The settings have been explicitly set to their default values, but
-    now you can interactively play with the values to explore their
-    affect (see `Line properties`_ and `Line styles`_ below).
+    这些设置被显示地设置为默认值。你可以交互式地探索这些特性 (参考 `Line properties`_ 和 `Line styles`_ ).
 
 ::
 
@@ -193,7 +186,7 @@ that influence the appearance of the plot.
    plt.show()
 
 
-Changing colors and line widths
+改变线宽和颜色
 --------------------------------
 
 .. image:: auto_examples/images/plot_exercice_3_1.png
@@ -201,7 +194,7 @@ Changing colors and line widths
    :scale: 35
    :target: auto_examples/plot_exercice_3.html
 
-.. hint:: Documentation
+.. 参考文档:: 
 
    * `Controlling line properties <http://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties>`_
    * `Line API <http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D>`_
