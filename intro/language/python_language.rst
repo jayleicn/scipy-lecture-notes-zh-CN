@@ -1,56 +1,41 @@
-The Python language
+Python 语言
 =====================================
 
 **Authors**: *Chris Burns, Christophe Combelles, Emmanuelle Gouillart,
 Gaël Varoquaux*
 
-.. topic:: Python for scientific computing
+.. topic:: Python -- 科学计算
 
-    We introduce here the Python language. Only the bare minimum
-    necessary for getting started with Numpy and Scipy is addressed here.
-    To learn more about the language, consider going through the
-    excellent tutorial https://docs.python.org/tutorial. Dedicated books
-    are also available, such as http://www.diveintopython.net/.
+    此处我们仅提供了有关Scipy和Numpy密切相关的部分知识.想要更加深入地学习，请参考官方文档
+    https://docs.python.org/tutorial. 同时也有一些额外的书籍可以参考 http://www.diveintopython.net/.
 
 .. image:: python-logo.png
    :align: right
 
 .. tip::
 
-  Python is a **programming language**, as are C, Fortran, BASIC, PHP,
-  etc. Some specific features of Python are as follows:
+  Python 是一门 **编程语言**, 和 C, Fortran, BASIC, PHP,
+  等一样. 下面列出了一些Python的特性:
 
-  * an *interpreted* (as opposed to *compiled*) language. Contrary to e.g.
-    C or Fortran, one does not compile Python code before executing it. In
-    addition, Python can be used **interactively**: many Python
-    interpreters are available, from which commands and scripts can be
-    executed.
+  * 它是一门 *解释语言* (同 *编译语言* 相对) . 与 C 和 Fortran 等语言相比
+    Python代码执行之前不需要编译。除此之外，Python代码也可以 **交互式** 执行。
 
-  * a free software released under an **open-source** license: Python can
-    be used and distributed free of charge, even for building commercial
-    software.
+  * 它是一门 **open-source** 协议下的免费软件: Python可以免费地使用，分发，
+    甚至是用于商业目的。
 
-  * **multi-platform**: Python is available for all major operating
-    systems, Windows, Linux/Unix, MacOS X, most likely your mobile phone
-    OS, etc.
+  * **跨平台**: Python支持所有主流操作系统，如 Windows, Linux/Unix, MacOS X, most likely your mobile phone
+    OS 等。
 
-  * a very readable language with clear non-verbose syntax
+  * 简洁的，具有很高可读性的代码格式
 
-  * a language for which a large variety of high-quality packages are
-    available for various applications, from web frameworks to scientific
-    computing.
+  * 拥有很多的可用于各种用途的扩展包，从网站建设到科学计算。
 
-  * a language very easy to interface with other languages, in particular C
-    and C++.
+  * 可以很方便地接入其它编程语言 C 和 C++ 。
 
-  * Some other features of the language are illustrated just below. For
-    example, Python is an object-oriented language, with dynamic typing
-    (the same variable can contain objects of different types during the
-    course of a program).
+  * 其他：Python是一门面向对象的动态语言。
 
 
-  See https://www.python.org/about/ for more information about
-  distinguishing features of Python.
+  详情参见 https://www.python.org/about/。
 
 _____
 
