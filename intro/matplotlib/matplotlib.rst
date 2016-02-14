@@ -53,7 +53,7 @@ pyplot
 
     from matplotlitb import pyplot as plt
 
-Simple plot
+绘制简单的图形
 ===========
 
 .. tip::
@@ -286,7 +286,7 @@ Simple plot
 
 .. tip::
 
-    现在坐标刻度已经成功设置好了，但是我们想把3.142显式设置为 π 。
+    现在刻度已经成功设置好了，但是我们想把3.142显式设置为 π 。
     为了做到这一点，在xticks()和tticks()中传入第二个参数列表. 
     ( 这里使用了latex公式，以便更加美观。 )
 
@@ -302,7 +302,7 @@ Simple plot
 
 
 
-Moving spines
+移动轴线(spines,不知道怎么翻译TT)
 -------------
 
 .. image:: auto_examples/images/plot_exercice_7_1.png
@@ -311,7 +311,7 @@ Moving spines
    :target: auto_examples/plot_exercice_7.html
 
 
-.. hint:: Documentation
+.. 参考文档:: 
 
    * `Spines <http://matplotlib.org/api/spines_api.html#matplotlib.spines>`_
    * `Axis container <http://matplotlib.org/users/artists.html#axis-container>`_
@@ -319,13 +319,10 @@ Moving spines
 
 .. tip::
 
-    Spines are the lines connecting the axis tick marks and noting the
-    boundaries of the data area. They can be placed at arbitrary
-    positions and until now, they were on the border of the axis. We'll
-    change that since we want to have them in the middle. Since there are
-    four of them (top/bottom/left/right), we'll discard the top and right
-    by setting their color to none and we'll move the bottom and left
-    ones to coordinate 0 in data space coordinates.
+    Spines是连接坐标刻度和标记数据区域的线条. 它们可以被置于图形任意位置.
+    我们现在把它们移动到图形中央位置。因为总共有4根线条(top/bottom/left/right),
+    我们 top 和 right 两线条设置为无色，把 bottom 和 left 移动 0 坐标处。
+
 
 ::
 
@@ -341,7 +338,7 @@ Moving spines
 
 
 
-Adding a legend
+添加图例
 ---------------
 
 .. image:: auto_examples/images/plot_exercice_8_1.png
@@ -350,17 +347,15 @@ Adding a legend
    :target: auto_examples/plot_exercice_8.html
 
 
-.. hint:: Documentation
+.. 参考文档::
 
-   * `Legend guide <http://matplotlib.org/users/legend_guide.html>`_
-   * `legend() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.legend>`_
-   * `Legend API <http://matplotlib.org/api/legend_api.html#matplotlib.legend.Legend>`_
+   * `图例指导 <http://matplotlib.org/users/legend_guide.html>`_
+   * `legend() <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.legend>`_
+   * `图例 API <http://matplotlib.org/api/legend_api.html#matplotlib.legend.Legend>`_
 
 .. tip::
 
-    Let's add a legend in the upper left corner. This only requires
-    adding the keyword argument label (that will be used in the legend
-    box) to the plot commands.
+    通过在plot()中添加label参数，并设置legend(),在图形左上角图例。
 
 ::
 
@@ -373,7 +368,7 @@ Adding a legend
 
 
 
-Annotate some points
+标注数据点
 --------------------
 
 .. image:: auto_examples/images/plot_exercice_9_1.png
@@ -382,18 +377,16 @@ Annotate some points
    :target: auto_examples/plot_exercice_9.html
 
 
-.. hint:: Documentation
+.. 参考文档:: 
 
-   * `Annotating axis <http://matplotlib.org/users/annotations_guide.html>`_
-   * `annotate() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
+   * `标注轴线 <http://matplotlib.org/users/annotations_guide.html>`_
+   * `annotate() <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
 
 .. tip::
 
-    Let's annotate some interesting points using the annotate command. We
-    chose the 2π/3 value and we want to annotate both the sine and the
-    cosine. We'll first draw a marker on the curve as well as a straight
-    dotted line. Then, we'll use the annotate command to display some
-    text with an arrow.
+    通过 annotate() 在图形中添加注释。在正余弦曲线的 2π/3 处添加
+    标注，首先在曲线相应位置打上记号，并记号点与坐标轴之间添加一条竖直虚线。
+    接下来，使用 annotate() 添加带箭头的文字标注。
 
 ::
 
@@ -419,7 +412,7 @@ Annotate some points
 
 
 
-Devil is in the details
+ 细节决定成败 (Devil is in the details)
 ------------------------
 
 .. image:: auto_examples/images/plot_exercice_10_1.png
@@ -427,7 +420,7 @@ Devil is in the details
    :scale: 35
    :target: auto_examples/plot_exercice_10.html
 
-.. hint:: Documentation
+.. 参考文档:: 
 
    * `Artists <http://matplotlib.org/api/artist_api.html>`_
    * `BBox <http://matplotlib.org/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
