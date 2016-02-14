@@ -4,6 +4,7 @@
 编译指南
 ----------------------
 
+
 编译HTML格式文件, 输入::
 
     make html
@@ -20,8 +21,8 @@
 生成过程中可能产生一些TeX相关的错误. 细微调整 ``*.rst`` 文档的排版通常有助于改善这些错误.
 
 
-需求
-............
+环境需求
+------------------
 
 *可能不完全*
 
@@ -43,6 +44,8 @@
 2. 添加anaconda/bin/目录到系统PATH变量中  
 3. 安装seaborn包  pip install seaborn
 4. 切换至scipy-lecture-notes-zh-CN/目录下， make html
+5. 在build/html文件夹下打开index.html
+
 
 
 在Fedora上编译 (原作者)
