@@ -455,18 +455,15 @@ matplotlib 中， **"图形窗口(figure)"** 是整个图形界面。其中可�
     当我们执行 ``figure()`` 命令时，严格来说，我们调用的是 ``subplot(111)``。
     让我们来看看更多相关信息。
 
-Figures
+图形窗口
 -------
 
 .. tip::
 
-    A figure is the windows in the GUI that has "Figure #" as title.  Figures
-    are numbered starting from 1 as opposed to the normal Python way starting
-    from 0. This is clearly MATLAB-style.  There are several parameters that
-    determine what the figure looks like:
+    图形窗口以 "Figure #" 命名. 并且从序号1开始 (这与Python中通常以 0 为计数起点的对象不同，带有明显的Matlab风格 )。 控制图形窗口的一些参数如下表所示:
 
 ==============  ======================= ============================================
-Argument        Default                 Description
+参数        默认值                 描述
 ==============  ======================= ============================================
 ``num``         ``1``                   number of figure
 ``figsize``     ``figure.figsize``      figure size in in inches (width, height)
@@ -478,32 +475,29 @@ Argument        Default                 Description
 
 .. tip::
 
-    The defaults can be specified in the resource file and will be used most of
-    the time. Only the number of the figure is frequently changed.
-
+    默认值可在源文件中设置。
     As with other objects, you can set figure properties also setp or with the
     set_something methods.
 
-    When you work with the GUI you can close a figure by clicking on the x in
-    the upper right corner. But you can close a figure programmatically by
-    calling close. Depending on the argument it closes (1) the current figure
-    (no argument), (2) a specific figure (figure number or figure instance as
-    argument), or (3) all figures (``"all"`` as argument).
+    除了点击图形窗口界面右上角的关闭按钮之外，你也可以使用 plt.close() 来关闭
+    窗口：(1) 关闭当前窗口(不带参数)，
+    (2) 关闭指定窗口 (以窗口序号或者图形实例作为参数)， (3) 关闭所有窗口
+    (以 ``"all"`` 作为参数)。
 
 ::
 
-    plt.close(1)     # Closes figure 1
+    plt.close(1)     # 关闭 figure 1
 
 
-Subplots
+subplot
 --------
+子图
 
 .. tip::
 
-    With subplot you can arrange plots in a regular grid. You need to specify
-    the number of rows and columns and the number of the plot.  Note that the
-    `gridspec <http://matplotlib.org/users/gridspec.html>`_ command
-    is a more powerful alternative.
+    通过 subplot ，你可以在坐标方格中设置图形的位置以及布局。
+    `gridspec <http://matplotlib.org/users/gridspec.html>`_ 是
+    另外一种更为强大的设置方法.
 
 .. avoid an ugly interplay between 'tip' and the images below: we want a
    line-return
@@ -527,9 +521,9 @@ Subplots
 Axes
 ----
 
-Axes are very similar to subplots but allow placement of plots at any location
-in the figure. So if we want to put a smaller plot inside a bigger one we do
-so with axes.
+Axes 和 subplot 十分相似，但是 axes 可以被置于 figure 任意位置。
+因此，如果我们想要在一个大的图表中插入一张小图表，可以使用 axes
+实现。
 
 .. image:: auto_examples/images/plot_axes_1.png
    :scale: 35
@@ -542,37 +536,33 @@ so with axes.
 Ticks
 -----
 
-Well formatted ticks are an important part of publishing-ready
-figures. Matplotlib provides a totally configurable system for ticks. There are
-tick locators to specify where ticks should appear and tick formatters to give
-ticks the appearance you want. Major and minor ticks can be located and
-formatted independently from each other. Per default minor ticks are not shown,
+良好的tick设置对于高质量的图表来说是必不可少的。在 Matplotlib 中可以方便设置 tick 的
+各种属性。
+tick locators 标明tick的位置，tick formatters 标明 tick 的外观，并且主次刻度可以相互独立地设置各自的属性。
+Per default minor ticks are not shown,
 i.e. there is only an empty list for them because it is as ``NullLocator`` (see
 below).
 
 Tick Locators
 .............
 
-Tick locators control the positions of the ticks. They are set as
-follows::
+Tick locators 用于控制tick的位置，按如下方法设置::
 
     ax = plt.gca()
     ax.xaxis.set_major_locator(eval(locator))
 
-There are several locators for different kind of requirements:
+常用的一些locator如下:
 
 .. image:: auto_examples/images/plot_ticks_1.png
     :scale: 60
     :target: auto_examples/plot_ticks.html
 
 
-All of these locators derive from the base class :class:`matplotlib.ticker.Locator`.
-You can make your own locator deriving from it. Handling dates as ticks can be
-especially tricky. Therefore, matplotlib provides special locators in
-matplotlib.dates.
+所有的locator都继承自 :class:`matplotlib.ticker.Locator` 这个基类，你可以通过继承它来实现自己的locator。
+使用日期作为locator是一件麻烦事，matplotlib 为此提供了一些特殊的locator, matplotlib.dates.
 
 
-Other Types of Plots: examples and exercises
+其他种类的图形: 一些例子和练习
 =============================================
 
 .. image:: auto_examples/images/plot_plot_1.png
@@ -766,7 +756,7 @@ care of colormap, image interpolation and origin.
    X, Y = np.meshgrid(x, y)
    plt.imshow(f(X, Y))
 
-Click on the figure for the solution.
+点击图片获取源码
 
 
 Pie Charts
@@ -782,15 +772,14 @@ Pie Charts
 
    You need to modify Z.
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of colors and slices size.
+参考如下代码，尝试画出右侧的图像，注意切片大小和色彩。
 
 ::
 
    Z = np.random.uniform(0, 1, 20)
    plt.pie(Z)
 
-Click on the figure for the solution.
+点击图片获取源码
 
 
 
@@ -807,8 +796,7 @@ Quiver Plots
 
    You need to draw arrows twice.
 
-Starting from the code above, try to reproduce the graphic on the right taking
-care of colors and orientations.
+参考如下代码，尝试画出右侧的图像，注意箭头指向和色彩。
 
 ::
 
@@ -816,7 +804,7 @@ care of colors and orientations.
    X, Y = np.mgrid[0:n, 0:n]
    plt.quiver(X, Y)
 
-Click on figure for solution.
+点击图片获取源码
 
 
 Grids
@@ -828,8 +816,7 @@ Grids
    :target: auto_examples/plot_grid_ex.html
 
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of line styles.
+参考如下代码，尝试画出右侧的图像,注意线形。
 
 ::
 
@@ -840,7 +827,7 @@ care of line styles.
    axes.set_yticklabels([])
 
 
-Click on figure for solution.
+点击图片获取源码
 
 
 Multi Plots
@@ -856,7 +843,7 @@ Multi Plots
    You can use several subplots with different partition.
 
 
-Starting from the code below, try to reproduce the graphic on the right.
+参考如下代码，尝试画出右侧的图像。
 
 ::
 
@@ -864,7 +851,7 @@ Starting from the code below, try to reproduce the graphic on the right.
    plt.subplot(2, 2, 3)
    plt.subplot(2, 2, 4)
 
-Click on figure for solution.
+点击图片获取源码
 
 
 Polar Axis
@@ -878,10 +865,10 @@ Polar Axis
 
 .. hint::
 
-   You only need to modify the ``axes`` line
+   只需更改 ``axes`` 
 
 
-Starting from the code below, try to reproduce the graphic on the right.
+参考如下代码，尝试画出右侧的图像。
 
 ::
 
@@ -897,7 +884,7 @@ Starting from the code below, try to reproduce the graphic on the right.
        bar.set_facecolor(cm.jet(r / 10.))
        bar.set_alpha(0.5)
 
-Click on figure for solution.
+点击图片获取源码
 
 
 3D Plots
@@ -911,11 +898,11 @@ Click on figure for solution.
 
 .. hint::
 
-   You need to use `contourf
+   你需要使用 `contourf
    <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
 
 
-Starting from the code below, try to reproduce the graphic on the right.
+参考如下代码，尝试画出右侧的图像。
 
 ::
 
@@ -931,7 +918,7 @@ Starting from the code below, try to reproduce the graphic on the right.
 
    ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='hot')
 
-Click on figure for solution.
+点击图片获取源码。
 
 .. seealso:: :ref:`mayavi-label`
 
@@ -947,30 +934,25 @@ Text
 
 .. hint::
 
-   Have a look at the `matplotlib logo
-   <http://matplotlib.org/examples/api/logo2.html>`_.
+   想知道 `matplotlib logo
+   <http://matplotlib.org/examples/api/logo2.html>`_ 是怎么制作的？
 
-Try to do the same from scratch !
-
-Click on figure for solution.
+点击图片获取源码。
 
 ____
 
 
 .. topic:: **Quick read**
 
-   If you want to do a first quick pass through the Scipy lectures to
-   learn the ecosystem, you can directly skip to the next chapter:
+   对于想要快速浏览Scipy lectures 的读者，你可以直接跳到下一节:
    :ref:`scipy`.
 
-   The remainder of this chapter is not necessary to follow the rest of
-   the intro part. But be sure to come back and finish this chapter later.
+   这一节余下的部分不是必须学习的内容。但是我们仍然希望你能阅读下面的内容，它们会对你有所帮助。
 
 Beyond this tutorial
 ====================
 
-Matplotlib benefits from extensive documentation as well as a large
-community of users and developers. Here are some links of interest:
+Matplotlib 拥有众多的帮助文档，下面给出了一些可能对大家有所帮助的文档链接:
 
 Tutorials
 ---------
@@ -1029,7 +1011,7 @@ Tutorials
 Matplotlib documentation
 ------------------------
 
-* `User guide <http://matplotlib.org/users/index.html>`_
+* `用户手册 <http://matplotlib.org/users/index.html>`_
 
 * `FAQ <http://matplotlib.org/faq/index.html>`_
 
@@ -1045,8 +1027,7 @@ Matplotlib documentation
 Code documentation
 ------------------
 
-The code is well documented and you can quickly access a specific command
-from within a python session:
+在python会话中，你可以很方便地查看源码文档:
 
 ::
 
@@ -1071,30 +1052,27 @@ from within a python session:
    ...
 
 
-Galleries
+Galleries 
 ---------
 
-The `matplotlib gallery <http://matplotlib.org/gallery.html>`_ is
-also incredibly useful when you search how to render a given graphic. Each
-example comes with its source.
+当你想知道一些图表是怎么绘制的时候，查询 `matplotlib gallery <http://matplotlib.org/gallery.html>`_ 
+是一个不错的选择。
 
 
 Mailing lists
 --------------
 
-Finally, there is a `user mailing list
-<https://mail.python.org/mailman/listinfo/matplotlib-users>`_ where you can
-ask for help and a `developers mailing list
-<https://mail.python.org/mailman/listinfo/matplotlib-devel>`_ that is more
-technical.
+通过用户邮件列表 `user mailing list
+<https://mail.python.org/mailman/listinfo/matplotlib-users>`_ 和开发者邮件列表 `developers mailing list
+<https://mail.python.org/mailman/listinfo/matplotlib-devel>`_ 获取帮助。
 
 
-快速参考
+Quick references
 ================
 
 这里给出一些常用的参考信息
 
-线条属性
+Line properties
 ----------------
 
 .. list-table::
@@ -1164,12 +1142,12 @@ technical.
 
 
 
-线形
+Line styles
 -----------
 
 .. image:: auto_examples/images/plot_linestyles_1.png
 
-记号
+Markers
 -------
 
 .. image:: auto_examples/images/plot_markers_1.png
