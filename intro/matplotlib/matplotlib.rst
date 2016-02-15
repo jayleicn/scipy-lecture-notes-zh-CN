@@ -42,6 +42,7 @@ IPython 和 matplotlib 模式
 
     %matplotlib inline
 
+
 pyplot
 ------
 
@@ -52,6 +53,7 @@ pyplot
 ::
 
     from matplotlitb import pyplot as plt
+
 
 绘图基础
 ===========
@@ -255,7 +257,7 @@ pyplot
 
 .. tip::
 
-    现有的坐标轴没有（+/-π,+/-π/2)刻度，通过以下代码设置这些坐标点： 
+    现有的坐标轴没有（+/-π,+/-π/2) 刻度，通过以下代码设置这些坐标点： 
 
 ::
 
@@ -287,7 +289,7 @@ pyplot
 .. tip::
 
     现在刻度已经成功设置好了，但是我们想把3.142显式设置为 π 。
-    为了做到这一点，在xticks()和tticks()中传入第二个参数列表. 
+    为了做到这一点，在 'xticks()' 和 'yticks()' 中传入第二个参数列表. 
     ( 这里使用了latex公式，以便更加美观。 )
 
 ::
@@ -412,7 +414,7 @@ pyplot
 
 
 
- 细节决定成败 (Devil is in the details)
+细节决定成败 (Devil is in the details)
 ------------------------
 
 .. image:: auto_examples/images/plot_exercice_10_1.png
@@ -465,12 +467,12 @@ matplotlib 中， **"图形窗口(figure)"** 是整个图形界面。其中可�
 ==============  ======================= ============================================
 参数        默认值                 描述
 ==============  ======================= ============================================
-``num``         ``1``                   number of figure
-``figsize``     ``figure.figsize``      figure size in in inches (width, height)
-``dpi``         ``figure.dpi``          resolution in dots per inch
-``facecolor``   ``figure.facecolor``    color of the drawing background
-``edgecolor``   ``figure.edgecolor``    color of edge around the drawing background
-``frameon``     ``True``                draw figure frame or not
+``num``         ``1``                   图形窗口编号
+``figsize``     ``figure.figsize``      窗口大小，单位英寸 (宽，高)
+``dpi``         ``figure.dpi``          分辨率
+``facecolor``   ``figure.facecolor``    背景颜色
+``edgecolor``   ``figure.edgecolor``    背景边缘颜色
+``frameon``     ``True``                是否显示窗口边框
 ==============  ======================= ============================================
 
 .. tip::
@@ -491,7 +493,7 @@ matplotlib 中， **"图形窗口(figure)"** 是整个图形界面。其中可�
 
 subplot
 --------
-子图
+
 
 .. tip::
 
@@ -536,12 +538,10 @@ Axes 和 subplot 十分相似，但是 axes 可以被置于 figure 任意位置�
 Ticks
 -----
 
-良好的tick设置对于高质量的图表来说是必不可少的。在 Matplotlib 中可以方便设置 tick 的
+良好的 tick 设置对于高质量的图表来说是必不可少的。在 Matplotlib 中可以方便设置tick的
 各种属性。
-tick locators 标明tick的位置，tick formatters 标明 tick 的外观，并且主次刻度可以相互独立地设置各自的属性。
-Per default minor ticks are not shown,
-i.e. there is only an empty list for them because it is as ``NullLocator`` (see
-below).
+tick locators 标明 tick 的位置，tick formatters 标明 tick 的外观，并且主次刻度可以相互独立地设置各自的属性。
+
 
 Tick Locators
 .............
@@ -603,7 +603,7 @@ Tick locators 用于控制tick的位置，按如下方法设置::
    :target: `Text`_
 
 
-Regular Plots
+常见图像
 -------------
 
 .. image:: auto_examples/images/plot_plot_ex_1.png
@@ -613,12 +613,11 @@ Regular Plots
 
 .. hint::
 
-   You need to use the `fill_between
+   需使用 `fill_between
    <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_
-   command.
+   命令.
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of filled areas::
+参考如下代码，尝试画出右侧的图像，你需要注意图片的填充域::
 
    n = 256
    X = np.linspace(-np.pi, np.pi, n, endpoint=True)
@@ -627,10 +626,10 @@ care of filled areas::
    plt.plot(X, Y + 1, color='blue', alpha=1.00)
    plt.plot(X, Y - 1, color='blue', alpha=1.00)
 
-Click on the figure for solution.
+点击图片获取源码
 
 
-Scatter Plots
+散点图
 -------------
 
 .. image:: auto_examples/images/plot_scatter_ex_1.png
@@ -640,11 +639,10 @@ Scatter Plots
 
 .. hint::
 
-   Color is given by angle of (X,Y).
+   颜色由(X,Y)角度决定。
 
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of marker size, color and transparency.
+参考如下代码，尝试画出右侧的图像，你需要主义 marker 大小，色彩和透明度。
 
 ::
 
@@ -654,10 +652,10 @@ care of marker size, color and transparency.
 
    plt.scatter(X,Y)
 
-Click on figure for solution.
+点击图片获取源码
 
 
-Bar Plots
+条形图
 ---------
 
 .. image:: auto_examples/images/plot_bar_ex_1.png
@@ -667,11 +665,10 @@ Bar Plots
 
 .. hint::
 
-   You need to take care of text alignment.
+   注意对其文字。
 
 
-Starting from the code below, try to reproduce the graphic on the right by
-adding labels for red bars.
+参考如下代码，尝试画出右侧的图像。
 
 ::
 
@@ -688,10 +685,10 @@ adding labels for red bars.
 
    plt.ylim(-1.25, +1.25)
 
-Click on figure for solution.
+点击图片获取源码
 
 
-Contour Plots
+等高线
 -------------
 
 .. image:: auto_examples/images/plot_contour_ex_1.png
@@ -702,12 +699,11 @@ Contour Plots
 
 .. hint::
 
-   You need to use the `clabel
+   需使用 `clabel
    <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.clabel>`_
-   command.
+   命令.
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of the colormap (see `Colormaps`_ below).
+参考如下代码，尝试画出右侧的图像，你需要注意 colormap (see `Colormaps`_ below).
 
 ::
 
@@ -722,7 +718,7 @@ care of the colormap (see `Colormaps`_ below).
    plt.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap='jet')
    C = plt.contour(X, Y, f(X, Y), 8, colors='black', linewidth=.5)
 
-Click on figure for solution.
+点击图片获取源码
 
 
 
@@ -737,13 +733,11 @@ Imshow
 
 .. hint::
 
-   You need to take care of the ``origin`` of the image in the imshow command and
-   use a `colorbar
+   你需要注意图像的 ``origin`` ，并添加 `colorbar
    <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.colorbar>`_
 
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of colormap, image interpolation and origin.
+参考如下代码，尝试画出右侧的图像。
 
 ::
 
@@ -759,7 +753,7 @@ care of colormap, image interpolation and origin.
 点击图片获取源码
 
 
-Pie Charts
+饼图
 ----------
 
 .. image:: auto_examples/images/plot_pie_ex_1.png
@@ -770,7 +764,7 @@ Pie Charts
 
 .. hint::
 
-   You need to modify Z.
+   你需要更改 Z.
 
 参考如下代码，尝试画出右侧的图像，注意切片大小和色彩。
 
@@ -783,7 +777,7 @@ Pie Charts
 
 
 
-Quiver Plots
+箭头图
 ------------
 
 .. image:: auto_examples/images/plot_quiver_ex_1.png
@@ -794,7 +788,7 @@ Quiver Plots
 
 .. hint::
 
-   You need to draw arrows twice.
+   需要画两次箭头。
 
 参考如下代码，尝试画出右侧的图像，注意箭头指向和色彩。
 
@@ -807,7 +801,7 @@ Quiver Plots
 点击图片获取源码
 
 
-Grids
+坐标网格
 -----
 
 .. image:: auto_examples/images/plot_grid_ex_1.png
@@ -840,7 +834,7 @@ Multi Plots
 
 .. hint::
 
-   You can use several subplots with different partition.
+   可以使用多个subplots来
 
 
 参考如下代码，尝试画出右侧的图像。
