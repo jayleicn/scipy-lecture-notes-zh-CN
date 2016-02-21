@@ -34,7 +34,7 @@ Numpy数组
 
     - 专注于科学计算 (方便)
 
-    - 也被称作*面向计算的数组*
+    - 也被称作面向计算的数组  
 
 |
 
@@ -141,13 +141,13 @@ Numpy参考文档
    >>> import numpy as np
 
 
-Creating arrays
+创建Numpy数组
 ---------------
 
-Manual construction of arrays
+手动建立数组
 ..............................
 
-* **1-D**:
+* **一维数组**:
 
   .. sourcecode:: pycon
 
@@ -161,7 +161,7 @@ Manual construction of arrays
     >>> len(a)
     4
 
-* **2-D, 3-D, ...**:
+* **二维及多维数组**:
 
   .. sourcecode:: pycon
 
@@ -186,24 +186,20 @@ Manual construction of arrays
     >>> c.shape
     (2, 2, 1)
 
-.. topic:: **Exercise: Simple arrays**
+.. topic:: **练习：简单的数组**
     :class: green
 
-    * Create a simple two dimensional array. First, redo the examples
-      from above. And then create your own: how about odd numbers
-      counting backwards on the first row, and even numbers on the second?
-    * Use the functions :func:`len`, :func:`numpy.shape` on these arrays.
-      How do they relate to each other? And to the ``ndim`` attribute of
-      the arrays?
+    * 创建一个简单的二维数组。 首先，重复一下上面的例子，然后创建一个你喜欢的数组。
+    * 对你创建的数组使用len(), numpy.shape()函数，他们直接的关系是怎样的，再试着使用数组的ndim属性。
 
-Functions for creating arrays
+用函数创建数组
 ..............................
 
 .. tip::
 
-    In practice, we rarely enter items one by one...
+    事实上，我们很少手动一个一个地创建数组...
 
-* Evenly spaced:
+* 等间距分布的数组:
 
   .. sourcecode:: pycon
 
@@ -214,7 +210,7 @@ Functions for creating arrays
     >>> b
     array([1, 3, 5, 7])
 
-* or by number of points:
+* 指定数量(长度)的数组:
 
   .. sourcecode:: pycon
 
@@ -225,7 +221,7 @@ Functions for creating arrays
     >>> d
     array([ 0. ,  0.2,  0.4,  0.6,  0.8])
 
-* Common arrays:
+* 一些常用的数组:
 
   .. sourcecode:: pycon
 
@@ -250,7 +246,7 @@ Functions for creating arrays
            [0, 0, 3, 0],
            [0, 0, 0, 4]])
 
-* :mod:`np.random`: random numbers (Mersenne Twister PRNG):
+* :mod:`np.random`: 随机数数组(梅森旋转算法：大概和随机数生成有关系，不用在意细节...):
 
   .. sourcecode:: pycon
 
@@ -264,15 +260,14 @@ Functions for creating arrays
 
     >>> np.random.seed(1234)        # Setting the random seed
 
-.. topic:: **Exercise: Creating arrays using functions**
+.. topic:: **练习：使用函数创建数组**
    :class: green
 
-   * Experiment with ``arange``, ``linspace``, ``ones``, ``zeros``, ``eye`` and
-     ``diag``.
-   * Create different kinds of arrays with random numbers.
-   * Try setting the seed before creating an array with random values.
-   * Look at the function ``np.empty``. What does it do? When might this be
-     useful?
+   * 尝试使用 ``arange``, ``linspace``, ``ones``, ``zeros``, ``eye`` 和
+     ``diag`` 函数创建数组。
+   * 用随机数创建不同类型的数组。
+   * 在使用随机数之前设置随机数种子(seed)。
+   * 试试 ``np.empty`` 函数，看看它有什么用。
 
 .. EXE: construct 1 2 3 4 5
 .. EXE: construct -5, -4, -3, -2, -1
