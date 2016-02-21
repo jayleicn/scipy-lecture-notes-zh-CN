@@ -7,35 +7,34 @@
 
 .. currentmodule:: numpy
 
-The Numpy array object
+Numpy数组对象
 ======================
 
 .. contents:: Section contents
     :local:
     :depth: 1
 
-What are Numpy and Numpy arrays?
+什么是Numpy和Numpy数组?
 --------------------------------
 
-Numpy arrays
+Numpy数组
 ............
 
-:**Python** objects:
+:**Python** 内置对象:
 
-    - high-level number objects: integers, floating point
+    - 高级的数字对象: 整数(integer), 浮点数 (floating point)
 
-    - containers: lists (costless insertion and append), dictionaries
-      (fast lookup)
+    - 容器: 列表 (低开销的插入), 字典 (快速查找)
 
-:**Numpy** provides:
+:**Numpy** 提供的对象:
 
-    - extension package to Python for multi-dimensional arrays
+    - 用于多维数组的第三方Python包
 
-    - closer to hardware (efficiency)
+    - 更接近于底层和硬件 (高效)
 
-    - designed for scientific computation (convenience)
+    - 专注于科学计算 (方便)
 
-    - Also known as *array oriented computing*
+    - 也被称作*面向计算的数组*
 
 |
 
@@ -523,7 +522,7 @@ For multidimensional arrays, indexes are tuples of integers:
 
 .. note::
 
-  * In 2D, the first dimension corresponds to **rows**, the second 
+  * In 2D, the first dimension corresponds to **rows**, the second
     to **columns**.
   * for multidimensional ``a``, ``a[0]`` is interpreted by
     taking all elements in the unspecified dimensions.
@@ -846,5 +845,3 @@ The image below illustrates various fancy indexing applications
 ..     >>> a[i, 2] # same as a[i, 2*np.ones((2, 2), dtype=int)]
 ..     array([[ 2,  6],
 ..            [ 6, 10]])
-
-

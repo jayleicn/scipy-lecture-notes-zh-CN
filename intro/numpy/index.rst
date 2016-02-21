@@ -1,18 +1,17 @@
 .. _numpy:
 
 ***********************************************
-NumPy: creating and manipulating numerical data
+NumPy: 操作和处理数据
 ***********************************************
 
-**Authors**: *Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux, and
+**作者**: *Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux, and
 Pauli Virtanen*
 
 .. .. contents:: Chapters contents
    :local:
    :depth: 4
 
-This chapter gives an overview of Numpy, the core tool for performant
-numerical computing with Python.
+这一章节大致介绍了Numpy，Numpy是Python高效数值计算的核心工具。
 
 ____
 
@@ -24,5 +23,3 @@ ____
    elaborate_arrays.rst
    advanced_operations.rst
    exercises.rst
-
-
