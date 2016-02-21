@@ -47,20 +47,19 @@ Numpy数组
 
 .. tip::
 
-    For example, An array containing:
+    Numpy数组可以记录以下数据：
 
-    * values of an experiment/simulation at discrete time steps
+    * 离散事件仿真的数据变量
 
-    * signal recorded by a measurement device, e.g. sound wave
+    * 设备测量的信号数据，如声波
 
-    * pixels of an image, grey-level or colour
+    * 图像中每一个像素点的灰度值或颜色
 
-    * 3-D data measured at different X-Y-Z positions, e.g. MRI scan
+    * 三维(多维)数据，如核磁共振扫描
 
     * ...
 
-**Why it is useful:** Memory-efficient container that provides fast numerical
-operations.
+**为什么使用Numpy:** Numpy数组是一个较为节省内存的数据容器，并且其数值计算操作十分高效。
 
 .. sourcecode:: ipython
 
@@ -87,12 +86,12 @@ operations.
 .. each element of same size and type
 .. efficiency vs. Python lists
 
-Numpy Reference documentation
+Numpy参考文档
 ..............................
 
-- On the web: http://docs.scipy.org/
+- 在线版: 请访问 http://docs.scipy.org/ 以获得帮助
 
-- Interactive help:
+- 交互式(如之前IPython说明提到的，直接在相关对象后加问号):
 
   .. sourcecode:: ipython
 
@@ -112,7 +111,7 @@ Numpy Reference documentation
          array(object, dtype=None, copy=True, order=None, subok=False, ...
 
 
-- Looking for something:
+- 查询某种结构或功能:
 
   .. sourcecode:: pycon
 
@@ -132,10 +131,10 @@ Numpy Reference documentation
      np.conjugate
      np.convolve
 
-Import conventions
+导入Numpy的建议
 ..................
 
-The recommended convention to import numpy is:
+我们推荐使用以下方法来导入Numpy:
 
 .. sourcecode:: pycon
 
