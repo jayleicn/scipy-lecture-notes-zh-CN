@@ -8,7 +8,6 @@
 .. currentmodule:: numpy
 
 Numpy数组对象
-======================
 
 .. contents:: Section contents
     :local:
