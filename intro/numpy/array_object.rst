@@ -34,7 +34,7 @@ Numpy数组
 
     - 专注于科学计算 (方便)
 
-    - 也被称作*面向计算的数组*
+    - 也被称作面向计算的数组
 
 |
 
@@ -141,13 +141,13 @@ Numpy参考文档
    >>> import numpy as np
 
 
-Creating arrays
+创建Numpy数组
 ---------------
 
-Manual construction of arrays
+手动建立数组
 ..............................
 
-* **1-D**:
+* **一维数组**:
 
   .. sourcecode:: pycon
 
@@ -161,7 +161,7 @@ Manual construction of arrays
     >>> len(a)
     4
 
-* **2-D, 3-D, ...**:
+* **二维及多维数组**:
 
   .. sourcecode:: pycon
 
@@ -186,24 +186,20 @@ Manual construction of arrays
     >>> c.shape
     (2, 2, 1)
 
-.. topic:: **Exercise: Simple arrays**
+.. topic:: **练习：简单的数组**
     :class: green
 
-    * Create a simple two dimensional array. First, redo the examples
-      from above. And then create your own: how about odd numbers
-      counting backwards on the first row, and even numbers on the second?
-    * Use the functions :func:`len`, :func:`numpy.shape` on these arrays.
-      How do they relate to each other? And to the ``ndim`` attribute of
-      the arrays?
+    * 创建一个简单的二维数组。 首先，重复一下上面的例子，然后创建一个你喜欢的数组。
+    * 对你创建的数组使用len(), numpy.shape()函数，他们直接的关系是怎样的，再试着使用数组的ndim属性。
 
-Functions for creating arrays
+用函数创建数组
 ..............................
 
 .. tip::
 
-    In practice, we rarely enter items one by one...
+    事实上，我们很少手动一个一个地创建数组...
 
-* Evenly spaced:
+* 等间距分布的数组:
 
   .. sourcecode:: pycon
 
@@ -214,7 +210,7 @@ Functions for creating arrays
     >>> b
     array([1, 3, 5, 7])
 
-* or by number of points:
+* 指定数量(长度)的数组:
 
   .. sourcecode:: pycon
 
@@ -225,7 +221,7 @@ Functions for creating arrays
     >>> d
     array([ 0. ,  0.2,  0.4,  0.6,  0.8])
 
-* Common arrays:
+* 一些常用的数组:
 
   .. sourcecode:: pycon
 
@@ -250,7 +246,7 @@ Functions for creating arrays
            [0, 0, 3, 0],
            [0, 0, 0, 4]])
 
-* :mod:`np.random`: random numbers (Mersenne Twister PRNG):
+* :mod:`np.random`: 随机数数组(梅森旋转算法：大概和随机数生成有关系，不用在意细节...):
 
   .. sourcecode:: pycon
 
@@ -264,15 +260,14 @@ Functions for creating arrays
 
     >>> np.random.seed(1234)        # Setting the random seed
 
-.. topic:: **Exercise: Creating arrays using functions**
+.. topic:: **练习：使用函数创建数组**
    :class: green
 
-   * Experiment with ``arange``, ``linspace``, ``ones``, ``zeros``, ``eye`` and
-     ``diag``.
-   * Create different kinds of arrays with random numbers.
-   * Try setting the seed before creating an array with random values.
-   * Look at the function ``np.empty``. What does it do? When might this be
-     useful?
+   * 尝试使用 ``arange``, ``linspace``, ``ones``, ``zeros``, ``eye`` 和
+     ``diag`` 函数创建数组。
+   * 用随机数创建不同类型的数组。
+   * 在使用随机数之前设置随机数种子(seed)。
+   * 试试 ``np.empty`` 函数，看看它有什么用。
 
 .. EXE: construct 1 2 3 4 5
 .. EXE: construct -5, -4, -3, -2, -1
@@ -280,12 +275,10 @@ Functions for creating arrays
 .. EXE: look what is in an empty() array
 .. EXE: construct 15 equispaced numbers in range [0, 10]
 
-Basic data types
+基本数据类型
 ----------------
 
-You may have noticed that, in some instances, array elements are displayed with
-a trailing dot (e.g. ``2.`` vs ``2``). This is due to a difference in the
-data-type used:
+你也许会发现，某些数组元素后面会跟着一个小数点 (比如 ``2.`` vs ``2``)。这是由于不同的数据类型所致:
 
 .. sourcecode:: pycon
 
@@ -299,14 +292,12 @@ data-type used:
 
 .. tip::
 
-    Different data-types allow us to store data more compactly in memory,
-    but most of the time we simply work with floating point numbers.
-    Note that, in the example above, NumPy auto-detects the data-type
-    from the input.
+    不同的数据结构可以让我们更加高效地使用内存，但是通常来说我们用浮点数就够了。
+    在下面的例子中，Numpy会自动检测输入的数据类型。
 
 -----------------------------
 
-You can explicitly specify which data-type you want:
+你可以显式地指定数据类型:
 
 .. sourcecode:: pycon
 
@@ -315,7 +306,7 @@ You can explicitly specify which data-type you want:
     dtype('float64')
 
 
-The **default** data type is floating point:
+默认的数据类型是浮点数:
 
 .. sourcecode:: pycon
 
@@ -323,9 +314,9 @@ The **default** data type is floating point:
     >>> a.dtype
     dtype('float64')
 
-There are also other types:
+当然我们也有其他的数据类型:
 
-:Complex:
+:复数:
 
   .. sourcecode:: pycon
 
@@ -333,7 +324,7 @@ There are also other types:
         >>> d.dtype
         dtype('complex128')
 
-:Bool:
+:布尔值:
 
   .. sourcecode:: pycon
 
@@ -341,7 +332,7 @@ There are also other types:
         >>> e.dtype
         dtype('bool')
 
-:Strings:
+:字符串:
 
   .. sourcecode:: pycon
 
@@ -349,7 +340,7 @@ There are also other types:
         >>> f.dtype     # <--- strings containing max. 7 letters  # doctest: +SKIP
         dtype('S7')
 
-:Much more:
+:其他类型:
 
     * ``int32``
     * ``int64``
@@ -359,58 +350,57 @@ There are also other types:
 .. XXX: mention: astype
 
 
-Basic visualization
+基本的数据可视化
 -------------------
 
-Now that we have our first data arrays, we are going to visualize them.
+既然我们知道如何构造数组了，那么现在我们要试着将数组里的数据可视化。
 
-Start by launching IPython:
+首先在终端中打开IPython:
 
 .. sourcecode:: bash
 
     $ ipython
 
-Or the notebook:
+当然你也可以使用IPython Notebook (我个人认为这个比较好用，还可以远程，只需要有一个浏览器):
 
 .. sourcecode:: bash
 
    $ ipython notebook
 
-Once IPython has started, enable interactive plots:
+打开IPython后，我们应该打开交互绘图的功能:
 
 .. sourcecode:: pycon
 
     >>> %matplotlib  # doctest: +SKIP
 
-Or, from the notebook, enable plots in the notebook:
+如果你使用IPython Notebook的话，请以如下方式打开绘图功能:
 
 .. sourcecode:: pycon
 
     >>> %matplotlib inline # doctest: +SKIP
 
-The ``inline`` is important for the notebook, so that plots are displayed in
-the notebook and not in a new window.
+这个 ``inline`` 属性可以让我们在notebook就能看到图像，而不会打开新的窗口。
 
-*Matplotlib* is a 2D plotting package. We can import its functions as below:
+*Matplotlib* 是一个2D的画图包，以如下方式导入：
 
 .. sourcecode:: pycon
 
     >>> import matplotlib.pyplot as plt  # the tidy way
 
-And then use (note that you have to use ``show`` explicitly if you have not enabled interactive plots with ``%matplotlib``):
+现在就可以使用了 (注意一下，如果你没有打开交互式画图功能的话，需要显式地调用 ``show`` 命令):
 
 .. sourcecode:: pycon
 
     >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
     >>> plt.show()           # <-- shows the plot (not needed with interactive plots) # doctest: +SKIP
 
-Or, if you have enabled interactive plots with ``%matplotlib``:
+当然，如果你执行了 ``%matplotlib`` ，那么一切会变得更加简单:
 
 .. sourcecode:: pycon
 
     >>> plot(x, y)       # line plot    # doctest: +SKIP
 
-* **1D plotting**:
+* **一维图像**:
 
   .. sourcecode:: pycon
 
@@ -423,7 +413,7 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 
   .. plot:: pyplots/numpy_intro_1.py
 
-* **2D arrays** (such as images):
+* **二维图像** (比如常见的图片什么的):
 
   .. sourcecode:: pycon
 
@@ -434,14 +424,13 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 
   .. plot:: pyplots/numpy_intro_2.py
 
-.. seealso:: More in the: :ref:`matplotlib chapter <matplotlib>`
+.. seealso:: 更多请见: :ref:`matplotlib chapter <matplotlib>`
 
-.. topic:: **Exercise: Simple visualizations**
+.. topic:: **练习：简单的数据可视化**
    :class: green
 
-   * Plot some simple arrays: a cosine as a function of time and a 2D
-     matrix.
-   * Try using the ``gray`` colormap on the 2D matrix.
+   * 画出一些简单的数组: 一个关于时间的cos函数和二维矩阵。
+   * 尝试在一个二维矩阵上使用 ``gray`` 颜色图(灰度图)。
 
 .. * **3D plotting**:
 ..
