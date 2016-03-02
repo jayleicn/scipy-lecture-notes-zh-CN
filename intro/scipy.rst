@@ -6,32 +6,25 @@
 
 .. _scipy:
 
-Scipy : high-level scientific computing
+Scipy : 高性能科学计算
 =======================================
 
-**Authors**: *Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
+**作者**: *Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
 Varoquaux, Ralf Gommers*
+**译者**: Jay Lei
 
 
 .. topic:: Scipy
 
-    The ``scipy`` package contains various toolboxes dedicated to common
-    issues in scientific computing. Its different submodules correspond
-    to different applications, such as interpolation, integration,
-    optimization, image processing, statistics, special functions, etc.
+    ``scipy`` 中有许多科学计算常见问题的工具，比如内置了图像处理，
+    优化，统计等等相关问题的子模块。
 
-    ``scipy`` can be compared to other standard scientific-computing
-    libraries, such as the GSL (GNU Scientific  Library for C and C++),
-    or Matlab's toolboxes. ``scipy`` is the core package for scientific
-    routines in Python; it is meant to operate efficiently on ``numpy``
-    arrays, so that numpy and scipy work hand in hand.
+    正如GSL库在C和C++中，或者相关工具箱在Matlab中的地位一样， ``scipy`` 是Python科学计算环境的核心。
+    它被设计为利用 ``numpy`` 数组进行高效的运行。从这个角度来讲，scipy和numpy是密不可分的。
 
-    Before implementing a routine, it is worth checking if the desired
-    data processing is not already implemented in Scipy. As
-    non-professional programmers, scientists often tend to **re-invent the
-    wheel**, which leads to buggy, non-optimal, difficult-to-share and
-    unmaintainable code. By contrast, ``Scipy``'s routines are optimized
-    and tested, and should therefore be used when possible.
+    在执行一段程序前，很有必要检查数据处理是否是已经用Scipy完成了。不专业的程序员或者科学家们经常
+    会去**重新造轮子**。 多数时候这并不是一件好事，相比于Scipy中优化过的程序，这些新的“轮子”通常
+    存在缺陷，未完全优化，以及可维护性差，不易分享等等问题。
 
 
 .. contents:: Chapters contents
@@ -41,29 +34,28 @@ Varoquaux, Ralf Gommers*
 
 .. warning::
 
-    This tutorial is far from an introduction to numerical computing.
-    As enumerating the different submodules and functions in scipy would
-    be very boring, we concentrate instead on a few examples to give a
-    general idea of how to use ``scipy`` for scientific computing.
+    这份教程的目的并不是提供一个数值计算的简介。因逐一列举式地去介绍scipy中的各个模块和
+    函数会显得十分无趣，我们将重点放在了介绍一些能够说明 ``scipy`` 在科学计算中的作用的
+    小例子。
 
-:mod:`scipy` is composed of task-specific sub-modules:
+:mod:`scipy` 由一些处理不同任务的子模块构成:
 
 =========================== ==========================================
-:mod:`scipy.cluster`         Vector quantization / Kmeans
-:mod:`scipy.constants`       Physical and mathematical constants
-:mod:`scipy.fftpack`         Fourier transform
+:mod:`scipy.cluster`         矢量量化 / Kmeans
+:mod:`scipy.constants`       数学，物理常量
+:mod:`scipy.fftpack`         傅里叶变换
 :mod:`scipy.integrate`       Integration routines
-:mod:`scipy.interpolate`     Interpolation
-:mod:`scipy.io`              Data input and output
-:mod:`scipy.linalg`          Linear algebra routines
-:mod:`scipy.ndimage`         n-dimensional image package
-:mod:`scipy.odr`             Orthogonal distance regression
-:mod:`scipy.optimize`        Optimization
-:mod:`scipy.signal`          Signal processing
-:mod:`scipy.sparse`          Sparse matrices
-:mod:`scipy.spatial`         Spatial data structures and algorithms
-:mod:`scipy.special`         Any special mathematical functions
-:mod:`scipy.stats`           Statistics
+:mod:`scipy.interpolate`     插值计算
+:mod:`scipy.io`              数据输入输出
+:mod:`scipy.linalg`          线性代数程序
+:mod:`scipy.ndimage`         n维图像处理包
+:mod:`scipy.odr`             正交距离回归
+:mod:`scipy.optimize`        优化
+:mod:`scipy.signal`          信号处理
+:mod:`scipy.sparse`          稀疏矩阵
+:mod:`scipy.spatial`         空间数据结果和算法
+:mod:`scipy.special`         特殊数学函数
+:mod:`scipy.stats`           统计
 =========================== ==========================================
 
 .. tip::
