@@ -37,11 +37,8 @@ IPython 和 matplotlib 模式
 
 :IPython notebook:
 
-  在 IPython notebook 中插入 `magic
-  <http://ipython.readthedocs.org/en/stable/interactive/magics.html>`_::
-
-    %matplotlib inline
-
+  在 IPython notebook 中插入 `magic<http://ipython.readthedocs.org/en/stable/interactive/magics.html>`_:: 
+  %matplotlib inline
 
 pyplot
 ------
@@ -53,7 +50,6 @@ pyplot
 ::
 
     from matplotlitb import pyplot as plt
-
 
 绘图基础
 ===========
