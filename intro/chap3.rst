@@ -22,10 +22,10 @@ NumPy及NumPy数组(array) 是啥？
 NumPy 数组(array)
 ..................
 
-    **Python自带：**
+    - **Python自带：**
         - 高级数值对象：整数，浮点数
         - 容器：列表(list, 快速插入/追加元素)，字典(dictionary, 快速检索)
-    **NumPy提供：**
+    - **NumPy提供：**
         - 多维数组
         - 更接近硬件端（高效）
         - 为科学计算设计（便利）
@@ -64,25 +64,25 @@ NumPy帮助文档
 
     - 网址： http://docs.scipy.org/
     - 交互式帮助：
-.. sourcecode:: ipython
+    .. sourcecode:: ipython
 
-    In [5]: np.array?
-    String Form:<built-in function array>
-    Docstring:
-    array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
+       In [5]: np.array?
+        String Form:<built-in function array>
+        Docstring:
+        array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
 
 
     - 寻找某物：
     
-.. sourcecode:: ipython
+    .. sourcecode:: ipython
 
-    >>> np.lookfor('create array')
-    Search results for 'create array'
-    ----------------------------------
-    numpy.array
-        Create an array
-    numpy.memmap
-        Create a memory-map to an array stored in a *binary* file on a disk
+        >>> np.lookfor('create array')
+        Search results for 'create array'
+        ----------------------------------
+        numpy.array
+            Create an array
+        numpy.memmap
+            Create a memory-map to an array stored in a *binary* file on a disk
 
 .. sourcecode:: ipython
     In [6]: np.con*?
