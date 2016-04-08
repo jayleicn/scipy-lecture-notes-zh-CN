@@ -350,33 +350,33 @@ IPython启动后就可以进行交互式绘图：
 
 如果已经用 ``%matplotlib`` 语句进入交互绘图模式，那么用下面的语句就行了：
 
-.. sourcecode:: ipython
-
-    >>> plot(x, y) # 绘制直线
+    .. sourcecode:: ipython
+    
+        >>> plot(x, y) # 绘制直线
 
 
     - **一维数组绘图**：
     
-    .. sourcecode:: ipython
+        .. sourcecode:: ipython
     
-        >>> x = np.linspace(0, 3, 20)
-        >>> y = np.linspace(0, 9, 20)
-        >>> plt.plot(x, y) # line plot
-        [<matplotlib.lines.Line2D object at ...>]
-        >>> plt.plot(x, y, 'o') # dot plot
-        [<matplotlib.lines.Line2D object at ...>]
+            >>> x = np.linspace(0, 3, 20)
+            >>> y = np.linspace(0, 9, 20)
+            >>> plt.plot(x, y) # line plot
+            [<matplotlib.lines.Line2D object at ...>]
+            >>> plt.plot(x, y, 'o') # dot plot
+            [<matplotlib.lines.Line2D object at ...>]
     
     
 .. image:: 1dPlotting.png
 
     - **二维数组** （比如图片）：
     
-    .. sourcecode:: ipython
+        .. sourcecode:: ipython
     
-        >>> image = np.random.rand(30, 30)
-        >>> plt.imshow(image, cmap=plt.cm.hot)
-        >>> plt.colorbar()
-        <matplotlib.colorbar.Colorbar instance at ...>
+            >>> image = np.random.rand(30, 30)
+            >>> plt.imshow(image, cmap=plt.cm.hot)
+            >>> plt.colorbar()
+            <matplotlib.colorbar.Colorbar instance at ...>
 
 .. image:: 2dPlotting.png
 
