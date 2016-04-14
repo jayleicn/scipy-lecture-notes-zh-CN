@@ -9,7 +9,8 @@
 
 .. currentmodule:: numpy
 
-Numerical operations on arrays
+
+数组的数值运算
 ==============================
 
 .. contents:: Section contents
@@ -17,13 +18,14 @@ Numerical operations on arrays
     :depth: 1
 
 
-Elementwise operations
+
+元素智能(elementwise)运算
 ----------------------
 
-Basic operations
+基本运算
 ................
 
-With scalars:
+（数组）与标量：
 
 .. sourcecode:: pycon
 
@@ -33,7 +35,7 @@ With scalars:
     >>> 2**a
     array([ 2,  4,  8, 16])
 
-All arithmetic operates elementwise:
+所有运算符都是元素智能的：
 
 .. sourcecode:: pycon
 
@@ -47,7 +49,8 @@ All arithmetic operates elementwise:
     >>> 2**(j + 1) - j
     array([ 2,  3,  6, 13, 28])
 
-These operations are of course much faster than if you did them in pure python:
+
+并且NumPy比纯Python的计算速度快多了：
 
 .. sourcecode:: pycon
 
@@ -59,17 +62,17 @@ These operations are of course much faster than if you did them in pure python:
    1000 loops, best of 3: 861 us per loop
 
 
-.. warning:: **Array multiplication is not matrix multiplication:**
+.. warning:: **数组乘法并非矩阵乘法：**
 
     .. sourcecode:: pycon
 
         >>> c = np.ones((3, 3))
-        >>> c * c                   # NOT matrix multiplication!
+        >>> c * c                   # 不是矩阵乘法！
         array([[ 1.,  1.,  1.],
                [ 1.,  1.,  1.],
                [ 1.,  1.,  1.]])
 
-.. note:: **Matrix multiplication:**
+.. note:: **矩阵乘法的实现：**
 
     .. sourcecode:: pycon
 
@@ -78,22 +81,21 @@ These operations are of course much faster than if you did them in pure python:
                [ 3.,  3.,  3.],
                [ 3.,  3.,  3.]])
 
-.. topic:: **Exercise: Elementwise operations**
+.. topic:: **练习：元素智能运算**
    :class: green
 
-    * Try simple arithmetic elementwise operations: add even elements
-      with odd elements
-    * Time them against their pure python counterparts using ``%timeit``.
-    * Generate:
+    * 试试简单的元素智能运算：将偶数元素与奇数元素相加
+    * 用 ``%timeit`` 指令比较NumPy与纯Python下的运算速度
+    * 运行如下语句：
 
       * ``[2**0, 2**1, 2**2, 2**3, 2**4]``
       * ``a_j = 2^(3*j) - j``
 
 
-Other operations
+其他运算
 ................
 
-**Comparisons:**
+**比较：**
 
 .. sourcecode:: pycon
 
@@ -104,7 +106,7 @@ Other operations
     >>> a > b
     array([False, False,  True, False], dtype=bool)
 
-.. tip::
+.. 建议::
 
    Array-wise comparisons:
 
