@@ -108,7 +108,7 @@
 
 .. 建议::
 
-   Array-wise comparisons:
+   基于数组元素的比较：
 
    .. sourcecode:: pycon
 
@@ -121,7 +121,7 @@
     True
 
 
-**Logical operations:**
+**逻辑运算：**
 
 .. sourcecode:: pycon
 
@@ -132,7 +132,7 @@
     >>> np.logical_and(a, b)
     array([ True, False, False, False], dtype=bool)
 
-**Transcendental functions:**
+**超越函数：**
 
 .. sourcecode:: pycon
 
@@ -145,7 +145,7 @@
     array([  1.        ,   2.71828183,   7.3890561 ,  20.08553692,  54.59815003])
 
 
-**Shape mismatches**
+**数组大小不匹配：**
 
 .. sourcecode:: pycon
 
@@ -157,7 +157,7 @@
 
 *Broadcasting?* We'll return to that :ref:`later <broadcasting>`.
 
-**Transposition:**
+**转置：**
 
 .. sourcecode:: pycon
 
@@ -172,35 +172,29 @@
            [ 1.,  1.,  0.]])
 
 
-.. warning:: **The transposition is a view**
+.. warning:: **转置操作只产生数组的view**
 
-    As a results, the following code **is wrong** and will **not make a
-    matrix symmetric**::
+    因此下列代码 **是错的**， **不会返回对称矩阵**::
 
         >>> a += a.T
 
-    It will work for small arrays (because of buffering) but fail for
-    large one, in unpredictable ways.
+    对于小矩阵而言或许可以（由于缓冲区），但对大矩阵，上述代码会返回不可预料的内容。
 
-.. note:: **Linear algebra**
+.. note:: **线性代数**
 
-    The sub-module :mod:`numpy.linalg` implements basic linear algebra, such as
-    solving linear systems, singular value decomposition, etc. However, it is
-    not guaranteed to be compiled using efficient routines, and thus we
-    recommend the use of :mod:`scipy.linalg`, as detailed in section
-    :ref:`scipy_linalg`
+    子模块 :mod:`numpy.linalg` 是线性代数运算的补充，例如解线性方程组，分解奇异值等等。然而它不能保证最佳效率，我们推荐使用 :mod:`scipy.linalg` ，这在 :ref:`scipy_linalg` 介绍。
 
-.. topic:: Exercise other operations
+.. topic:: 练习其他运算
    :class: green
 
-    * Look at the help for ``np.allclose``. When might this be useful?
-    * Look at the help for ``np.triu`` and ``np.tril``.
+    * 查阅 ``np.allclose`` 的帮助文档，它有啥用？
+    * 查阅 ``np.triu`` 和 ``np.tril`` 的帮助文档。
 
 
-Basic reductions
+基本简化运算
 ----------------
 
-Computing sums
+求和
 ..............
 
 .. sourcecode:: pycon
@@ -214,7 +208,7 @@ Computing sums
 .. image:: images/reductions.png
     :align: right
 
-Sum by rows and by columns:
+按行、列分别求和：
 
 .. sourcecode:: pycon
 
@@ -222,18 +216,18 @@ Sum by rows and by columns:
     >>> x
     array([[1, 1],
            [2, 2]])
-    >>> x.sum(axis=0)   # columns (first dimension)
+    >>> x.sum(axis=0)   # 按列求和（第一维）
     array([3, 3])
     >>> x[:, 0].sum(), x[:, 1].sum()
     (3, 3)
-    >>> x.sum(axis=1)   # rows (second dimension)
+    >>> x.sum(axis=1)   # 按行求和（第二维）
     array([2, 4])
     >>> x[0, :].sum(), x[1, :].sum()
     (2, 4)
 
 .. tip::
 
-  Same idea in higher dimensions:
+  高维数组求和的方法类似：
 
   .. sourcecode:: pycon
 
@@ -243,12 +237,12 @@ Sum by rows and by columns:
     >>> x[0, 1, :].sum()     # doctest: +ELLIPSIS
     1.14764...
 
-Other reductions
+其它简化运算
 ................
 
---- works the same way (and take ``axis=``)
+--- 格式与求和运算类似（比如 ``axis``）
 
-**Extrema:**
+**极值：**
 
 .. sourcecode:: pycon
 
@@ -258,12 +252,12 @@ Other reductions
   >>> x.max()
   3
 
-  >>> x.argmin()  # index of minimum
+  >>> x.argmin()  # 返回最小值的索引
   0
-  >>> x.argmax()  # index of maximum
+  >>> x.argmax()  # 返回最大值的索引
   1
 
-**Logical operations:**
+**逻辑运算：**
 
 .. sourcecode:: pycon
 
@@ -274,7 +268,7 @@ Other reductions
 
 .. note::
 
-   Can be used for array comparisons:
+   上述逻辑运算可用于数组间比较：
 
    .. sourcecode:: pycon
 
@@ -290,7 +284,7 @@ Other reductions
       >>> ((a <= b) & (b <= c)).all()
       True
 
-**Statistics:**
+**统计：**
 
 .. sourcecode:: pycon
 
@@ -303,11 +297,11 @@ Other reductions
   >>> np.median(y, axis=-1) # last axis
   array([ 2.,  5.])
 
-  >>> x.std()          # full population standard dev.
+  >>> x.std()          # 整体标准差
   0.82915619758884995
 
 
-... and many more (best to learn as you go).
+... 其它运算可在实践中查阅、使用。
 
 .. topic:: **Exercise: Reductions**
    :class: green
