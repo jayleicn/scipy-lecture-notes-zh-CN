@@ -303,33 +303,34 @@
 
 ... 其它运算可在实践中查阅、使用。
 
-.. topic:: **Exercise: Reductions**
+.. topic:: **练习：简化运算**
    :class: green
 
-    * Given there is a ``sum``, what other function might you expect to see?
-    * What is the difference between ``sum`` and ``cumsum``?
+    * 你能想到哪些有关 ``sum`` 函数的其他函数？
+    * ``sum`` 与 ``cumsum`` 之间有什么差别？ 
 
-.. topic:: Worked Example: data statistics
+.. topic:: 实例：数据统计
    :class: green
 
-   Data in :download:`populations.txt <../../data/populations.txt>`
-   describes the populations of hares and lynxes (and carrots) in northern
-   Canada during 20 years.
+   数据见 :download:`populations.txt <../../data/populations.txt>` 
+   
+   数据内容是加拿大北部20年的野兔、山猫以及胡萝卜数。
 
-   You can view the data in an editor, or alternatively in IPython (both shell and notebook):
+
+   可以在文本编辑器查看这些数据，或者在IPython的shell或notebook里查看:
 
    .. sourcecode:: ipython
 
      In [1]: !cat data/populations.txt
 
-   First, load the data into a Numpy array:
+   首先将这些数据导入为NumPy数组:
 
    .. sourcecode:: pycon
 
      >>> data = np.loadtxt('data/populations.txt')
      >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
-   Then plot it:
+   然后绘图:
 
    .. sourcecode:: pycon
 
@@ -340,7 +341,7 @@
 
    .. plot:: pyplots/numpy_intro_4.py
 
-   The mean populations over time:
+   计算平均数量:
 
    .. sourcecode:: pycon
 
@@ -348,27 +349,28 @@
      >>> populations.mean(axis=0)
      array([ 34080.95238095,  20166.66666667,  42400.        ])
 
-   The sample standard deviations:
+   样本标准差:
 
    .. sourcecode:: pycon
 
      >>> populations.std(axis=0)
      array([ 20897.90645809,  16254.59153691,   3322.50622558])
 
-   Which species has the highest population each year?:
+   每一年数量最多的物种是？
 
    .. sourcecode:: pycon
 
      >>> np.argmax(populations, axis=1)
      array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
 
-.. topic:: Worked Example: diffusion using a random walk algorithm
+.. topic:: 实例：用随机行走算法模拟的扩散行为
 
   .. image:: random_walk.png
      :align: center
 
   .. tip::
 
+    考虑简单的一维随机行走过程：
     Let us consider a simple 1D random walk process: at each time step a
     walker jumps right or left with equal probability.
 
