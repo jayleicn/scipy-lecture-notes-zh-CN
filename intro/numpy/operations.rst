@@ -370,16 +370,9 @@
 
   .. tip::
 
-    考虑简单的一维随机行走过程：
-    Let us consider a simple 1D random walk process: at each time step a
-    walker jumps right or left with equal probability.
-
-    We are interested in finding the typical distance from the origin of a
-    random walker after ``t`` left or right jumps? We are going to
-    simulate many "walkers" to find this law, and we are going to do so
-    using array computing tricks: we are going to create a 2D array with
-    the "stories" (each walker has a story) in one direction, and the
-    time in the other:
+    考虑简单的一维随机行走过程：行人每次等概率地向左或向右随机移动一格。
+    
+    我们想求出经历 ``t`` 次向左或右的移动后，行人到原点距离的期望值。下面通过模拟多个随机行人求解，这里用到一些数组运算技巧：我们创建一个二维数组，其中一维叫做‘stories’（每个行人对应一个story），另一维表示每次的移动（称为时间维度）：
 
   .. only:: latex
 
@@ -397,7 +390,7 @@
    >>> n_stories = 1000 # number of walkers
    >>> t_max = 200      # time during which we follow the walker
 
-  We randomly choose all the steps 1 or -1 of the walk:
+  每次移动在1与-1之间等概率选择：
 
   .. sourcecode:: pycon
 
@@ -406,20 +399,22 @@
    >>> np.unique(steps) # Verification: all steps are 1 or -1
    array([-1,  1])
 
-  We build the walks by summing steps along the time:
+
+  通过（在时间维度）求和计算移动的距离：
 
   .. sourcecode:: pycon
 
    >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
    >>> sq_distance = positions**2
 
-  We get the mean in the axis of the stories:
+
+  在story维度计算行人移动的平均距离：
 
   .. sourcecode:: pycon
 
    >>> mean_sq_distance = np.mean(sq_distance, axis=0)
 
-  Plot the results:
+  结果绘图：
 
   .. sourcecode:: pycon
 
@@ -434,8 +429,7 @@
 
   .. plot:: pyplots/numpy_intro_5.py
 
-  We find a well-known result in physics: the RMS distance grows as the
-  square root of the time!
+  由此导出了物理学中的著名结论：随机行走的均方根距离正比于时间的平方根。
 
 
 .. arithmetic: sum/prod/mean/std
