@@ -667,7 +667,7 @@ Broadcasting
     array([[1, 2, 3],
            [4, 5, 6]])
 
-Or,
+或者，
 
 .. sourcecode:: pycon
 
@@ -724,7 +724,7 @@ Or,
 
 
 
-Dimension shuffling
+维度shuffling
 ...................
 
 .. sourcecode:: pycon
@@ -740,7 +740,7 @@ Dimension shuffling
     >>> b[2, 1, 0]
     5
 
-Also creates a view:
+它输出的是源数组的view：
 
 .. sourcecode:: pycon
 
@@ -748,10 +748,10 @@ Also creates a view:
     >>> a[0, 2, 1]
     -1
 
-Resizing
+改变尺寸
 ........
 
-Size of an array can be changed with ``ndarray.resize``:
+数组的尺寸可以用 ``ndarray.resize`` 改变：
 
 .. sourcecode:: pycon
 
@@ -760,7 +760,7 @@ Size of an array can be changed with ``ndarray.resize``:
     >>> a
     array([0, 1, 2, 3, 0, 0, 0, 0])
 
-However, it must not be referred to somewhere else:
+然而，被改变尺寸的数组不能被其他对象引用：
 
 .. sourcecode:: pycon
 
@@ -788,14 +788,13 @@ However, it must not be referred to somewhere else:
 .. EXE: shuffling dimensions when writing a general vectorized function
 .. CHA: the mathematical 'vec' operation
 
-.. topic:: **Exercise: Shape manipulations**
+.. topic:: **练习: 数组尺寸操作**
    :class: green
 
-   * Look at the docstring for ``reshape``, especially the notes section which
-     has some more information about copies and views.
-   * Use ``flatten`` as an alternative to ``ravel``. What is the difference?
-     (Hint: check which one returns a view and which a copy)
-   * Experiment with ``transpose`` for dimension shuffling.
+   + 查阅 ``reshape`` 的帮助文档，特别是有关数组的复制与view的部分。
+   + 使用 ``flatten`` 替代 ``ravel`` ，他们有什么不同？（提示：检验哪一个返回数组的view，
+   哪一个返回复制）
+   + 尝试利用 ``transpose`` 进行维度shuffling。
 
 Sorting data
 ------------
