@@ -451,15 +451,15 @@
 Broadcasting
 ------------
 
-* Basic operations on ``numpy`` arrays (addition, etc.) are elementwise
+* ``NumPy`` 数组的基本操作（比如加法）都是元素智能的。
 
-* This works on arrays of the same size.
+* 这当然要求进行运算的两个数组尺寸相同。
 
-    | **Nevertheless**, It's also possible to do operations on arrays of different
-    | sizes if *Numpy* can transform these arrays so that they all have
-    | the same size: this conversion is called **broadcasting**.
 
-The image below gives an example of broadcasting:
+    | **然而** ，不同尺寸的数组之间也可能进行运算，如果 *NumPy* 可以将它们转化为相同尺寸的数组。
+    | 这一转化过程称为 **broadcasting**。
+
+下面是broadcasting操作的示意图：
 
 .. only:: latex
 
@@ -472,7 +472,7 @@ The image below gives an example of broadcasting:
         :align: center
         :width: 100%
 
-Let's verify:
+实际验证一下：
 
 .. sourcecode:: pycon
 
@@ -489,19 +489,19 @@ Let's verify:
            [20, 21, 22],
            [30, 31, 32]])
 
-We have already used broadcasting without knowing it!:
+在学习broadcasting之前，我们其实早已用过它了:
 
 .. sourcecode:: pycon
 
     >>> a = np.ones((4, 5))
-    >>> a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
+    >>> a[0] = 2  # 将一个数（视为零维数组）赋值给一个一维数组
     >>> a
     array([[ 2.,  2.,  2.,  2.,  2.],
            [ 1.,  1.,  1.,  1.,  1.],
            [ 1.,  1.,  1.,  1.,  1.],
            [ 1.,  1.,  1.,  1.,  1.]])
 
-An useful trick:
+下面是一个常用技巧:
 
 .. sourcecode:: pycon
 
