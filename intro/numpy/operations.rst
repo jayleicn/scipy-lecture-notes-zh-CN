@@ -632,10 +632,10 @@ Broadcasting
 
 
 
-Array shape manipulation
+数组形状操作
 ------------------------
 
-Flattening
+扁平化
 ..........
 
 .. sourcecode:: pycon
@@ -650,12 +650,12 @@ Flattening
     >>> a.T.ravel()
     array([1, 4, 2, 5, 3, 6])
 
-Higher dimensions: last dimensions ravel out "first".
+对于多维数组：最后一维最先提取。
 
-Reshaping
+整形
 .........
 
-The inverse operation to flattening:
+整形操作可以看成是上面扁平化操作的逆过程：
 
 .. sourcecode:: pycon
 
@@ -671,14 +671,13 @@ Or,
 
 .. sourcecode:: pycon
 
-    >>> a.reshape((2, -1))    # unspecified (-1) value is inferred
+    >>> a.reshape((2, -1))    # (-1)表示相应的维数由程序推断
     array([[1, 2, 3],
            [4, 5, 6]])
 
 .. warning::
 
-   ``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)), 
-   or copy
+   ``ndarray.reshape`` **可能** 返回数组的view(cf ``help(np.reshape)``)或复制。
 
 .. tip::
 
@@ -689,7 +688,7 @@ Or,
      array([[99,  2,  3],
             [ 4,  5,  6]])
 
-   Beware: reshape may also return a copy!:
+   注意：整形操作也可能返回数组的复制！
 
    .. sourcecode:: pycon
 
@@ -701,13 +700,13 @@ Or,
             [ 0.,  0.],
             [ 0.,  0.]])
 
-   To understand this you need to learn more about the memory layout of a numpy array.
+   理解上述过程需要对NumPy数组的内存设计深入了解。
 
-Adding a dimension
+添加维度
 ..................
 
-Indexing with the ``np.newaxis`` object allows us to add an axis to an array
-(you have seen this already above in the broadcasting section):
+在数组索引时添加 ``np.newaxis`` 对象可以是数组添加一个维度。（在前面broadcasting章节里
+我们已经见过了）：
 
 .. sourcecode:: pycon
 
