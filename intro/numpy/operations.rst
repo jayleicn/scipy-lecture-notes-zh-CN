@@ -494,7 +494,7 @@ Broadcasting
 .. sourcecode:: pycon
 
     >>> a = np.ones((4, 5))
-    >>> a[0] = 2  # 将一个数（视为零维数组）赋值给一个一维数组
+    >>> a[0] = 2  # 将一个数2（视为零维数组）赋值给一维数组a[0]
     >>> a
     array([[ 2.,  2.,  2.,  2.,  2.],
            [ 1.,  1.,  1.,  1.,  1.],
@@ -528,13 +528,15 @@ Broadcasting
     Broadcasting seems a bit magical, but it is actually quite natural to
     use it when we want to solve a problem whose output data is an array
     with more dimensions than input data.
+    broadcasting操作看起来有点复杂，但在输出数组数据的维度比输入数组维度更多的时候，
+    broadcasting是非常自然的。
 
-.. topic:: Worked Example: Broadcasting
+.. topic:: 实例：broadcasting操作
    :class: green
 
-   Let's construct an array of distances (in miles) between cities of
-   Route 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City,
-   Amarillo, Santa Fe, Albuquerque, Flagstaff and Los Angeles.
+   下面创建沿66号公路的城市距离的数组（单位为英里），对应的城市：Chicago, Springfield,
+   Saint-Louis, Tulsa, Oklahoma City, Amarillo, Santa Fe, Albuquerque, Flagstaff and 
+   Los Angeles.
 
    .. sourcecode:: pycon
 
@@ -558,9 +560,8 @@ Broadcasting
       :align: center
       :scale: 60
 
-A lot of grid-based or network-based problems can also use
-broadcasting. For instance, if we want to compute the distance from
-the origin of points on a 10x10 grid, we can do
+许多基于网格或网络的问题都可以利用broadcasting求解。例如计算10×10网格上某格点到原点的
+距离：
 
 .. sourcecode:: pycon
 
@@ -573,7 +574,7 @@ the origin of points on a 10x10 grid, we can do
            [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
            [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
 
-Or in color:
+上面的结果还可用颜色图表示：
 
 .. sourcecode:: pycon
 
@@ -583,8 +584,8 @@ Or in color:
 .. plot:: pyplots/numpy_intro_6.py
 
 
-**Remark** : the ``numpy.ogrid`` function allows to directly create vectors x
-and y of the previous example, with two "significant dimensions":
+**注意** ： ``numpy.ogrid`` 函数可以直接创建上述例子中的两个
+“重要维度”上的 ``x`` , ``y`` 向量，
 
 .. sourcecode:: pycon
 
@@ -601,10 +602,8 @@ and y of the previous example, with two "significant dimensions":
 
 .. tip::
 
-  So, ``np.ogrid`` is very useful as soon as we have to handle
-  computations on a grid. On the other hand, ``np.mgrid`` directly
-  provides matrices full of indices for cases where we can't (or don't
-  want to) benefit from broadcasting:
+  因此， ``np.ogrid`` 在处理网格计算问题中十分有用。另一方面， ``np.mgrid`` 函数直接提供
+  了完整的矩阵，这样就不需利用broadcasting操作了。
 
   .. sourcecode:: pycon
 
