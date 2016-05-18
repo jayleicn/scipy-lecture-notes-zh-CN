@@ -6,60 +6,61 @@
 
 .. currentmodule:: numpy
 
-More elaborate arrays
+数组内容进阶
 ======================
 
 .. contents:: Section contents
     :local:
     :depth: 1
 
-More data types
+更多数据类型
 ---------------
 
 Casting
 ........
 
-"Bigger" type wins in mixed-type operations::
+不同类型的数组合体运算，所得结果的类型是“范围”更大的那个::
 
     >>> np.array([1, 2, 3]) + 1.5
     array([ 2.5,  3.5,  4.5])
 
-Assignment never changes the type! ::
+赋值永远不会改变数据类型！::
 
     >>> a = np.array([1, 2, 3])
     >>> a.dtype
     dtype('int64')
-    >>> a[0] = 1.9     # <-- float is truncated to integer
+    >>> a[0] = 1.9     # <-- 浮点型被截断为整型
     >>> a
     array([1, 2, 3])
 
-Forced casts::
+强制cast::
 
     >>> a = np.array([1.7, 1.2, 1.6])
-    >>> b = a.astype(int)  # <-- truncates to integer
+    >>> b = a.astype(int)  # <-- 截断为整型
     >>> b
     array([1, 1, 1])
 
-Rounding::
+舍入为整数::
 
     >>> a = np.array([1.2, 1.5, 1.6, 2.5, 3.5, 4.5])
     >>> b = np.around(a)
-    >>> b                    # still floating-point
+    >>> b                    # 仍为浮点数
     array([ 1.,  2.,  2.,  2.,  4.,  4.])
     >>> c = np.around(a).astype(int)
     >>> c
     array([1, 2, 2, 2, 4, 4])
 
-Different data type sizes
+不同数据类型的大小
 ..........................
 
 Integers (signed):
+整型（有符号）:
 
 =================== ==============================================================
 :class:`int8`        8 bits
 :class:`int16`       16 bits
-:class:`int32`       32 bits (same as :class:`int` on 32-bit platform)
-:class:`int64`       64 bits (same as :class:`int` on 64-bit platform)
+:class:`int32`       32 bits (与32位系统的 :class:`int` 相同)
+:class:`int64`       64 bits (与64位系统的 :class:`int` 相同)
 =================== ==============================================================
 
 ::
@@ -70,7 +71,7 @@ Integers (signed):
     (2147483647, 2147483647)
 
 
-Unsigned integers:
+无符号整型:
 
 =================== ==============================================================
 :class:`uint8`       8 bits
@@ -84,24 +85,22 @@ Unsigned integers:
     >>> np.iinfo(np.uint32).max, 2**32 - 1
     (4294967295, 4294967295)
 
-.. sidebar:: Long integers
+.. sidebar:: 长整型
 
-    Python 2 has a specific type for 'long' integers, that cannot
-    overflow, represented with an 'L' at the end. In Python 3, all
-    integers are long, and thus cannot overflow.
+    Python 2 有特定的长整型类型，它不会溢出，在数字后面加'L'表示。在Python 3，所有的整型都是长整型，因此都不会溢出。
 
      >>> np.iinfo(np.int64).max, 2**63 - 1  # doctest: +SKIP
      (9223372036854775807, 9223372036854775807L)
 
 
-Floating-point numbers:
+浮点数 :
 
 =================== ==============================================================
 :class:`float16`     16 bits
 :class:`float32`     32 bits
-:class:`float64`     64 bits (same as :class:`float`)
-:class:`float96`     96 bits, platform-dependent (same as :class:`np.longdouble`)
-:class:`float128`    128 bits, platform-dependent (same as :class:`np.longdouble`)
+:class:`float64`     64 bits (与 :class:`float` 相同)
+:class:`float96`     96 bits, 依赖于系统 (与 :class:`np.longdouble` 相同)
+:class:`float128`    128 bits, 依赖于系统 (与 :class:`np.longdouble` 相同)
 =================== ==============================================================
 
 ::
