@@ -796,10 +796,10 @@ Broadcasting
    哪一个返回复制）
    + 尝试利用 ``transpose`` 进行维度shuffling。
 
-Sorting data
+数据排序
 ------------
 
-Sorting along an axis:
+可以在数组的某一维度上排序：
 
 .. sourcecode:: pycon
 
@@ -809,9 +809,9 @@ Sorting along an axis:
     array([[3, 4, 5],
            [1, 1, 2]])
 
-.. note:: Sorts each row separately!
+.. note:: 各行分别进行排序。
 
-In-place sort:
+原地排序：
 
 .. sourcecode:: pycon
 
@@ -820,7 +820,7 @@ In-place sort:
     array([[3, 4, 5],
            [1, 1, 2]])
 
-Sorting with fancy indexing:
+排序与数组索引技巧结合：
 
 .. sourcecode:: pycon
 
@@ -831,7 +831,7 @@ Sorting with fancy indexing:
     >>> a[j]
     array([1, 2, 3, 4])
 
-Finding minima and maxima:
+找出极大、极小值对应的元素索引：
 
 .. sourcecode:: pycon
 
@@ -852,52 +852,38 @@ Finding minima and maxima:
     * Fancy indexing: ``a[a > 3]``, ``a[[2, 3]]``
     * Sorting data: ``.sort()``, ``np.sort``, ``np.argsort``, ``np.argmax``
 
-.. topic:: **Exercise: Sorting**
+.. topic:: **练习：排序**
    :class: green
 
-    * Try both in-place and out-of-place sorting.
-    * Try creating arrays with different dtypes and sorting them.
-    * Use ``all`` or ``array_equal`` to check the results.
-    * Look at ``np.random.shuffle`` for a way to create sortable input quicker.
-    * Combine ``ravel``, ``sort`` and ``reshape``.
-    * Look at the ``axis`` keyword for ``sort`` and rewrite the previous
-      exercise.
+    * 尝试原地排序与异地排序
+    * 创建其他类型的数组，进行排序
+    * 使用 ``all`` 和 ``array_equal`` 命令检验结果
+    * 查阅 ``np.random.shuffle`` 帮助文档，它可以更快地创建待排序的内容
+    * 结合 ``ravel``， ``sort`` 和 ``reshape`` 试试看
+    * 查阅 ``sort`` 命令的 ``axis`` 关键词，将前面的练习重写一遍
 
-Summary
+总结
 -------
 
-**What do you need to know to get started?**
+**学过本节的好处都有啥？**
 
-* Know how to create arrays : ``array``, ``arange``, ``ones``,
+* 知道怎样创建NumPy数组：``array``, ``arange``, ``ones``,
   ``zeros``.
 
-* Know the shape of the array with ``array.shape``, then use slicing
-  to obtain different views of the array: ``array[::2]``,
-  etc. Adjust the shape of the array using ``reshape`` or flatten it
-  with ``ravel``.
+* 知道 ``array.shape``可以查看数组尺寸，利用切片操作获得数组的view，比如 ``array[::2]``。利用 ``reshape`` 调整数组尺寸，或者用 ``ravel``将数组扁平化。
 
-* Obtain a subset of the elements of an array and/or modify their values
-  with masks
+* 获得数组元素的子集，利用掩码(mask)机智地编辑数组。例如：
 
   .. sourcecode:: pycon
 
      >>> a[a < 0] = 0
 
-* Know miscellaneous operations on arrays, such as finding the mean or max
-  (``array.max()``, ``array.mean()``). No need to retain everything, but
-  have the reflex to search in the documentation (online docs,
-  ``help()``, ``lookfor()``)!!
+* 了解数组的各种运算，比如求平均值或最大值(``array.max()``, ``array.mean()``)，不需要啥都记住，只需要了解有这回事，具体内容查阅帮助文档就好了（在线文档， ``help()``,  ``lookfor()`` 等等）。
 
-* For advanced use: master the indexing with arrays of integers, as well as
-  broadcasting. Know more Numpy functions to handle various array
-  operations.
+* 高阶水平：熟练掌握数组索引与broadcasting，了解更多的NumPy函数以处理更复杂的数组操作。
 
-.. topic:: **Quick read**
+.. topic:: **快速阅读**
 
-   If you want to do a first quick pass through the Scipy lectures to
-   learn the ecosystem, you can directly skip to the next chapter:
-   :ref:`matplotlib`.
+   想要快速学习生态系统(ecosystem)的读者可以直接进入下一章 :ref:`matplotlib`.
 
-   The remainder of this chapter is not necessary to follow the rest of
-   the intro part. But be sure to come back and finish this chapter, as
-   well as to do some more :ref:`exercices <numpy_exercises>`.
+   本章其余的内容作为选读，跳过不影响其他章节的学习。但是:ref:`exercices <numpy_exercises>` 需要其中的某些内容。
