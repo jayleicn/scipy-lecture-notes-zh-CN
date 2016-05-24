@@ -148,11 +148,12 @@ Integers (signed):
    - 但是：这会产生更大的舍入误差 --- 有时这会造成严重后果（因而，除非确实需要 ``float32`` ，尽量采用默认类型）。
 
 
-Structured data types
+结构化数据类型
 ---------------------
 
+结构化数据类型例：
 =============== ====================
-``sensor_code``  (4-character string)
+``sensor_code``(4-character string)
 ``position``     (float)
 ``value``        (float)
 =============== ====================
@@ -175,7 +176,7 @@ Structured data types
            ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)], 
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
-Field access works by indexing with field names::
+可以通过域名索引实现域名访问::
 
     >>> samples['sensor_code']    # doctest: +SKIP
     array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'], 
@@ -189,28 +190,27 @@ Field access works by indexing with field names::
     >>> samples[0]    # doctest: +SKIP
     ('TAU', 1.0, 0.37)
 
-Multiple fields at once::
+也可以一次访问多个域名::
 
     >>> samples[['position', 'value']]
     array([(1.0, 0.37), (1.0, 0.11), (1.0, 0.13), (1.5, 0.37), (3.0, 0.11),
            (1.2, 0.13)], 
           dtype=[('position', '<f8'), ('value', '<f8')])
 
-Fancy indexing works, as usual::
+之前各种索引技巧也可用于域名索引::
 
     >>> samples[samples['sensor_code'] == 'ALFA']    # doctest: +SKIP
     array([('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11)], 
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
-.. note:: There are a bunch of other syntaxes for constructing structured
-   arrays, see `here <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`__
-   and `here <http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
+.. note:: 构造结构化数组的其他语法可见 `这儿 <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`__
+   与 `这儿 <http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
 
 
-:class:`maskedarray`: dealing with (propagation of) missing data
+:class:`maskedarray`: 处理（或传递）缺失数据
 ------------------------------------------------------------------
 
-* For floats one could use NaN's, but masks work for all types::
+* 对浮点数数组略去某些元素可以利用NaN（Not-a-Number）元素，而掩码（mask）技巧对所有类型的数组都适用::
 
     >>> x = np.ma.array([1, 2, 3, 4], mask=[0, 1, 0, 1])
     >>> x
@@ -226,7 +226,7 @@ Fancy indexing works, as usual::
            fill_value = 999999)
     <BLANKLINE>
 
-* Masking versions of common functions::
+* 掩码对一般的函数也有效::
 
     >>> np.ma.sqrt([1, -1, 2, -2]) #doctest:+ELLIPSIS
     masked_array(data = [1.0 -- 1.41421356237... --],
@@ -237,28 +237,24 @@ Fancy indexing works, as usual::
 
 .. note::
 
-   There are other useful :ref:`array siblings <array_siblings>`
+   除数组外，其他有用的数据结构可见 :ref:`array siblings <array_siblings>`。
 
 
 _____
 
-While it is off topic in a chapter on numpy, let's take a moment to
-recall good coding practice, which really do pay off in the long run:
+下面的内容在介绍NumPy的章节中显的有点离题，我们讨论一些好的代码习惯，养成这一优良习惯会使未来受益无穷。
 
-.. topic:: Good practices
 
-    * Explicit variable names (no need of a comment to explain what is in
-      the variable)
+.. topic:: 优良代码习惯
 
-    * Style: spaces after commas, around ``=``, etc.
+    * 有意义的变量名（不需要注释来解释变量的内容是啥）
 
-      A certain number of rules for writing "beautiful" code (and, more
-      importantly, using the same conventions as everybody else!) are
-      given in the `Style Guide for Python Code
-      <https://www.python.org/dev/peps/pep-0008>`_ and the `Docstring
-      Conventions <https://www.python.org/dev/peps/pep-0257>`_ page (to
-      manage help strings).
+    * 风格：在逗号后面、等号两侧等合适的地方加空格。
 
-    * Except some rare cases, variable names and comments in English.
+      更多“优美”代码的规范（比优美更重要的是其他人也遵循这些惯例！）可见 `Style Guide for Python Code
+      <https://www.python.org/dev/peps/pep-0008>`_ 以及 `Docstring
+      Conventions <https://www.python.org/dev/peps/pep-0257>`_ （它介绍字符串处理）。
+
+    * 变量名、注释用英文，除非极端情况。
 
 
