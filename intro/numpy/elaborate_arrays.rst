@@ -115,23 +115,23 @@ Integers (signed):
     >>> np.float64(1e-8) + np.float64(1) == 1
     False
 
-Complex floating-point numbers:
+浮点复数：
 
 =================== ==============================================================
-:class:`complex64`   two 32-bit floats
-:class:`complex128`  two 64-bit floats
-:class:`complex192`  two 96-bit floats, platform-dependent
-:class:`complex256`  two 128-bit floats, platform-dependent
+:class:`complex64`   两个 32-bit 浮点数
+:class:`complex128`  两个 64-bit 浮点数
+:class:`complex192`  两个 96-bit 浮点数，依赖于系统
+:class:`complex256`  两个 128-bit 浮点数，依赖于系统
 =================== ==============================================================
 
-.. topic:: Smaller data types
+.. topic:: 不常用的数据类型
 
-   If you don't know you need special data types, then you probably don't.
+   除非已确认必须要使用特定的数据类型，大多数情况使用默认类型即可。
 
-   Comparison on using ``float32`` instead of ``float64``:
+   例如，若使用 ``float32`` 类型而非默认的 ``float64`` ，则：
 
-   - Half the size in memory and on disk
-   - Half the memory bandwidth required (may be a bit faster in some operations)
+   - 磁盘内存用量减半
+   - 所需内存带宽减半（使得某些运算更快）
 
      .. sourcecode:: ipython
 
@@ -145,8 +145,7 @@ Complex floating-point numbers:
         In [4]: %timeit b*b
         1000 loops, best of 3: 1.07 ms per loop
 
-   - But: bigger rounding errors --- sometimes in surprising places
-     (i.e., don't use them unless you really need them)
+   - 但是：这会产生更大的舍入误差 --- 有时这会造成严重后果（因而，除非确实需要 ``float32`` ，尽量采用默认类型）。
 
 
 Structured data types
