@@ -56,7 +56,7 @@
 
 .. tip::
 
-    在这个文档中, Python 输入前面有符号">>>"来表示.
+    在这个文档中, Python 输入前面有符号">>>"来标识.
 
     |
 
@@ -89,7 +89,7 @@ pandas 的 data-frame
 .. tip::
 
     我们将使用
-    :class:`pandas.DataFrame`来操作该数据，其是 `pandas
+    :class:`pandas.DataFrame`来操作该数据，它是 `pandas
     <http://pandas.pydata.org>`_ 模块的一个类. 这是Python中（Excel那种）电子表格
     的等价物。它与二维 ``numpy`` 数组不同，正如其名字所示，它可以包含在各列中
     分别保存不同类型的数据，并且提供了精致强大的索引和数据操纵机制。
@@ -213,7 +213,7 @@ SQL, excel 文件, 或其他格式这种导入数据. 参见 `pandas文档
    :scale: 42
 
 
-.. topic:: **Exercise**
+.. topic:: **练习**
     :class: green
       
     * 全部样本的VIQ均值是多少？
@@ -366,7 +366,7 @@ T-检验假定了数据服从正态分布，我们可以使用 `Wilcoxon符号�
    验 <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
    :func:`scipy.stats.mannwhitneyu`.
 
-.. topic:: **Exercice**
+.. topic:: **练习**
    :class: green
    
    * 检验男性与女性间重量的差异
@@ -456,7 +456,7 @@ T-检验假定了数据服从正态分布，我们可以使用 `Wilcoxon符号�
     ==========================...
 
 
-.. topic:: Terminology:
+.. topic:: 术语:
     
     Statsmodel 使用一些统计术语，比如`y`变量在statsmodel里被称为`endogenous`
     而`x`变量则被称为exogenous。更多细节参见 `这里 
@@ -466,7 +466,7 @@ T-检验假定了数据服从正态分布，我们可以使用 `Wilcoxon符号�
     你打算用来进行预测时凭借的变量。
 
  
-.. topic:: **Exercise**
+.. topic:: **练习**
    :class: green
 
    用变量保存上面模型估计中所展示的参数。**提示**:
@@ -590,7 +590,7 @@ T-检验假定了数据服从正态分布，我们可以使用 `Wilcoxon符号�
 .. tip::
 
     sepal(萼片)与petal(花瓣)大小看上去是相关的: 其中一者较大时另一者也较大！
-    但是存在进一步的系统差异在各族间吗？
+    但是在各族间存在进一步的系统差异吗？
     
 
 .. image:: auto_examples/images/plot_iris_analysis_1.png
@@ -718,9 +718,6 @@ Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
 
    .. tip::
 
-     To switch back to seaborn settings, or understand better styling in
-     seaborn, see the `relevent section of the seaborn documentation
-     <http://stanford.edu/~mwaskom/software/seaborn/tutorial/aesthetics.html>`_.
      为了又切回seaborn的设定，或者了解更多关于seaborn的样式设定，
      见 `seaborn文档的相关章节
      <http://stanford.edu/~mwaskom/software/seaborn/tutorial/aesthetics.html>`_.
