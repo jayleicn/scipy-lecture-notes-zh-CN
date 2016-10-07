@@ -13,14 +13,14 @@
 .. _statistics:
 
 =====================
-Statistics in Python
+在Python中进行统计分析
 =====================
 
 **Author**: *Gaël Varoquaux*
 
 .. topic:: **Requirements**
 
-   * Standard scientific Python environment (numpy, scipy, matplotlib)
+   * 标准Python科学计算环境 (numpy, scipy, matplotlib)
 
    * `Pandas <http://pandas.pydata.org/>`_
 
@@ -28,90 +28,81 @@ Statistics in Python
 
    * `Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_
 
-   To install Python and these dependencies, we recommend that you
-   download `Anaconda Python <http://continuum.io/downloads>`_ or
-   `Enthought Canopy <https://store.enthought.com/>`_, or preferably use
-   the package manager if you are under Ubuntu or other linux.
+   为了安装Python和它的依赖项, 我们推荐你安
+   装 `Anaconda Python <http://continuum.io/downloads>`_ 或者
+   `Enthought Canopy <https://store.enthought.com/>`_, 或者直接使用包管理器
+   在 Ubuntu 或其他 linux 系统下工作.
 
-.. seealso:: **Bayesian statistics in Python**
+.. seealso:: **在Python中进行贝叶斯统计分析**
 
-   This chapter does not cover tools for Bayesian statistics. Of
-   particular interest for Bayesian modelling is `PyMC
-   <http://pymc-devs.github.io/pymc>`_, which implements a probabilistic
-   programming language in Python.
+   这个部分并没有谈及贝叶斯统计. 令人感兴趣的贝叶斯建模相关内容，如 `PyMC
+   <http://pymc-devs.github.io/pymc>`_, 它在Python中实现了概率编程语言.
 
 |
 
 .. tip::
 
-    **Why Python for statistics?**
+    **为什么使用Python进行统计分析?**
 
-    R is a language dedicated to statistics. Python is a general-purpose
-    language with statistics modules. R has more statistical analysis
-    features than Python, and specialized syntaxes. However, when it
-    comes to building complex analysis pipelines that mix statistics with
-    e.g. image analysis, text mining, or control of a physical
-    experiment, the richness of Python is an invaluable asset.
+    R是一个专门用于统计分析的编程语言。Python则是一个通用编程语言，以
+    统计相关的模块的方式进行统计分析。R比Python有更多的统计功能，以及对
+    统计更亲切的语法。无论如何，当建立更复杂的工作流，如与图像分析，文本
+    挖掘或者物理实验控制集成时，Python的通用性与相关模块就成了无价的财富。
 
 
-.. contents:: Contents
+.. contents:: 目录
    :local:
    :depth: 2
 
 .. tip::
 
-    In this document, the Python inputs are represented with the sign
-    ">>>". 
+    在这个文档中, Python 输入前面有符号">>>"来标识.
 
     |
 
-    **Disclaimer: Gender questions**
+    **敏感回避: 性别问题**
 
-    Some of the examples of this tutorial are chosen around gender 
-    questions. The reason is that on such questions controlling the truth
-    of a claim actually matters to many people. 
+    这个教程中的一些例子与性别问题有关。讨论它们是因为在这类问题中的信度
+    的保证是十分重要的。
 
 
-Data representation and interaction
+数据表示与交互方式
 ====================================
 
-Data as a table
+作为表的数据
 ----------------
 
-The setting that we consider for statistical analysis is that of multiple
-*observations* or *samples* described by a set of different *attributes*
-or *features*. The data can than be seen as a 2D table, or matrix, with
-columns giving the different attributes of the data, and rows the
-observations. For instance, the data contained in
+统计分析中的处理对象为一些 *观测* 或 *样本* ，其中每个又以
+一些 *属性* 或 *特征* 所描述。数据可以看成2维表格或矩阵，它们的列
+记录的是数据中不同的属性，而每行则则对应着观测。像这个数据
 :download:`examples/brain_size.csv`:
+
 
 .. include:: examples/brain_size.csv
    :literal:
    :end-line: 6
 
 
-The panda data-frame
+pandas 的 data-frame
 ------------------------
 
 .. tip::
 
-    We will store and manipulate this data in a
-    :class:`pandas.DataFrame`, from the `pandas
-    <http://pandas.pydata.org>`_ module. It is the Python equivalent of
-    the spreadsheet table. It is different from a 2D ``numpy`` array as it
-    has named columns, can contain a mixture of different data types by
-    column, and has elaborate selection and pivotal mechanisms.
+    我们将使用
+    :class:`pandas.DataFrame`来操作该数据，它是 `pandas
+    <http://pandas.pydata.org>`_ 模块的一个类. 这是Python中（Excel那种）电子表格
+    的等价物。它与二维 ``numpy`` 数组不同，正如其名字所示，它可以包含在各列中
+    分别保存不同类型的数据，并且提供了精致强大的索引和数据操纵机制。
 
-Creating dataframes: reading data files or converting arrays
+创建 dataframe: 从文件读取或从数组转换
 ............................................................
 
-.. sidebar:: **Separator**
+.. sidebar:: **分隔符**
 
-   It is a CSV file, but the separator is ";"
+   这是一个CSV文件，虽然它以 ";" 作为分隔符而不是 "," 。
  
-**Reading from a CSV file:** Using the above CSV file that gives
-observations of brain size and weight and IQ (Willerman et al. 1991), the
-data are a mixture of numerical and categorical values::
+**从CSV文件中载入:** 我们将使用上面的CSV文件，该文件给出了一些观测的脑容量，重量与
+IQ (Willerman et al. 1991)，这个数据由一些数值型变量与分类变量混合而成::
 
     >>> import pandas
     >>> data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
@@ -124,24 +115,22 @@ data are a mixture of numerical and categorical values::
     4            5  Female   137  132  134     147    65.0     951545
     ...
 
-.. warning:: **Missing values**
+.. warning:: **缺失值**
 
-   The weight of the second individual is missing in the CSV file. If we
-   don't specify the missing value (NA = not available) marker, we will
-   not be able to do statistical analysis.
+   从上面预览中可以看到第二个个体的重量在CSV文件中缺失了。如果我不指派
+   缺失值（NA = not available）的对应标签，我们将不能继续进行统计分析。
 
 |
 
-**Creating from arrays**: A :class:`pandas.DataFrame` can also be seen
-as a dictionary of 1D 'series', eg arrays or lists. If we have 3
-``numpy`` arrays::
+**从数组中创建**: 类 :class:`pandas.DataFrame` 可以看成是1维的 'series' 
+对象（如 arrays 或 lists 等）的字典。 譬如，我们有三个 ``numpy`` arrays::
 
     >>> import numpy as np
     >>> t = np.linspace(-6, 6, 20)
     >>> sin_t = np.sin(t)
     >>> cos_t = np.cos(t)
 
-We can expose them as a :class:`pandas.DataFrame`::
+我们可以把它们装进一个 :class:`pandas.DataFrame`::
 
     >>> pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
              cos       sin         t
@@ -158,16 +147,16 @@ We can expose them as a :class:`pandas.DataFrame`::
 
 |
 
-**Other inputs**: `pandas <http://pandas.pydata.org>`_ can input data from
-SQL, excel files, or other formats. See the `pandas documentation
+**其他输入方式**: `pandas <http://pandas.pydata.org>`_ 可以从
+SQL, excel 文件, 或其他格式这种导入数据. 参见 `pandas文档
 <http://pandas.pydata.org>`_.
 
 |
 
-Manipulating data
+操纵数据
 ..................
 
-`data` is a :class:`pandas.DataFrame`, that resembles R's dataframe::
+`data` 是一个 :class:`pandas.DataFrame` 对象, 它与 R的 dataframe 对象很类似::
 
     >>> data.shape    # 40 rows and 8 columns
     (40, 8)
@@ -187,12 +176,12 @@ Manipulating data
     >>> data[data['Gender'] == 'Female']['VIQ'].mean()
     109.45
 
-.. note:: For a quick view on a large dataframe, use its `describe`
-    method: :meth:`pandas.DataFrame.describe`.
+.. note:: 为了快速得到dataframe数据的大致状况, 使用它的 `describe`
+    方法: :meth:`pandas.DataFrame.describe`.
 
 |
 
-**groupby**: splitting a dataframe on values of categorical variables::
+**groupby**: 以分类变量的值分隔数据::
 
     >>> groupby_gender = data.groupby('Gender')
     >>> for gender, value in groupby_gender['VIQ']:
@@ -201,8 +190,7 @@ Manipulating data
     ('Male', 115.25)
 
 
-`groupby_gender` is a powerful object that exposes many
-operations on the resulting group of dataframes::
+`groupby_gender` 是一个有着很多强大汇总函数方法的对象，可以分别加在各分组上::
 
     >>> groupby_gender.mean()
             Unnamed: 0   FSIQ     VIQ     PIQ      Weight     Height  MRI_Count
@@ -212,11 +200,9 @@ operations on the resulting group of dataframes::
 
 .. tip::
 
-    Use tab-completion on `groupby_gender` to find more.  Other common
-    grouping functions are median, count (useful for checking to see the
-    amount of missing values in different subsets) or sum.  Groupby
-    evaluation is lazy, no work is done until an aggregation function is
-    applied.
+    对`groupby_gender`对象使用tab自动补全来找到类似这样的函数。其中常用的
+    有median, count（对于检查不同子集中的缺失值数量有用）或sum。这里分组操作
+    是惰性求值的，在实际调用任何汇总函数之前并不引发任何复制或运算。
 
 
 |
@@ -227,35 +213,33 @@ operations on the resulting group of dataframes::
    :scale: 42
 
 
-.. topic:: **Exercise**
+.. topic:: **练习**
     :class: green
-
-    * What is the mean value for VIQ for the full population?
-    * How many males/females were included in this study?
-
-      **Hint** use 'tab completion' to find out the methods that can be
-      called, instead of 'mean' in the above example.
-
-    * What is the average value of MRI counts expressed in log units, for
-      males and females?
+      
+    * 全部样本的VIQ均值是多少？
+    * 在这个研究中有多少男性/女性被包含在内？
+    
+      **提示** 使用 'tab自动补全' 来找到可以调用的方法，替换上面调用的'mean'的地位
+      达到效果。
+      
+    * log变换后的MRI count指标在男性与女性中的平均值各为多少?
 
 .. note:: 
    
-   `groupby_gender.boxplot` is used for the plots above (see :ref:`this
+   `groupby_gender.boxplot` 可以用于以图形形式回答这个问题 (see :ref:`this
    example <example_plot_pandas.py>`).
 
 |
 
-Plotting data
+数据可视化
 ..............
 
 .. currentmodule:: pandas.tools
 
-Pandas comes with some plotting tools (:mod:`pandas.tools.plotting`, using
-matplotlib behind the scene) to display statistics of the data in
-dataframes:
+Pandas 有一些绘图方法 (:mod:`pandas.tools.plotting`, 这里基于matplotlib) 显示
+dataframe中的统计量。
 
-**Scatter matrices**::
+**散点矩阵**::
 
     >>> from pandas.tools import plotting
     >>> plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])   # doctest: +SKIP
@@ -269,29 +253,29 @@ dataframes:
 
     >>> plotting.scatter_matrix(data[['PIQ', 'VIQ', 'FSIQ']])   # doctest: +SKIP
 
-.. sidebar:: **Two populations**
+.. sidebar:: **双总体**
 
-   The IQ metrics are bimodal, as if there are 2 sub-populations.
+   IQ指标呈现了双峰（bimodal），这是因为这里有两个子总体。
 
 .. image:: auto_examples/images/plot_pandas_3.png
    :target: auto_examples/plot_pandas.html
    :scale: 70
    :align: center
 
-.. topic:: **Exercise**
+.. topic:: **练习**
     :class: green
 
-    Plot the scatter matrix for males only, and for females only. Do you
-    think that the 2 sub-populations correspond to gender?
+    分别绘制只包含男性与女性的散点矩阵。你认为这两个子总体符合性别情况吗？
 
 
-Hypothesis testing: comparing two groups
+
+假设检验: 比较两组情况
 ==========================================
 
-For simple `statistical tests
-<https://en.wikipedia.org/wiki/Statistical_hypothesis_testing>`_, we will
-use the :mod:`scipy.stats` sub-module of `scipy
-<http://docs.scipy.org/doc/>`_::
+对于简单的 `假设检验
+<https://en.wikipedia.org/wiki/Statistical_hypothesis_testing>`_, 我们将
+使用  `scipy
+<http://docs.scipy.org/doc/>`_ 模块的 :mod:`scipy.stats` 子模块:: 
 
     >>> from scipy import stats
 
@@ -299,46 +283,45 @@ use the :mod:`scipy.stats` sub-module of `scipy
 
    Scipy is a vast library. For a quick summary to the whole library, see
    the :ref:`scipy <scipy>` chapter.
+   Scipy是一个庞大的库。若想获得该库的一个概览，
+   参见 :ref:`scipy <scipy>` 章节。
 
 
-Student's t-test: the simplest statistical test
+t检验:最简单的统计检验
 ------------------------------------------------
 
-1-sample t-test: testing the value of a population mean
+单样本那t检验: 检验总体均值
 ........................................................
 
 .. image:: two_sided.png
    :scale: 50
    :align: right
 
-:func:`scipy.stats.ttest_1samp` tests if the population mean of data is
-likely to be equal to a given value (technically if observations are
-drawn from a Gaussian distributions of given population mean). It returns
-the `T statistic <https://en.wikipedia.org/wiki/Student%27s_t-test>`_,
-and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
-function's help)::
+:func:`scipy.stats.ttest_1samp` 检验给定值是否可能是数据的均值（严格的说，是
+检验是否数据是从符合给定值为期望的正态分布中抽取出来的。）。它返回
+所谓的 `T统计量 <https://en.wikipedia.org/wiki/Student%27s_t-test>`_,
+与 `p值 <https://en.wikipedia.org/wiki/P-value>`_ （参见函数文档）。
 
     >>> stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
     (...30.088099970..., 1.32891964...e-28)
 
 .. tip::
    
-    With a p-value of 10^-28 we can claim that the population mean for
-    the IQ (VIQ measure) is not 0.
+    由于p值为 10^-28，我们可以断言IQ（以VIQ度量）均值不为0.
 
-2-sample t-test: testing for difference across populations
+双样本t检验: 检验两个样本之间的差异
 ...........................................................
 
-We have seen above that the mean VIQ in the male and female populations
-were different. To test if this is significant, we do a 2-sample t-test
-with :func:`scipy.stats.ttest_ind`::
+我们之前已经看到男性与女性的VIQ均值是不一样的，为了检验这个差异是否显著，
+我们进行双样本t检验，可以调用函数 :func:`scipy.stats.ttest_ind`::
+
 
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
     >>> stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
     (...-0.77261617232..., 0.4445287677858...)
 
-Paired tests: repeated measurements on the same indivuals
+配对检验: 同一个体上重复观测
 ----------------------------------------------------------
 
 .. image:: auto_examples/images/plot_paired_boxplots_1.png
@@ -346,17 +329,15 @@ Paired tests: repeated measurements on the same indivuals
    :scale: 70
    :align: right
 
-PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
-significantly different. We can use a 2 sample test::
+PIQ, VIQ 与 FSIQ 给出了IQ的三种测量方式。让我们检验是否FISQ与PIQ是有显著差异
+的。我们可以使用双样本t检验::
 
     >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     (...0.46563759638..., 0.64277250...)
 
-The problem with this approach is that it forgets that there are links
-between observations: FSIQ and PIQ are measured on the same individuals.
-Thus the variance due to inter-subject variability is confounding, and
-can be removed, using a "paired test", or `"repeated measures test"
-<https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
+这个方法的问题在于它丢弃了每个FSIQ，PIQ对是通过对相同个体进行测量得到的这一信息。
+所以就高估了统计量的标准差，使得检验更难被拒绝，这一步可以使用"配对检验"或"重复观测检验"
+得到矫正 <https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
     >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     (...1.784201940..., 0.082172638183...)
@@ -366,47 +347,43 @@ can be removed, using a "paired test", or `"repeated measures test"
    :scale: 60
    :align: right
 
-This is equivalent to a 1-sample test on the difference::
+这与两者差分的0均值单样本t检验等价::
 
     >>> stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
     (...1.784201940..., 0.082172638...)
 
 |
 
-T-tests assume Gaussian errors. We
-can use a `Wilcoxon signed-rank test
-<https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, that relaxes
-this assumption::
+T-检验假定了数据服从正态分布，我们可以使用 `Wilcoxon符号秩检验
+<https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_来放松这个假设。
 
     >>> stats.wilcoxon(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     (274.5, 0.106594927...)
 
 .. note::
 
-   The corresponding test in the non paired case is the `Mann–Whitney U
-   test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
+   类似的非配对非参数检验方法是 `Mann-Whitney U 检
+   验 <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
    :func:`scipy.stats.mannwhitneyu`.
 
-.. topic:: **Exercice**
+.. topic:: **练习**
    :class: green
-
-   * Test the difference between weights in males and females.
-
-   * Use non parametric statistics to test the difference between VIQ in
-     males and females.
-
-   **Conclusion**: we find that the data does not support the hypothesis
-   that males and females have different VIQ.
+   
+   * 检验男性与女性间重量的差异
+   
+   * 使用非参数统计量检验VIQ在男性与女性间的差异。
+   
+   **总结**: 我们发现数据并不支持男性与女性在VIQ间有差别的假设。
 
 |
 
-Linear models, multiple factors, and analysis of variance
+线性模型，多因子与方差分析
 ==========================================================
 
-"formulas" to specify statistical models in Python
+通过公式对象在Python中构建统计模型
 --------------------------------------------------
 
-A simple linear regression
+简单线性回归的例子
 ...........................
 
 .. image:: auto_examples/images/plot_regression_1.png
@@ -414,22 +391,23 @@ A simple linear regression
    :scale: 60
    :align: right
 
-Given two set of observations, `x` and `y`, we want to test the
-hypothesis that `y` is a linear function of `x`. In other terms:
+给定观测的两个维度,`x`与`y`，我们想要检验`y`是否是`x`的一个线性函数的假设。
+换句话说:
 
     :math:`y = x * coef + intercept + e`
 
-where `e` is observation noise. We will use the `statmodels
-<http://statsmodels.sourceforge.net/>`_ module to:
+其中 `e` 是噪声项。我们将使用 `statmodels
+<http://statsmodels.sourceforge.net/>`_ 模块来:
 
-#. Fit a linear model. We will use the simplest strategy, `ordinary least
-   squares <https://en.wikipedia.org/wiki/Ordinary_least_squares>`_ (OLS).
 
-#. Test that `coef` is non zero.
+#. 拟合一个线性模型，我们将使用最简单的方法, `最小二乘
+   法 <https://en.wikipedia.org/wiki/Ordinary_least_squares>`_ (OLS).
+
+#. 检验 `coef` 是非0向量的假设.
 
 |
 
-First, we generate simulated data according to the model::
+首先，我们为模型生成一些模拟数据::
 
     >>> import numpy as np
     >>> x = np.linspace(-5, 5, 20)
@@ -440,19 +418,19 @@ First, we generate simulated data according to the model::
     >>> data = pandas.DataFrame({'x': x, 'y': y})
 
 
-.. sidebar:: **"formulas" for statistics in Python**
+.. sidebar:: **在Python中使用统计公式**
 
-   `See the statsmodels documentation
+   `见statsmodels的文档
    <http://statsmodels.sourceforge.net/stable/example_formulas.html>`_
 
 |
 
-Then we specify an OLS model and fit it::
+接着我们指定一个OLS模型，然后拟合它::
 
     >>> from statsmodels.formula.api import ols
     >>> model = ols("y ~ x", data).fit()
 
-We can inspect the various statistics derived from the fit::
+我们可以查看从拟合中得到的各个统计量::
 
     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
                                 OLS Regression Results                            
@@ -478,35 +456,32 @@ We can inspect the various statistics derived from the fit::
     ==========================...
 
 
-.. topic:: Terminology:
-
-    Statsmodel uses a statistical terminology: the `y` variable in
-    statsmodel is called 'endogenous' while the `x` variable is called
-    exogenous.  This is discussed in more detail `here 
+.. topic:: 术语:
+    
+    Statsmodel 使用一些统计术语，比如`y`变量在statsmodel里被称为`endogenous`
+    而`x`变量则被称为exogenous。更多细节参见 `这里 
     <http://statsmodels.sourceforge.net/devel/endog_exog.html>`_.
 
-    To simplify, `y` (endogenous) is the value you are trying to predict,
-    while `x` (exogenous) represents the features you are using to make
-    the prediction.
+    作为简化, `y`(endogenous) 可以看成你打算预测的值，而`x`(exogenous)则表示
+    你打算用来进行预测时凭借的变量。
 
  
-.. topic:: **Exercise**
+.. topic:: **练习**
    :class: green
 
-   Retrieve the estimated parameters from the model above. **Hint**:
-   use tab-completion to find the relevent attribute.
+   用变量保存上面模型估计中所展示的参数。**提示**:
+   使用tab补全找到相关属性。
 
 |
 
-Categorical variables: comparing groups or multiple categories
+分类变量: 比较分组或多个分类情况
 ...............................................................
 
-Let us go back the data on brain size::
+让我们回到大脑大小的例子中::
 
     >>> data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
 
-We can write a comparison between IQ of male and female using a linear
-model::
+我们可以做一个线性模型来比较男性与女性的IQ差别::
      
      >>> model = ols("VIQ ~ Gender + 1", data).fit()
      >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
@@ -532,36 +507,33 @@ model::
      Kurtosis:                       1.510   Cond. No.                         2.62
      ==========================...
 
-.. topic:: **Tips on specifying model**
+.. topic:: **构建模型的技巧**
  
-   **Forcing categorical**: the 'Gender' is automatical detected as a
-   categorical variable, and thus each of its different values are
-   treated as different entities.
+   **强制分类变量化**: 'Gender' 被自动发现是一个分类变量，然后它的每个
+   取值被处理成不同的实体。
+   
 
-   An integer column can be forced to be treated as categorical using::
+   一个只有整数的数据列可以以这样的方式被强制解释为分类变量::
 
     >>> model = ols('VIQ ~ C(Gender)', data).fit()
 
-   **Intercept**: We can remove the intercept using `- 1` in the formula,
-   or force the use of an intercept using `+ 1`.
+   **截距**: 我们可以利用在公式中使用 `- 1` 来删除模型中的截距,
+   也可以使用 `+ 1` 来强制使用截距.
 
    .. tip::
 
-     By default, statsmodel treats a categorical variable with K possible
-     values as K-1 'dummy' boolean variables (the last level being
-     absorbed into the intercept term).  This is almost always a good
-     default choice - however, it is possible to specify different
-     encodings for categorical variables
+     默认情况下,statsmodel 将K个取值（或称为"水平"）的分类变量以 K-1个
+     虚拟变量编码（最后一个水平被吸进截距项中）。作为默认项这个处理方法不坏，
+     但也可以指定其他的分类变量编码方法，见
      (http://statsmodels.sourceforge.net/devel/contrasts.html).
 
 
 |
 
-.. topic:: **Link to t-tests between different FSIQ and PIQ**
+.. topic:: **与FSIQ与PIQ的t检验的联系**
 
-    To compare different type of IQ, we need to create a "long-form"
-    table, listing IQs, where the type of IQ is indicated by a
-    categorical variable::
+    为了比较不同类型的IQ，我们需要创建一个 "长式表"("long-form" talbe)
+    ，其中不同种类的IQ被放入同一列中，其类型被同行的另一个分类变量编码::
 
      >>> data_fisq = pandas.DataFrame({'iq': data['FSIQ'], 'type': 'fsiq'})
      >>> data_piq = pandas.DataFrame({'iq': data['PIQ'], 'type': 'piq'})
@@ -587,16 +559,14 @@ model::
      Intercept     113.4500      3.683     30.807      0.000       106.119   120.781
      type[T.piq]    -2.4250      5.208     -0.466      0.643       -12.793     7.943
      ...
-
-    We can see that we retrieve the same values for t-test and
-    corresponding p-values for the effect of the type of iq than the
-    previous t-test::
+    
+    我们可以发现这与上面对应比较IQ的t检验取得了相同的统计量值与p值::
 
      >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
      (...0.46563759638..., 0.64277250...)
 
 
-Multiple Regression: including multiple factors
+多元线性回归
 -------------------------------------------------
 
 .. image:: auto_examples/images/plot_regression_3d_1.png
@@ -606,23 +576,22 @@ Multiple Regression: including multiple factors
 
 |
 
-Consider a linear model explaining a variable `z` (the dependent
-variable) with 2 variables `x` and `y`:
+考虑一个解释因变量`z`的线性模型，它有两个自变量`x`与`y`:
 
     :math:`z = x \, c_1 + y \, c_2 + i + e`
 
-Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
-`y`, `z`) points.
+这样一个模型可以在3D空间中被可视化为一个平面嵌入到(`x`,`y`,`z`)构成的散点云中。
 
 |
 |
 
-**Example: the iris data** (:download:`examples/iris.csv`)
+**实例: iris数据集** (:download:`examples/iris.csv`)
 
 .. tip::
 
-    Sepal and petal size tend to be related: bigger flowers are bigger!
-    But is there in addition a systematic effect of species?
+    sepal(萼片)与petal(花瓣)大小看上去是相关的: 其中一者较大时另一者也较大！
+    但是在各族间存在进一步的系统差异吗？
+    
 
 .. image:: auto_examples/images/plot_iris_analysis_1.png
    :target: auto_examples/plot_iris_analysis_1.html
@@ -660,49 +629,46 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
 
 |
 
-Post-hoc hypothesis testing: analysis of variance (ANOVA)
+因果假设检验: 方差分析(ANOVA)
 ----------------------------------------------------------
 
-In the above iris example, we wish to test if the petal length is
-different between versicolor and virginica, after removing the effect of
-sepal width. This can be formulated as testing the difference between the
-coefficient associated to versicolor and virginica in the linear model
-estimated above (it is an Analysis of Variance, `ANOVA
-<https://en.wikipedia.org/wiki/Analysis_of_variance>`_). For this, we
-write a **vector of 'contrast'** on the parameters estimated: we want to
-test ``"name[T.versicolor] - name[T.virginica]"``, with an `F-test
-<https://en.wikipedia.org/wiki/F-test>`_::
+在上面的iris例子中，我们希望检验是否petal长度在versicolor与virginica类中有差异，
+在控制了sepal宽度的效应后。这可以公式化为检验模型中versicolor与virginica的系数
+是否存在差别。（这是所谓的方差分析 `ANOVA
+<https://en.wikipedia.org/wiki/Analysis_of_variance>`_). 为了做到这一点，我们
+比照被估计的参数额顺序写了一个 **比较向量**，我们想要以 `F检验
+<https://en.wikipedia.org/wiki/F-test>`_ 检验假设``"name[T.versicolor] - name[T.virginica]"``::
+
+
 
     >>> print(model.f_test([0, 1, -1, 0]))
     <F test: F=array([[ 3.24533535]]), p=[[ 0.07369059]], df_denom=146, df_num=1>
 
-Is this difference significant?
-
+所以是否有显著差异呢?
 |
 
 
-.. topic:: **Exercice**
+.. topic:: **练习**
    :class: green
 
-   Going back to the brain size + IQ data, test if the VIQ of male and
-   female are different after removing the effect of brain size, height
-   and weight.
+   回到IQ数据上来，检验是否男性/女性的VIQ在控制了脑大小,高度与重量后
+   会有差异。
 
 |
 
-More visualization: seaborn for statistical exploration
+更强大的可视化: 使用seaborn进行探索式分析
 =======================================================
 
-`Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_ combines
-simple statistical fits with plotting on pandas dataframes.
+`Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_ 在pandas dataframe
+上组合了简单的统计量拟合与绘图。
 
-Let us consider a data giving wages and many other personal information
-on 500 individuals (`Berndt, ER. The Practice of Econometrics. 1991. NY:
+让我们考虑一个给定了工资与其他个人信息的数据，其由500个个体组成。
+(`Berndt, ER. The Practice of Econometrics. 1991. NY:
 Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
 
 .. tip::
 
-   The full code loading and plotting of the wages data is found in 
+   包括载入数据与绘图的完整代码参见
    :ref:`corresponding example <example_plot_wage_data.py>`.
 
 ::
@@ -715,11 +681,11 @@ Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
    3           12      0    0           4      0  0.602060   22     3 
    ...
 
-Pairplot: scatter matrices
+点对绘图: 散点矩阵
 --------------------------
 
-We can easily have an intuition on the interactions between continuous
-variables using :func:`seaborn.pairplot` to display a scatter matrix::
+我们可以使用 :func:`seaborn.pairplot` 画出一个散点矩阵来获取各个连续变量
+之间的关系。
 
    >>> import seaborn
    >>> seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
@@ -731,7 +697,7 @@ variables using :func:`seaborn.pairplot` to display a scatter matrix::
    :align: center
    :scale: 60
 
-Categorical variables can be plotted as the hue::
+分类变量可以这样绘制
 
    >>> seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
    ...                  kind='reg', hue='SEX')  # doctest: +SKIP
@@ -742,27 +708,26 @@ Categorical variables can be plotted as the hue::
    :align: center
    :scale: 60
 
-.. topic:: **Look and feel and matplotlib settings**
+.. topic:: **关于matplotlib的设定**
 
-   Seaborn changes the default of matplotlib figures to achieve a more
-   "modern", "excel-like" look. It does that upon import. You can reset
-   the default using::
+   Seaborn 改变了matplotlib图像的默认设定产生更"现代"，"像excel"的图像外观。
+   它在导入时就这么做了，你可以重置为默认设定通过::
 
     >>> from matplotlib import pyplot as plt
     >>> plt.rcdefaults()
 
    .. tip::
 
-     To switch back to seaborn settings, or understand better styling in
-     seaborn, see the `relevent section of the seaborn documentation
+     为了又切回seaborn的设定，或者了解更多关于seaborn的样式设定，
+     见 `seaborn文档的相关章节
      <http://stanford.edu/~mwaskom/software/seaborn/tutorial/aesthetics.html>`_.
 
 
-lmplot: plotting a univariate regression
+lmplot: 绘制单变量回归图
 -----------------------------------------
 
-A regression capturing the relation between one variable and another, eg
-wage and eduction, can be plotted using :func:`seaborn.lmplot`::
+回归捕捉了两个变量之间的联系，如工资与教育水平之间，可以使用 :func:`seaborn.lmplot`
+显示出两者联系::
 
     >>> seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)  # doctest: +SKIP
 
@@ -775,20 +740,16 @@ wage and eduction, can be plotted using :func:`seaborn.lmplot`::
 
     .. tip::
 
-        Given that, in the above plot, there seems to be a couple of data
-        points that are outside of the main cloud to the right, they might be
-        outliers, not representative of the population, but driving the
-        regression.
+        从上面的图像中可以看到似乎有一些点偏离了散点云而较偏右，它们也许是离群点，
+        对总体不具有代表性，但却主导了回归。
 
-    To compute a regression that is less sentive to outliers, one must
-    use a `robust model
-    <https://en.wikipedia.org/wiki/Robust_statistics>`_. This is done in
-    seaborn using ``robust=True`` in the plotting functions, or in
-    statsmodels by replacing the use of the OLS by a "Robust Linear
-    Model", :func:`statsmodels.formula.api.rlm`.
+    为了进行对离群点不那么敏感的回归，必须使用 `robust model
+    <https://en.wikipedia.org/wiki/Robust_statistics>`_. 这在seaborn中
+    通过在上面那个函数中指定 ``robust=True`` 实现。或者在statsmodels中将OLS
+    换为"Robust Linear Model" :func:`statsmodels.formula.api.rlm`.
 
 
-Testing for interactions
+检验交互项
 =========================
 
 .. image:: auto_examples/images/plot_wage_education_gender_1.png
@@ -796,14 +757,13 @@ Testing for interactions
    :align: center
    :scale: 60
 
-Do wages increase more with education for males than females?
+是否男性的工资增长对教育更敏感？
 
 .. tip::
 
-    The plot above is made of two different fits. We need to formulate a
-    single model that tests for a variance of slope across the to
-    population. This is done via an `"interaction"
     <http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions>`_.
+    上面的图片是以两个不同的拟合生成的，但我们想要把斜率变化放在一个公式里表达，
+    这可以通过向模型中添加交互项解决。
 
 
 ::
@@ -821,23 +781,19 @@ Do wages increase more with education for males than females?
     ==========================...
     ...
 
-Can we conclude that education benefits males more than females?
+我们可以得出在教育中男性比女性受益更多的结论吗？
 
 |
 
-.. topic:: **Take home messages**
-
-   * Hypothesis testing and p-value give you the **significance** of an
-     effect / difference
-
-   * **Formulas** (with categorical variables) enable you to express rich
-     links in your data
-
-   * **Visualizing** your data and simple model fits matters!
-
-   * **Conditionning** (adding factors that can explain all or part of
-     the variation) is important modeling aspect that changes the
-     interpretation.
+.. topic:: **一些有用的信息**
+     
+   * 假设检验的p值告诉你效应/差异的**显著性**。
+   
+   * 带分类变量的公式让你可以表达数据中复杂的联系。
+   
+   * 可视化你的数据与简单模型很有用！
+   
+   * 寻找有意义的自变量是建模中重要的一步，它影响最后的解释。
 
 |
 
