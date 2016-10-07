@@ -50,20 +50,19 @@
     挖掘或者物理实验控制集成时，Python的通用性与相关模块就成了无价的财富。
 
 
-.. contents:: Contents
+.. contents:: 目录
    :local:
    :depth: 2
 
 .. tip::
 
-    In this document, the Python inputs are represented with the sign
-    ">>>". 
+    在这个文档中, Python 输入前面有符号">>>"来表示.
 
     |
 
     **敏感回避: 性别问题**
 
-    这个教程中的一些例子与性别问题有关。选择它们是因为在这类问题中的信度
+    这个教程中的一些例子与性别问题有关。讨论它们是因为在这类问题中的信度
     的保证是十分重要的。
 
 
@@ -98,7 +97,7 @@ pandas 的 data-frame
 创建 dataframe: 从文件读取或从数组转换
 ............................................................
 
-.. sidebar:: **Separator**
+.. sidebar:: **分隔符**
 
    这是一个CSV文件，虽然它以 ";" 作为分隔符而不是 "," 。
  
@@ -232,7 +231,7 @@ SQL, excel 文件, 或其他格式这种导入数据. 参见 `pandas文档
 
 |
 
-Plotting data
+数据可视化
 ..............
 
 .. currentmodule:: pandas.tools
@@ -240,7 +239,7 @@ Plotting data
 Pandas 有一些绘图方法 (:mod:`pandas.tools.plotting`, 这里基于matplotlib) 显示
 dataframe中的统计量。
 
-**Scatter matrices**::
+**散点矩阵**::
 
     >>> from pandas.tools import plotting
     >>> plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])   # doctest: +SKIP
@@ -254,7 +253,7 @@ dataframe中的统计量。
 
     >>> plotting.scatter_matrix(data[['PIQ', 'VIQ', 'FSIQ']])   # doctest: +SKIP
 
-.. sidebar:: **Two populations**
+.. sidebar:: **双总体**
 
    IQ指标呈现了双峰（bimodal），这是因为这里有两个子总体。
 
@@ -263,14 +262,14 @@ dataframe中的统计量。
    :scale: 70
    :align: center
 
-.. topic:: **Exercise**
+.. topic:: **练习**
     :class: green
 
     分别绘制只包含男性与女性的散点矩阵。你认为这两个子总体符合性别情况吗？
 
 
 
-Hypothesis testing: comparing two groups
+假设检验: 比较两组情况
 ==========================================
 
 对于简单的 `假设检验
@@ -288,10 +287,10 @@ Hypothesis testing: comparing two groups
    参见 :ref:`scipy <scipy>` 章节。
 
 
-Student's t-test: the simplest statistical test
+t检验:最简单的统计检验
 ------------------------------------------------
 
-1-sample t-test: testing the value of a population mean
+单样本那t检验: 检验总体均值
 ........................................................
 
 .. image:: two_sided.png
@@ -310,7 +309,7 @@ Student's t-test: the simplest statistical test
    
     由于p值为 10^-28，我们可以断言IQ（以VIQ度量）均值不为0.
 
-2-sample t-test: testing for difference across populations
+双样本t检验: 检验两个样本之间的差异
 ...........................................................
 
 我们之前已经看到男性与女性的VIQ均值是不一样的，为了检验这个差异是否显著，
@@ -322,7 +321,7 @@ Student's t-test: the simplest statistical test
     >>> stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
     (...-0.77261617232..., 0.4445287677858...)
 
-Paired tests: repeated measurements on the same indivuals
+配对检验: 同一个体上重复观测
 ----------------------------------------------------------
 
 .. image:: auto_examples/images/plot_paired_boxplots_1.png
@@ -378,13 +377,13 @@ T-检验假定了数据服从正态分布，我们可以使用 `Wilcoxon符号�
 
 |
 
-Linear models, multiple factors, and analysis of variance
+线性模型，多因子与方差分析
 ==========================================================
 
-"formulas" to specify statistical models in Python
+通过公式对象在Python中构建统计模型
 --------------------------------------------------
 
-A simple linear regression
+简单线性回归的例子
 ...........................
 
 .. image:: auto_examples/images/plot_regression_1.png
@@ -397,8 +396,6 @@ A simple linear regression
 
     :math:`y = x * coef + intercept + e`
 
-where `e` is observation noise. We will use the `statmodels
-<http://statsmodels.sourceforge.net/>`_ module to:
 其中 `e` 是噪声项。我们将使用 `statmodels
 <http://statsmodels.sourceforge.net/>`_ 模块来:
 
@@ -421,7 +418,7 @@ where `e` is observation noise. We will use the `statmodels
     >>> data = pandas.DataFrame({'x': x, 'y': y})
 
 
-.. sidebar:: **"formulas" for statistics in Python**
+.. sidebar:: **在Python中使用统计公式**
 
    `见statsmodels的文档
    <http://statsmodels.sourceforge.net/stable/example_formulas.html>`_
@@ -477,7 +474,7 @@ where `e` is observation noise. We will use the `statmodels
 
 |
 
-Categorical variables: comparing groups or multiple categories
+分类变量: 比较分组或多个分类情况
 ...............................................................
 
 让我们回到大脑大小的例子中::
@@ -510,16 +507,13 @@ Categorical variables: comparing groups or multiple categories
      Kurtosis:                       1.510   Cond. No.                         2.62
      ==========================...
 
-.. topic:: **Tips on specifying model**
+.. topic:: **构建模型的技巧**
  
-   **Forcing categorical**: the 'Gender' is automatical detected as a
-   categorical variable, and thus each of its different values are
-   treated as different entities.
    **强制分类变量化**: 'Gender' 被自动发现是一个分类变量，然后它的每个
    取值被处理成不同的实体。
    
 
-   一个整数列可以以这样的方式被强制解释为分类变量::
+   一个只有整数的数据列可以以这样的方式被强制解释为分类变量::
 
     >>> model = ols('VIQ ~ C(Gender)', data).fit()
 
@@ -536,7 +530,7 @@ Categorical variables: comparing groups or multiple categories
 
 |
 
-.. topic:: **Link to t-tests between different FSIQ and PIQ**
+.. topic:: **与FSIQ与PIQ的t检验的联系**
 
     为了比较不同类型的IQ，我们需要创建一个 "长式表"("long-form" talbe)
     ，其中不同种类的IQ被放入同一列中，其类型被同行的另一个分类变量编码::
@@ -572,7 +566,7 @@ Categorical variables: comparing groups or multiple categories
      (...0.46563759638..., 0.64277250...)
 
 
-Multiple Regression: including multiple factors
+多元线性回归
 -------------------------------------------------
 
 .. image:: auto_examples/images/plot_regression_3d_1.png
@@ -591,7 +585,7 @@ Multiple Regression: including multiple factors
 |
 |
 
-**Example: the iris data** (:download:`examples/iris.csv`)
+**实例: iris数据集** (:download:`examples/iris.csv`)
 
 .. tip::
 
@@ -635,7 +629,7 @@ Multiple Regression: including multiple factors
 
 |
 
-Post-hoc hypothesis testing: analysis of variance (ANOVA)
+因果假设检验: 方差分析(ANOVA)
 ----------------------------------------------------------
 
 在上面的iris例子中，我们希望检验是否petal长度在versicolor与virginica类中有差异，
@@ -654,15 +648,15 @@ Post-hoc hypothesis testing: analysis of variance (ANOVA)
 |
 
 
-.. topic:: **Exercice**
+.. topic:: **练习**
    :class: green
 
-   返回size + IQ数据，检验是否男性/女性的VIQ在控制了脑大小,高度与重量后
+   回到IQ数据上来，检验是否男性/女性的VIQ在控制了脑大小,高度与重量后
    会有差异。
 
 |
 
-More visualization: seaborn for statistical exploration
+更强大的可视化: 使用seaborn进行探索式分析
 =======================================================
 
 `Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_ 在pandas dataframe
@@ -687,7 +681,7 @@ Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
    3           12      0    0           4      0  0.602060   22     3 
    ...
 
-Pairplot: scatter matrices
+点对绘图: 散点矩阵
 --------------------------
 
 我们可以使用 :func:`seaborn.pairplot` 画出一个散点矩阵来获取各个连续变量
@@ -714,9 +708,9 @@ Pairplot: scatter matrices
    :align: center
    :scale: 60
 
-.. topic:: **Look and feel and matplotlib settings**
+.. topic:: **关于matplotlib的设定**
 
-   Seaborn 改变了matplotlib图像的默认设定产生更"现代"，"像excel"的图像外表。
+   Seaborn 改变了matplotlib图像的默认设定产生更"现代"，"像excel"的图像外观。
    它在导入时就这么做了，你可以重置为默认设定通过::
 
     >>> from matplotlib import pyplot as plt
@@ -732,7 +726,7 @@ Pairplot: scatter matrices
      <http://stanford.edu/~mwaskom/software/seaborn/tutorial/aesthetics.html>`_.
 
 
-lmplot: plotting a univariate regression
+lmplot: 绘制单变量回归图
 -----------------------------------------
 
 回归捕捉了两个变量之间的联系，如工资与教育水平之间，可以使用 :func:`seaborn.lmplot`
@@ -752,19 +746,13 @@ lmplot: plotting a univariate regression
         从上面的图像中可以看到似乎有一些点偏离了散点云而较偏右，它们也许是离群点，
         对总体不具有代表性，但却主导了回归。
 
-    To compute a regression that is less sentive to outliers, one must
-    use a `robust model
-    <https://en.wikipedia.org/wiki/Robust_statistics>`_. This is done in
-    seaborn using ``robust=True`` in the plotting functions, or in
-    statsmodels by replacing the use of the OLS by a "Robust Linear
-    Model", :func:`statsmodels.formula.api.rlm`.
     为了进行对离群点不那么敏感的回归，必须使用 `robust model
     <https://en.wikipedia.org/wiki/Robust_statistics>`_. 这在seaborn中
     通过在上面那个函数中指定 ``robust=True`` 实现。或者在statsmodels中将OLS
     换为"Robust Linear Model" :func:`statsmodels.formula.api.rlm`.
 
 
-Testing for interactions
+检验交互项
 =========================
 
 .. image:: auto_examples/images/plot_wage_education_gender_1.png
@@ -778,7 +766,7 @@ Testing for interactions
 
     <http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions>`_.
     上面的图片是以两个不同的拟合生成的，但我们想要把斜率变化放在一个公式里表达，
-    这可以通过向模型中添加交叉项解决。
+    这可以通过向模型中添加交互项解决。
 
 
 ::
@@ -796,24 +784,11 @@ Testing for interactions
     ==========================...
     ...
 
-Can we conclude that education benefits males more than females?
-我们可以得出结论在教育中男性比女性受益更多吗？
+我们可以得出在教育中男性比女性受益更多的结论吗？
 
 |
 
-.. topic:: **Take home messages**
-
-   * Hypothesis testing and p-value give you the **significance** of an
-     effect / difference
-
-   * **Formulas** (with categorical variables) enable you to express rich
-     links in your data
-
-   * **Visualizing** your data and simple model fits matters!
-
-   * **Conditionning** (adding factors that can explain all or part of
-     the variation) is important modeling aspect that changes the
-     interpretation.
+.. topic:: **一些有用的信息**
      
    * 假设检验的p值告诉你效应/差异的**显著性**。
    
