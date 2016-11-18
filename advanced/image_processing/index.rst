@@ -13,7 +13,9 @@
 
 **作者**: *Emmanuelle Gouillart, Gaël Varoquaux*
 
-这一节旨在使用Numpy和SciPy来解决基础图像处理问题。同时，本节中所提到的某些操作对一些形式的多维矩阵也有帮助。比如，:mod:`scipy.ndimage` 提供了一些对NumPy矩阵进行操作的函数。
+这一节旨在使用Numpy和SciPy来解决基础图像处理问题。同时，本节中所提到的某些操作对一些形式的多维矩阵也有帮助。比如， 
+:mod:`scipy.ndimage`  
+提供了一些对NumPy矩阵进行操作的函数。
 
 .. seealso::
 
@@ -95,7 +97,7 @@
 
 此处需要已知图片的尺寸。
 
-大文件使用``np.memmap``进行内存映射::
+大文件使用 ``np.memmap`` 进行内存映射::
 
     >>> face_memmap = np.memmap('face.raw', dtype=np.uint8, shape=(768, 1024, 3))
 
@@ -113,7 +115,7 @@
 显示图片
 =================
 
-使用``matplotlib``和``imshow``在``matplotlib figure``中显示图片::
+使用 ``matplotlib`` 和 ``imshow`` 在 ``matplotlib figure`` 中显示图片::
 
     >>> f = misc.face(gray=True)  # 创建一张灰度图
     >>> import matplotlib.pyplot as plt
@@ -142,7 +144,7 @@
 
     [:ref:`Python source code <example_plot_display_face.py>`]
 
-使用``interpolation='nearest'``来增加分辨率::
+使用 ``interpolation='nearest'`` 来增加分辨率::
 
     >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
@@ -176,7 +178,7 @@
 基础操作
 ===================
 
-图像是多维矩阵: 可以使用``numpy``进行很多操作
+图像是多维矩阵: 可以使用 ``numpy`` 进行很多操作
 
 .. image:: axis_convention.png
     :align: center
@@ -229,15 +231,15 @@
     :class: green
     
 
-    * 读入一张图片，比如``scikit-image``图标(http://scikit-image.org/_static/img/logo.png)。
+    * 读入一张图片，比如 ``scikit-image`` 图标(http://scikit-image.org/_static/img/logo.png)。
 
     * 截取图片的一部分，比如上述图标中的蟒蛇圆圈。
 
-    * 用``matplotlib``显示图像矩阵. 改变差值方法，放大看有什么不同。
+    * 用 ``matplotlib`` 显示图像矩阵. 改变差值方法，放大看有什么不同。
 
     * 将你的图片转换为灰度图。
 
-    * 通过改变最值来增加图片的对比度。 **选做**: 使用``scipy.stats.scoreatpercentile``
+    * 通过改变最值来增加图片的对比度。 **选做**: 使用 ``scipy.stats.scoreatpercentile``
       将最暗和最亮的5%像素达到饱和。
 
     * 将图片存储为不同的格式 (png, jpg, tiff)
@@ -283,7 +285,7 @@ element*.
 模糊／平滑
 ------------------
 
-``scipy.ndimage``中的**高斯滤波**::
+``scipy.ndimage`` 中的 **高斯滤波** ::
 
     >>> from scipy import misc
     >>> face = misc.face(gray=True)
@@ -336,13 +338,13 @@ element*.
     >>> f = f[230:290, 220:320]
     >>> noisy = f + 0.4 * f.std() * np.random.random(f.shape)
 
-使用**高斯滤波**抹掉噪点，但这样也会使边缘变得模糊::
+使用 **高斯滤波** 抹掉噪点，但这样也会使边缘变得模糊::
 
     >>> gauss_denoised = ndimage.gaussian_filter(noisy, 2)
 
 大部分局部线性各向同性过滤器都会使图像变得模糊(``ndimage.uniform_filter``)
 
-而**均值滤波器**可以较好的保存边缘信息::
+而 **均值滤波器** 可以较好的保存边缘信息::
 
     >>> med_denoised = ndimage.median_filter(noisy, 3)
 
@@ -355,7 +357,7 @@ element*.
     [:ref:`Python source code <example_plot_face_denoise.py>`]
 
 
-均值滤波器: 对棱角分明的图片更好 (**曲度小**)::
+均值滤波器: 对棱角分明的图片更好 ( **曲度小** )::
 
     >>> im = np.zeros((20, 20))
     >>> im[5:-5, 5:-5] = 1
@@ -375,7 +377,7 @@ element*.
 其它各阶滤波器: ``ndimage.maximum_filter``,
 ``ndimage.percentile_filter``
 
-其它局部非线性滤波器: Wiener (``scipy.signal.wiener``), 等等.
+其它局部非线性滤波器: Wiener ( ``scipy.signal.wiener`` ), 等等.
 
 **非局部滤波器**
 
@@ -393,7 +395,7 @@ element*.
 .. seealso::
 
     更多去燥的滤波器 :mod:`skimage.denoising`,
-    也可以看看 :ref:`scikit_image` 的教程.
+    也可以看看 :ref: `scikit_image`  的教程.
 
 
 
@@ -561,7 +563,7 @@ element*.
     >>> im = ndimage.rotate(im, 15, mode='constant')
     >>> im = ndimage.gaussian_filter(im, 8)
 
-U使用**梯度算符** (**Sobel**)来找到变化最大的区域::
+U使用 **梯度算符** ( **Sobel** )来找到变化最大的区域::
 
     >>> sx = ndimage.sobel(im, axis=0, mode='constant')
     >>> sy = ndimage.sobel(im, axis=1, mode='constant')
@@ -652,7 +654,7 @@ U使用**梯度算符** (**Sobel**)来找到变化最大的区域::
     ``scikit-image``: see :ref:`scikit_image`.
 
 .. seealso::
-    其它一些提供图像处理操作的包. 比如在这个例子中，我们使用``scikit-learn``中谱聚类的函数来分割胶着的物体。
+    其它一些提供图像处理操作的包. 比如在这个例子中，我们使用 ``scikit-learn`` 中谱聚类的函数来分割胶着的物体。
 
 
     ::
@@ -744,7 +746,7 @@ U使用**梯度算符** (**Sobel**)来找到变化最大的区域::
     >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
-现在通过``np.searchsorted``来贴上标签::
+现在通过 ``np.searchsorted`` 来打上标记::
 
     >>> labels = np.unique(label_im)
     >>> label_im = np.searchsorted(labels, label_im)
@@ -772,8 +774,8 @@ U使用**梯度算符** (**Sobel**)来找到变化最大的区域::
 
     [:ref:`Python source code <example_plot_find_object.py>`]
 
-其它空间度量: ``ndimage.center_of_mass``,
-``ndimage.maximum_position``, 等等.
+其它空间度量:  ``ndimage.center_of_mass`` ,
+``ndimage.maximum_position`` , 等等.
 
 也可用于除图像分割外的其它一些领域
 
