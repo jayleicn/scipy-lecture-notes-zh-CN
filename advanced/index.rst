@@ -1,9 +1,8 @@
-Advanced topics
+进阶话题
 ===================================================================
 
-This part of the *Scipy lecture notes* is dedicated to advanced usage. It
-strives to educate the proficient Python coder to be an expert and
-tackles various specific topics.
+这部分 *Scipy lecture notes* 旨在为熟练的Python程序员提供一些指导，
+特别是解决一些特殊领域的问题。
 
 |
 

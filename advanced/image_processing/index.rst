@@ -8,71 +8,61 @@
 .. _basic_image:
 
 =======================================================
-Image manipulation and processing using Numpy and Scipy
+使用 Numpy 和 Scipy 进行图片处理
 =======================================================
 
-**Authors**: *Emmanuelle Gouillart, Gaël Varoquaux*
+**作者**: *Emmanuelle Gouillart, Gaël Varoquaux*
 
-
-This section addresses basic image manipulation and processing using the
-core scientific modules NumPy and SciPy. Some of the operations covered
-by this tutorial may be useful for other kinds of multidimensional array
-processing than image processing. In particular, the submodule
-:mod:`scipy.ndimage` provides functions operating on n-dimensional NumPy
-arrays.
+这一节旨在使用Numpy和SciPy来解决基础图像处理问题。同时，本节中所提到的某些操作对一些形式的多维矩阵也有帮助。比如，:mod:`scipy.ndimage` 提供了一些对NumPy矩阵进行操作的函数。
 
 .. seealso::
 
-    For more advanced image processing and image-specific routines, see the
-    tutorial :ref:`scikit_image`, dedicated to the :mod:`skimage` module.
+    对于一些更高级的图像处理问题和教程，请参考 :ref:`scikit_image`。
 
 .. topic::
-    Image = 2-D numerical array
+    图像 = 2-D 数值矩阵
 
-    (or 3-D: CT, MRI, 2D + time; 4-D, ...)
+    (或者 3-D: CT, MRI, 2D + 时间; 4-D, ...)
 
-    Here, **image == Numpy array** ``np.array``
+    这里, **图像 == Numpy矩阵** ``np.array``
 
-**Tools used in this tutorial**:
+**本节所用工具**:
 
-* ``numpy``: basic array manipulation
+* ``numpy``: 基础矩阵操作
 
-* ``scipy``: ``scipy.ndimage`` submodule dedicated to image processing
-  (n-dimensional images). See the `documentation
+* ``scipy``: ``scipy.ndimage`` ，一个处理n维图像的子包。`参考文档
   <http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html>`_::
 
     >>> from scipy import ndimage
 
 
-**Common tasks in image processing**:
+**图像处理的常见任务**:
 
-* Input/Output, displaying images
+* 图像的输入输出及展示
 
-* Basic manipulations: cropping, flipping, rotating, ...
+* 基础处理程序: 裁剪, 翻转, 旋转, ...
 
-* Image filtering: denoising, sharpening
+* 图像滤波: 去燥, 提高清晰度
 
-* Image segmentation: labeling pixels corresponding to different objects
+* 图像分割: 对属于不同物体的像素贴上不同的标签
 
-* Classification
+* 分类
 
-* Feature extraction
-
-* Registration
+* 特征提取
 
 * ...
 
 
-.. contents:: Chapters contents
+.. contents:: 目录
    :local:
    :depth: 4
 
 
 
-Opening and writing to image files
+打开和写入图像文件
 ==================================
 
-Writing an array to a file:
+将矩阵写入文件:
 
 .. literalinclude:: examples/plot_face.py
    :lines: 8-
@@ -81,11 +71,11 @@ Writing an array to a file:
     :align: center
     :scale: 50
 
-Creating a numpy array from an image file::
+从numpy矩阵创建图像::
 
     >>> from scipy import misc
     >>> face = misc.face()
-    >>> misc.imsave('face.png', face) # First we need to create the PNG file
+    >>> misc.imsave('face.png', face) # 首先我们需要创建一个PNG文件
     
     >>> face = misc.imread('face.png')
     >>> type(face)      # doctest: +ELLIPSIS
@@ -93,26 +83,25 @@ Creating a numpy array from an image file::
     >>> face.shape, face.dtype
     ((768, 1024, 3), dtype('uint8'))
 
-dtype is uint8 for 8-bit images (0-255)
+数据类型dtype是“uint8”，表示每个像素用8位二进制存储(0-255)
 
-Opening raw files (camera, 3-D images) ::
+打开文件::
 
-    >>> face.tofile('face.raw') # Create raw file
+    >>> face.tofile('face.raw') # 创建文件
     >>> face_from_raw = np.fromfile('face.raw', dtype=np.uint8)
     >>> face_from_raw.shape
     (2359296,)
     >>> face_from_raw.shape = (768, 1024, 3)
 
-Need to know the shape and dtype of the image (how to separate data
-bytes).
+此处需要已知图片的尺寸。
 
-For large data, use ``np.memmap`` for memory mapping::
+大文件使用``np.memmap``进行内存映射::
 
     >>> face_memmap = np.memmap('face.raw', dtype=np.uint8, shape=(768, 1024, 3))
 
-(data are read from the file, and not loaded into memory)
+(数据从文件读入，但不载入内存)
 
-Working on a list of image files ::
+操作一系列图片 ::
 
     >>> for i in range(10):
     ...     im = np.random.random_integers(0, 255, 10000).reshape((100, 100))
@@ -121,26 +110,25 @@ Working on a list of image files ::
     >>> filelist = glob('random*.png')
     >>> filelist.sort()
 
-Displaying images
+显示图片
 =================
 
-Use ``matplotlib`` and ``imshow`` to display an image inside a
-``matplotlib figure``::
+使用``matplotlib``和``imshow``在``matplotlib figure``中显示图片::
 
-    >>> f = misc.face(gray=True)  # retrieve a grayscale image
+    >>> f = misc.face(gray=True)  # 创建一张灰度图
     >>> import matplotlib.pyplot as plt
     >>> plt.imshow(f, cmap=plt.cm.gray)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
-Increase contrast by setting min and max values::
+在上图基础上通过设置min和max来增加对比度::
 
     >>> plt.imshow(f, cmap=plt.cm.gray, vmin=30, vmax=200)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
-    >>> # Remove axes and ticks
+    >>> # 去掉坐标轴和刻度
     >>> plt.axis('off')
     (-0.5, 1023.5, 767.5, -0.5)
 
-Draw contour lines::
+添加轮廓线::
 
     >>> plt.contour(f, [50, 200])        # doctest: +ELLIPSIS
     <matplotlib.contour.QuadContourSet ...>
@@ -154,8 +142,7 @@ Draw contour lines::
 
     [:ref:`Python source code <example_plot_display_face.py>`]
 
-For fine inspection of intensity variations, use
-``interpolation='nearest'``::
+使用``interpolation='nearest'``来增加分辨率::
 
     >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
@@ -171,9 +158,9 @@ For fine inspection of intensity variations, use
     [:ref:`Python source code <example_plot_interpolation_face.py>`]
 
 
-.. seealso:: 3-D visualization: Mayavi
+.. seealso:: 3-D 可视化工具: Mayavi
 
-    See :ref:`mayavi-label`.
+    文档 :ref:`mayavi-label`.
 
 	* Image plane widgets
 
@@ -186,10 +173,10 @@ For fine inspection of intensity variations, use
     :scale: 65
 
 
-Basic manipulations
+基础操作
 ===================
 
-Images are arrays: use the whole ``numpy`` machinery.
+图像是多维矩阵: 可以使用``numpy``进行很多操作
 
 .. image:: axis_convention.png
     :align: center
@@ -200,7 +187,7 @@ Images are arrays: use the whole ``numpy`` machinery.
     >>> face = misc.face(gray=True)
     >>> face[0, 40]
     127
-    >>> # Slicing
+    >>> # 截取
     >>> face[10:13, 20:23]
     array([[141, 153, 145],
            [133, 134, 125],
@@ -210,9 +197,9 @@ Images are arrays: use the whole ``numpy`` machinery.
     >>> lx, ly = face.shape
     >>> X, Y = np.ogrid[0:lx, 0:ly]
     >>> mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
-    >>> # Masks
+    >>> # 选定一些特殊位置
     >>> face[mask] = 0
-    >>> # Fancy indexing
+    >>> # 高级索引
     >>> face[range(400), range(400)] = 255
 
 .. figure:: auto_examples/images/plot_numpy_array_1.png
@@ -224,7 +211,7 @@ Images are arrays: use the whole ``numpy`` machinery.
     [:ref:`Python source code <example_plot_numpy_array.py>`]
 
 
-Statistical information
+统计信息
 -----------------------
 
 ::
@@ -238,44 +225,38 @@ Statistical information
 
 ``np.histogram``
 
-.. topic:: **Exercise**
+.. topic:: **练习**
     :class: green
     
 
-    * Open as an array the ``scikit-image`` logo
-      (http://scikit-image.org/_static/img/logo.png), or an
-      image that you have on your computer.
+    * 读入一张图片，比如``scikit-image``图标(http://scikit-image.org/_static/img/logo.png)。
 
-    * Crop a meaningful part of the image, for example the python circle
-      in the logo.
+    * 截取图片的一部分，比如上述图标中的蟒蛇圆圈。
 
-    * Display the image array using ``matplotlib``. Change the
-      interpolation method and zoom to see the difference.
+    * 用``matplotlib``显示图像矩阵. 改变差值方法，放大看有什么不同。
 
-    * Transform your image to greyscale
+    * 将你的图片转换为灰度图。
 
-    * Increase the contrast of the image by changing its minimum and
-      maximum values. **Optional**: use ``scipy.stats.scoreatpercentile``
-      (read the docstring!) to saturate 5% of the darkest pixels and 5%
-      of the lightest pixels.
+    * 通过改变最值来增加图片的对比度。 **选做**: 使用``scipy.stats.scoreatpercentile``
+      将最暗和最亮的5%像素达到饱和。
 
-    * Save the array to two different file formats (png, jpg, tiff)
+    * 将图片存储为不同的格式 (png, jpg, tiff)
 
     .. image:: scikit_image_logo.png
         :align: center
 
 
-Geometrical transformations
+图像的几何变换
 ---------------------------
 ::
 
     >>> face = misc.face(gray=True)
     >>> lx, ly = face.shape
-    >>> # Cropping
+    >>> # 截取
     >>> crop_face = face[lx / 4: - lx / 4, ly / 4: - ly / 4]
-    >>> # up <-> down flip
+    >>> # 上下翻转
     >>> flip_ud_face = np.flipud(face)
-    >>> # rotation
+    >>> # 旋转
     >>> rotate_face = ndimage.rotate(face, 45)
     >>> rotate_face_noreshape = ndimage.rotate(face, 45, reshape=False)
 
@@ -287,11 +268,10 @@ Geometrical transformations
 
     [:ref:`Python source code <example_plot_geom_face.py>`]
 
-Image filtering
+图片滤波
 ===============
 
-**Local filters**: replace the value of pixels by a function of the values of
-neighboring pixels.
+**局部滤波**: 将像素的值用其周围像素值的一个函数替代。
 
 Neighbourhood: square (choose size), disk, or more complicated *structuring
 element*.
@@ -300,17 +280,17 @@ element*.
     :align: center
     :scale: 90
 
-Blurring/smoothing
+模糊／平滑
 ------------------
 
-**Gaussian filter** from ``scipy.ndimage``::
+``scipy.ndimage``中的**高斯滤波**::
 
     >>> from scipy import misc
     >>> face = misc.face(gray=True)
     >>> blurred_face = ndimage.gaussian_filter(face, sigma=3)
     >>> very_blurred = ndimage.gaussian_filter(face, sigma=5)
 
-**Uniform filter** ::
+**均值滤波** ::
 
     >>> local_mean = ndimage.uniform_filter(face, size=11)
 
@@ -322,17 +302,16 @@ Blurring/smoothing
 
     [:ref:`Python source code <example_plot_blur.py>`]
 
-Sharpening
+锐化
 ----------
 
-Sharpen a blurred image::
+锐化模糊图像::
 
     >>> from scipy import misc
     >>> face = misc.face(gray=True).astype(float)
     >>> blurred_f = ndimage.gaussian_filter(face, 3)
 
-increase the weight of edges by adding an approximation of the
-Laplacian::
+通过加上拉普拉斯近似来增加边缘权重::
 
     >>> filter_blurred_f = ndimage.gaussian_filter(blurred_f, 1)
     >>> alpha = 30
@@ -347,23 +326,23 @@ Laplacian::
     [:ref:`Python source code <example_plot_sharpen.py>`]
 
 
-Denoising
+去燥
 ---------
 
-Noisy face::
+有噪点的图片::
 
     >>> from scipy import misc
     >>> f = misc.face(gray=True)
     >>> f = f[230:290, 220:320]
     >>> noisy = f + 0.4 * f.std() * np.random.random(f.shape)
 
-A **Gaussian filter** smoothes the noise out... and the edges as well::
+使用**高斯滤波**抹掉噪点，但这样也会使边缘变得模糊::
 
     >>> gauss_denoised = ndimage.gaussian_filter(noisy, 2)
 
-Most local linear isotropic filters blur the image (``ndimage.uniform_filter``)
+大部分局部线性各向同性过滤器都会使图像变得模糊(``ndimage.uniform_filter``)
 
-A **median filter** preserves better the edges::
+而**均值滤波器**可以较好的保存边缘信息::
 
     >>> med_denoised = ndimage.median_filter(noisy, 3)
 
@@ -376,7 +355,7 @@ A **median filter** preserves better the edges::
     [:ref:`Python source code <example_plot_face_denoise.py>`]
 
 
-Median filter: better result for straight boundaries (**low curvature**)::
+均值滤波器: 对棱角分明的图片更好 (**曲度小**)::
 
     >>> im = np.zeros((20, 20))
     >>> im[5:-5, 5:-5] = 1
@@ -393,46 +372,39 @@ Median filter: better result for straight boundaries (**low curvature**)::
     [:ref:`Python source code <example_plot_denoising.py>`]
 
 
-Other rank filter: ``ndimage.maximum_filter``,
+其它各阶滤波器: ``ndimage.maximum_filter``,
 ``ndimage.percentile_filter``
 
-Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
+其它局部非线性滤波器: Wiener (``scipy.signal.wiener``), 等等.
 
-**Non-local filters**
+**非局部滤波器**
 
-.. topic:: **Exercise: denoising**
+.. topic:: **练习：去燥**
     :class: green
     
-    * Create a binary image (of 0s and 1s) with several objects (circles,
-      ellipses, squares, or random shapes).
+    * 创建一张包含圆，椭圆，正方形或者任意形状物体的二值图片(只含0，1)。
 
-    * Add some noise (e.g., 20% of noise)
+    * 添加噪点
 
-    * Try two different denoising methods for denoising the image:
-      gaussian filtering and median filtering.
+    * 尝试两种不同的去燥方法: 高斯滤波和均值滤波.
 
-    * Compare the histograms of the two different denoised images.
-      Which one is the closest to the histogram of the original (noise-free)
-      image?
+    * 使用直方图比较两者的不同。哪一个和不含噪点的图片的直方图更相近？
 
 .. seealso::
 
-    More denoising filters are available in :mod:`skimage.denoising`,
-    see the :ref:`scikit_image` tutorial.
+    更多去燥的滤波器 :mod:`skimage.denoising`,
+    也可以看看 :ref:`scikit_image` 的教程.
 
 
 
-Mathematical morphology
+数学形态学
 -----------------------
 
-See `wikipedia <https://en.wikipedia.org/wiki/Mathematical_morphology>`_
-for a definition of mathematical morphology.
+参见 `wikipedia <https://en.wikipedia.org/wiki/Mathematical_morphology>`_
+了解数学形态学的定义。
 
-Probe an image with a simple shape (a **structuring element**), and
-modify this image according to how the shape locally fits or misses the
-image.
 
-**Structuring element**::
+**结构化元素**::
 
     >>> el = ndimage.generate_binary_structure(2, 1)
     >>> el
@@ -447,7 +419,7 @@ image.
 .. figure:: diamond_kernel.png
     :align: center
 
-**Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.::
+**侵蚀** = 最小值滤波，将::
 
     >>> a = np.zeros((7,7), dtype=np.int)
     >>> a[1:6, 2:5] = 1
@@ -482,7 +454,7 @@ image.
     :align: center
 
 
-**Dilation**: maximum filter::
+**膨胀**: 最大值滤波::
 
     >>> a = np.zeros((5, 5))
     >>> a[2, 2] = 1
@@ -500,7 +472,7 @@ image.
            [ 0.,  0.,  0.,  0.,  0.]])
 
 
-Also works for grey-valued images::
+一些关于灰度图的应用::
 
     >>> np.random.seed(2)
     >>> im = np.zeros((64, 64))
@@ -524,7 +496,7 @@ Also works for grey-valued images::
 
     [:ref:`Python source code <example_plot_greyscale_dilation.py>`]
 
-**Opening**: erosion + dilation::
+**开操作**: 腐蚀和膨胀::
 
     >>> a = np.zeros((5,5), dtype=np.int)
     >>> a[1:4, 1:4] = 1; a[4, 4] = 1
@@ -549,7 +521,7 @@ Also works for grey-valued images::
            [0, 0, 1, 0, 0],
            [0, 0, 0, 0, 0]])
 
-**Application**: remove noise::
+**应用**: 去燥::
 
     >>> square = np.zeros((32, 32))
     >>> square[10:-10, 10:-10] = 1
@@ -570,18 +542,18 @@ Also works for grey-valued images::
 
     [:ref:`Python source code <example_plot_propagation.py>`]
 
-**Closing**: dilation + erosion
+**闭合操作**: 膨胀和腐蚀
 
-Many other mathematical morphology operations: hit and miss transform, tophat,
-etc.
+其它一些数学形态学的操作: 击中击不中变换，Top-hat变换，等。
 
-Feature extraction
+
+特征提取
 ==================
 
-Edge detection
+边缘检测
 --------------
 
-Synthetic data::
+生成数据::
 
     >>> im = np.zeros((256, 256))
     >>> im[64:-64, 64:-64] = 1
@@ -589,7 +561,7 @@ Synthetic data::
     >>> im = ndimage.rotate(im, 15, mode='constant')
     >>> im = ndimage.gaussian_filter(im, 8)
 
-Use a **gradient operator** (**Sobel**) to find high intensity variations::
+U使用**梯度算符** (**Sobel**)来找到变化最大的区域::
 
     >>> sx = ndimage.sobel(im, axis=0, mode='constant')
     >>> sy = ndimage.sobel(im, axis=1, mode='constant')
@@ -604,10 +576,10 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
     [:ref:`Python source code <example_plot_find_edges.py>`]
 
 
-Segmentation
+分割
 ------------
 
-* **Histogram-based** segmentation (no spatial information)
+* **基于直方图** 分割 (不含空间信息)
 
 ::
 
@@ -636,11 +608,11 @@ Segmentation
 
     [:ref:`Python source code <example_plot_histo_segmentation.py>`]
 
-Use mathematical morphology to clean up the result::
+实用数学形态学工具来清理结果::
 
-    >>> # Remove small white regions
+    >>> # 去掉小白块
     >>> open_img = ndimage.binary_opening(binary_img)
-    >>> # Remove small black hole
+    >>> # 去掉小黑块
     >>> close_img = ndimage.binary_closing(open_img)
 
 .. figure:: auto_examples/images/plot_clean_morpho_1.png
@@ -651,11 +623,10 @@ Use mathematical morphology to clean up the result::
 
     [:ref:`Python source code <example_plot_clean_morpho.py>`]
 
-.. topic:: **Exercise**
+.. topic:: **练习**
     :class: green
 
-    Check that reconstruction operations (erosion + propagation) produce a
-    better result than opening/closing::
+    查看重建操作 (腐蚀和传播) 来达到比开闭更好的效果::
 
 	>>> eroded_img = ndimage.binary_erosion(binary_img)
 	>>> reconstruct_img = ndimage.binary_propagation(eroded_img, mask=binary_img)
@@ -667,7 +638,7 @@ Use mathematical morphology to clean up the result::
 	>>> np.abs(mask - reconstruct_final).mean() # doctest: +ELLIPSIS
 	0.00059502...
 
-.. topic:: **Exercise**
+.. topic:: **练习**
     :class: green
 
     Check how a first denoising step (e.g. with a median filter)
@@ -677,14 +648,11 @@ Use mathematical morphology to clean up the result::
 
 .. seealso::
 
-    More advanced segmentation algorithms are found in the
+    其它一些关于分割的高级操作，可以参加
     ``scikit-image``: see :ref:`scikit_image`.
 
 .. seealso::
-
-    Other Scientific Packages provide algorithms that can be useful for
-    image processing. In this example, we use the spectral clustering 
-    function of the ``scikit-learn`` in order to segment glued objects.
+    其它一些提供图像处理操作的包. 比如在这个例子中，我们使用``scikit-learn``中谱聚类的函数来分割胶着的物体。
 
 
     ::
@@ -706,7 +674,7 @@ Use mathematical morphology to clean up the result::
         >>> circle3 = (x - center3[0])**2 + (y - center3[1])**2 < radius3**2
         >>> circle4 = (x - center4[0])**2 + (y - center4[1])**2 < radius4**2
 
-        >>> # 4 circles
+        >>> # 4个圆
         >>> img = circle1 + circle2 + circle3 + circle4
         >>> mask = img.astype(bool)
         >>> img = img.astype(float)
@@ -730,10 +698,10 @@ Use mathematical morphology to clean up the result::
 
 
 
-Measuring objects properties: ``ndimage.measurements``
+度量物体属性： ``ndimage.measurements``
 ========================================================
 
-Synthetic data::
+合成数据::
 
     >>> n = 10
     >>> l = 256
@@ -743,12 +711,12 @@ Synthetic data::
     >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>> mask = im > im.mean()
 
-* **Analysis of connected components**
+* **分析相连的部分**
 
-Label connected components: ``ndimage.label``::
+给相连的部分打上标记: ``ndimage.label``::
 
     >>> label_im, nb_labels = ndimage.label(mask)
-    >>> nb_labels # how many regions?
+    >>> nb_labels # 有多少个不同的部分
     16
     >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
@@ -761,12 +729,12 @@ Label connected components: ``ndimage.label``::
 
     [:ref:`Python source code <example_plot_synthetic_data.py>`]
 
-Compute size, mean_value, etc. of each region::
+计算每一个部分的大小和均值等等::
 
     >>> sizes = ndimage.sum(mask, label_im, range(nb_labels + 1))
     >>> mean_vals = ndimage.sum(im, label_im, range(1, nb_labels + 1))
 
-Clean up small connect components::
+清除其中较小的一些::
 
     >>> mask_size = sizes < 1000
     >>> remove_pixel = mask_size[label_im]
@@ -776,7 +744,7 @@ Clean up small connect components::
     >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
-Now reassign labels with ``np.searchsorted``::
+现在通过``np.searchsorted``来贴上标签::
 
     >>> labels = np.unique(label_im)
     >>> label_im = np.searchsorted(labels, label_im)
@@ -789,7 +757,7 @@ Now reassign labels with ``np.searchsorted``::
 
     [:ref:`Python source code <example_plot_measure_data.py>`]
 
-Find region of interest enclosing object::
+找到包含所关注物体的区域::
 
     >>> slice_x, slice_y = ndimage.find_objects(label_im==4)[0]
     >>> roi = im[slice_x, slice_y]
@@ -804,12 +772,12 @@ Find region of interest enclosing object::
 
     [:ref:`Python source code <example_plot_find_object.py>`]
 
-Other spatial measures: ``ndimage.center_of_mass``,
-``ndimage.maximum_position``, etc.
+其它空间度量: ``ndimage.center_of_mass``,
+``ndimage.maximum_position``, 等等.
 
-Can be used outside the limited scope of segmentation applications.
+也可用于除图像分割外的其它一些领域
 
-Example: block mean::
+例子: 块均值::
 
     >>> from scipy import misc
     >>> f = misc.face(gray=True)
@@ -828,10 +796,9 @@ Example: block mean::
 
     [:ref:`Python source code <example_plot_block_mean.py>`]
 
-When regions are regular blocks, it is more efficient to use stride
-tricks (:ref:`stride-manipulation-label`).
+当区域是一个正方的块, 可以使用一个更高效的技巧(:ref:`stride-manipulation-label`).
 
-Non-regularly-spaced blocks: radial mean::
+非正方的区块: 径向均值::
 
     >>> sx, sy = f.shape
     >>> X, Y = np.ogrid[0:sx, 0:sy]
@@ -848,11 +815,11 @@ Non-regularly-spaced blocks: radial mean::
     [:ref:`Python source code <example_plot_radial_mean.py>`]
 
 
-* **Other measures**
+* **其它度量方法**
 
-Correlation function, Fourier/wavelet spectrum, etc.
+相关函数, 傅立叶或者小波频谱，等等。
 
-One example with mathematical morphology: `granulometry
+一个包含数学形态学的例子: `granulometry
 <https://en.wikipedia.org/wiki/Granulometry_%28morphology%29>`_
 
 ::
@@ -898,14 +865,14 @@ One example with mathematical morphology: `granulometry
 |
 
 
-.. seealso:: More on image-processing:
+.. seealso:: 更多关于图像处理:
 
-   * The chapter on :ref:`Scikit-image <scikit_image>`
+   *  :ref:`Scikit-image <scikit_image>`的有关章节
    
-   * Other, more powerful and complete modules: `OpenCV
+   * 更强大的图像处理工具: `OpenCV
      <https://opencv-python-tutroals.readthedocs.org/en/latest>`_
-     (Python bindings), `CellProfiler <http://www.cellprofiler.org>`_,
-     `ITK <http://www.itk.org/>`_ with Python bindings
+     , `CellProfiler <http://www.cellprofiler.org>`_,
+     `ITK <http://www.itk.org/>`
 
 
 
