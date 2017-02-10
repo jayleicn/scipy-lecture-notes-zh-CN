@@ -127,6 +127,7 @@ Scipy Lecture Notes
     >>> # For doctest on headless environments (needs to happen early)
     >>> import matplotlib
     >>> matplotlib.use('Agg')
+    
 
 
 
