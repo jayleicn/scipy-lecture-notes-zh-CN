@@ -49,7 +49,7 @@ pyplot
 
 ::
 
-    from matplotlitb import pyplot as plt
+    from matplotlib import pyplot as plt
 
 绘图基础
 ===========
