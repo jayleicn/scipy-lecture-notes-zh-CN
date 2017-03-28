@@ -2,7 +2,7 @@
 Scipy-Lecture-Notes-CN
 ===================
 
-这是来自 http://scipy-lectures.org 的Python科学计算环境教程的中文版
+这是来自 [scipy-lectures.org](http://scipy-lectures.org) 的Python科学计算环境教程的中文版
 
 在线版不再提供, 请在[releases](https://github.com/jayleicn/scipy-lecture-notes-zh-CN/releases)下载网页格式的离线版文档, 打开index.html浏览教程
 
@@ -17,7 +17,7 @@ Scipy-Lecture-Notes-CN
 
 在ubuntu14.04 LTS上编译HTML (我的编译环境)
 
-1. 安装anaconda for Python 2.7, Linux 64-bit <https://www.continuum.io/downloads>. (其他版本未经测试)， 并将anaconda python添加到系统PATH变量中。  
+1. 安装[anaconda](https://www.continuum.io/downloads) for Python 2.7, Linux 64-bit. (其他版本未经测试), 并将anaconda python添加到系统PATH变量中
 
 2. 安装seaborn包
 
@@ -39,9 +39,7 @@ pip install docutils==0.12
 如何做出贡献
 ---------------------------------------
 
-如果你对翻译此文档感兴趣，请fork此仓库，翻译或修改之后pull request。 在线编辑，搭配实时预览，体验更佳!
-
-文档 ``CONTRIBUTING.rst`` 包含更详细的指导。(包含编译和贡献部分)
+如果你对翻译此文档感兴趣, 请fork此仓库, 翻译或修改之后pull request. 
 
 
 翻译进程及译者概况
@@ -101,7 +99,7 @@ pip install docutils==0.12
 
 感谢
 
-原作者及编辑者们，
-最初发起这个计划的@teastares童鞋，
-所有为译文作出贡献的童鞋。
+原作者及编辑者们,
+最初发起这个计划的@teastares童鞋,
+所有为译文作出贡献的童鞋.
 
