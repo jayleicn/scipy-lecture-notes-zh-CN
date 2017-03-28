@@ -1,20 +1,15 @@
 ===================
-Scipy-Lecture-Notes
+Scipy-Lecture-Notes-CN
 ===================
 
 这是来自 http://scipy-lectures.org 的Python科学计算环境教程的中文版
 
-这些文件使用rest markup语言写作 (后缀名为 ``.rst`` ) 并使用Sphinx编译: http://sphinx.pocoo.org/.
-
-网页地址: http://scipy-lectures.cn
-
+在线版不再提供, 请在[releases](https://github.com/jayleicn/scipy-lecture-notes-zh-CN/releases)下载网页格式的离线版文档, 打开index.html浏览教程
 
 授权许可
 -------------------------
 
-如 ``LICENSE.txt`` 文件指出,这份材料无任何附加条款。基于教学目的，您可以自由使用和更改。
-
-但是，为了使这份材料能够不断的改进，我们鼓励大家将自己所做的更改反馈到此处，以期原作者，编辑以及译者能够持续优化此文档。
+参见 ``LICENSE.txt`` 
 
 
 编译 
@@ -22,12 +17,24 @@ Scipy-Lecture-Notes
 
 在ubuntu14.04 LTS上编译HTML (我的编译环境)
 
-1. 安装anaconda for Python 2.7, Linux 64-bit <https://www.continuum.io/downloads>. (其他版本未经测试)
-2. 添加anaconda/bin/目录到系统PATH变量中  
-3. 安装seaborn包  pip install seaborn
-4. 切换至scipy-lecture-notes-zh-CN/目录下， make html
-5. 在build/html文件夹下打开index.html
+1. 安装anaconda for Python 2.7, Linux 64-bit <https://www.continuum.io/downloads>. (其他版本未经测试)， 并将anaconda python添加到系统PATH变量中。  
 
+2. 安装seaborn包
+
+   ```
+   pip install seaborn
+   ```
+
+3. 切换至scipy-lecture-notes-zh-CN/目录下， make html
+
+4. 在build/html文件夹下打开index.html
+
+
+注意: anaconda中默认安装的docutils版本会导致编译错误, 请在编译之前运行此命令
+
+```
+pip install docutils==0.12
+```
 
 如何做出贡献
 ---------------------------------------
